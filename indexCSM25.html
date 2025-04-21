@@ -112,88 +112,63 @@ body {
   max-height: 2000px; /* Aumentado para asegurar que todo el contenido sea visible */
 }
 
-/* Calendar styles */
 .calendar {
-  table-layout: fixed;
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.calendar th {
-  background-color: var(--primary-color);
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #e5e7eb;
-  font-size: 0.85rem;
-}
-
-.calendar td {
-  height: 80px;
-  border: 1px solid #e5e7eb;
-  vertical-align: top;
-  padding: 8px;
-  background-color: white;
-}
-
-.calendar .date {
-  font-weight: bold;
-  margin-bottom: 5px;
-  font-size: 0.9rem;
-  color: var(--primary-color);
-}
-
-.calendar .today {
-  background-color: #f0ebd7;
-  border: 2px solid var(--primary-color);
-}
-
-.calendar .out-of-range {
-  background-color: #f3f4f6;
-  color: #9ca3af;
-}
-
-.destination-tag {
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  color: white;
-  margin-top: 2px;
-  text-decoration: none;
-  transition: transform 0.2s ease;
-  margin-bottom: 3px;
-}
-
-.destination-tag:hover {
-  transform: scale(1.05);
-}
-
-.porto-tag {
-  background-color: #3182ce;
-}
-
-.povoa-tag {
-  background-color: #805ad5;
-}
-
-.esposende-tag {
-  background-color: #38a169;
-}
-
-.viana-tag {
-  background-color: #dd6b20;
-}
-
-.caminha-tag {
-  background-color: #0d9488;
-}
-
-.santiago-tag {
-  background-color: #e53e3e;
-}
-
+    border-collapse: separate;
+    border-spacing: 4px;
+  }
+  
+  .calendar th {
+    padding: 8px;
+    font-weight: 500;
+    color: #4a5568;
+  }
+  
+  .calendar td {
+    vertical-align: top;
+    padding: 8px;
+    height: 90px;
+    width: 14.285%;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .calendar td:empty {
+    background-color: #f7fafc;
+    border: 1px dashed #e2e8f0;
+  }
+  
+  .calendar .date {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  
+  .today {
+    background-color: #f0f9ff;
+    border: 1px solid #90cdf4 !important;
+  }
+  
+  .destination-tag {
+    display: block;
+    padding: 2px 6px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    background-color: #4299e1; /* Color por defecto - traslados */
+    color: white;
+    font-size: 0.75rem;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .walking-day {
+    background-color: #48bb78; /* Verde para días de caminata */
+  }
+  
+  .destination-tag:hover {
+    opacity: 0.9;
+    text-decoration: none;
+  }
 /* Journey map styles */
 .journey-map-horizontal {
   display: flex;
@@ -608,924 +583,319 @@ body {
   </div>
 </section>
 
-<!-- Itinerary Section with Improved Format -->
-<section id="itinerary" class="py-12 bg-gray-100">
+<section id="itinerary" class="py-12">
   <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-6 text-center brand-text">Itinerario Detallado</h2>
-    <p class="text-center text-gray-600 mb-8">Descubre día a día nuestra ruta hacia Santiago</p>
-
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <!-- Día 1: Camp de Tarragona - Badajoz -->
-      <div class="border-b">
-        <div class="flex items-center justify-between p-4 bg-white hover:bg-gray-50 cursor-pointer accordion-header">
-          <div class="flex-1">
-            <h3 class="font-bold text-lg brand-text">Día 1: Camp de Tarragona - Badajoz</h3>
-            <p class="text-gray-600">El viaje comienza</p>
-          </div>
-          <div class="text-right mr-4">
-            <p class="text-gray-600 font-medium">Domingo 18 mayo</p>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    <h2 class="text-3xl font-bold mb-6 text-center brand-text">Itinerario del Camino</h2>
+    <p class="text-center text-gray-600 mb-8">Un viaje por la costa portuguesa hasta Santiago</p>
+    
+    <!-- Accordion for each day -->
+    <div class="space-y-4">
+      <!-- Day 1: May 18 -->
+      <div id="day-18-mayo" class="border rounded-lg overflow-hidden">
+        <button class="w-full bg-gray-50 px-4 py-3 text-left font-semibold flex justify-between items-center hover:bg-gray-100 transition-colors duration-200 focus:outline-none" onclick="toggleAccordion('day18-content')">
+          <span>Domingo 18 de Mayo: Camp de Tarragona - Badajoz</span>
+          <svg class="h-5 w-5 transform transition-transform duration-200" id="day18-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
-        </div>
-        <div class="accordion-content">
-          <div class="p-4 border-t border-gray-100">
-            <div class="flex flex-col md:flex-row">
-              <div class="md:w-1/4 mb-4 md:mb-0">
-                <div class="bg-gray-50 p-3 rounded-lg">
-                  <h4 class="font-bold mb-2 brand-text">Detalles del trayecto</h4>
-                  <p class="text-sm text-gray-700"><span class="font-semibold">Transporte:</span> Tren RENFE</p>
-                  <p class="text-sm text-gray-700"><span class="font-semibold">Distancia:</span> N/A (día de viaje)</p>
-                  <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> Todo el día</p>
-                  <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> N/A</p>
-                </div>
-              </div>
-              <div class="md:w-3/4 md:pl-6">
-                <p class="text-gray-700 mb-4">
-                El viaje comienza en Camp de Tarragona, tierra de historia romana y medieval, donde el emperador Augusto estableció la antigua Tarraco, capital de la Hispania Citerior. Hoy inicias tu propio camino histórico mientras el tren atraviesa la península, cruzando paisajes que han sido testigos de peregrinaciones durante siglos.
-              </p>
-              <p class="text-gray-700 mb-4">
-                El trayecto ferroviario te llevará a través de la España interior, pasando por Madrid y adentrándose en Extremadura, una región donde las culturas romana, visigoda, musulmana y cristiana han dejado profundas huellas. Este viaje en tren no es solo un medio para llegar a tu destino, sino una transición espiritual, un tiempo de introspección antes de comenzar tu peregrinación.
-              </p>
-              <p class="text-gray-700 mb-4">
-                Las vías del tren siguen en muchos tramos rutas comerciales centenarias que conectaban distintos reinos peninsulares. Mientras observas el paisaje cambiante por la ventanilla, recuerda que estás recreando, aunque con medios modernos, los preparativos que miles de peregrinos antes que tú han realizado durante más de mil años.
-              </p>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 brand-text">Recomendaciones:</h5>
-                <ul class="space-y-1">
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Aprovecha el viaje para leer sobre la historia del Camino de Santiago y la Ruta Portuguesa.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Prepara una pequeña mochila con lo esencial para el trayecto (agua, snacks, documentación).</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Comienza un diario de viaje, tradición que muchos peregrinos han mantenido a lo largo de los siglos.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Es buen momento para revisar todo tu equipo y asegurarte de que no falta nada.</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 accent-text">Datos históricos:</h5>
-                <p class="text-sm text-gray-700">
-                  Badajoz fue fundada por Ibn Marwan en el año 875, siendo una importante ciudad fronteriza durante siglos, disputada entre reinos cristianos y musulmanes, y posteriormente entre España y Portugal. La conexión ferroviaria que utilizarás fue parte del ambicioso plan de comunicaciones del siglo XIX que buscaba unir las principales ciudades españolas, aunque algunas líneas, como la que conecta con Extremadura, fueron tradicionalmente relegadas en prioridad.
-                </p>
-              </div>
-            </div>
+        </button>
+        <div id="day18-content" class="hidden px-4 py-3 border-t">
+          <div class="prose max-w-none">
+            <h3>Viaje: Camp de Tarragona - Badajoz (RENFE)</h3>
+            <p>Iniciamos nuestro viaje desde Camp de Tarragona. El trayecto ferroviario nos llevará a través de la España interior, pasando por Madrid y adentrándonos en Extremadura, una región con profundas huellas culturales e históricas.</p>
+            <h4>Datos históricos:</h4>
+            <ul>
+              <li>Badajoz fue fundada por Ibn Marwan en el año 875, siendo una importante ciudad fronteriza durante siglos.</li>
+              <li>La conexión ferroviaria que utilizaremos fue parte del plan de comunicaciones del siglo XIX.</li>
+            </ul>
+            <h4>Recomendaciones:</h4>
+            <ul>
+              <li>Llevar una pequeña mochila con lo esencial para el trayecto.</li>
+              <li>Comenzar un diario de viaje, tradición de muchos peregrinos.</li>
+              <li>Aprovechar para revisar todo el equipo y asegurarse de que no falta nada.</li>
+            </ul>
+            <p><strong>Alojamiento:</strong> Badajoz (cercano a la estación)</p>
           </div>
         </div>
       </div>
       
-      <!-- Día 2: Badajoz -->
-      <div class="border-b">
-        <div class="flex items-center justify-between p-4 bg-white hover:bg-gray-50 cursor-pointer accordion-header">
-          <div class="flex-1">
-            <h3 class="font-bold text-lg brand-text">Día 2: Badajoz</h3>
-            <p class="text-gray-600">Un Día Entre Murallas Históricas</p>
-          </div>
-          <div class="text-right mr-4">
-            <p class="text-gray-600 font-medium">Lunes 19 mayo</p>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      <!-- Day 2: May 19 -->
+      <div id="day-19-mayo" class="border rounded-lg overflow-hidden">
+        <button class="w-full bg-gray-50 px-4 py-3 text-left font-semibold flex justify-between items-center hover:bg-gray-100 transition-colors duration-200 focus:outline-none" onclick="toggleAccordion('day19-content')">
+          <span>Lunes 19 de Mayo: Badajoz - Un Día Entre Murallas</span>
+          <svg class="h-5 w-5 transform transition-transform duration-200" id="day19-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
-        </div>
-        <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/4 mb-4 md:mb-0">
-              <div class="bg-gray-100 p-3 rounded-lg">
-                <h4 class="font-bold mb-2 brand-text">Detalles del día</h4>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Actividad:</span> Visita cultural</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Lugares clave:</span> Alcazaba, Plaza Alta, Catedral</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> Día completo</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> Baja</p>
-              </div>
-            </div>
-            <div class="md:w-3/4 md:pl-6">
-              <h4 class="font-bold mb-3 brand-text">Un Día Entre Murallas Históricas</h4>
-              <p class="text-gray-700 mb-4">
-                Amaneces en Badajoz, ciudad fronteriza cuya historia ha estado marcada por su ubicación estratégica entre reinos y naciones. Hoy es un día para aclimatarte, prepararte física y mentalmente, mientras te impregnas de la rica historia de esta ciudad extremeña que ha sido testigo de innumerables viajeros y comerciantes a lo largo de los siglos.
-              </p>
-              <p class="text-gray-700 mb-4">
-                Badajoz fue fundada por Ibn Marwan en el siglo IX como una ciudad fortificada musulmana y su nombre deriva del árabe "Batalyaws", que evolucionó al actual Badajoz. La ciudad cambió de manos numerosas veces durante la Reconquista, siendo finalmente conquistada para los reinos cristianos por Alfonso IX de León en 1230. Su carácter fronterizo ha definido su arquitectura, cultura y gastronomía, una mezcla fascinante de influencias ibéricas y norteafricanas.
-              </p>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Lugares para visitar y su contexto histórico:</h5>
-                <div class="daily-item">
-                  <p class="font-medium">Alcazaba árabe</p>
-                  <p class="text-sm text-gray-700">Una de las fortalezas musulmanas más grandes de España, construida en el siglo XII. Sus imponentes murallas ofrecen un testimonio pétreo del pasado islámico de la ciudad. Desde lo alto de sus torres, los antiguos centinelas vigilaban la aproximación de ejércitos enemigos; hoy, tú puedes contemplar panorámicas del paisaje que te espera en tu camino.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Plaza Alta</p>
-                  <p class="text-sm text-gray-700">Corazón histórico de la ciudad desde el siglo XVI, fue testigo de mercados, celebraciones y hasta autos de fe durante la Inquisición. Las casas pintadas de colores vivos que la rodean son reminiscencia de la época en que este espacio era el centro neurálgico de la vida social pacense.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Catedral de San Juan Bautista</p>
-                  <p class="text-sm text-gray-700">Comenzada en el siglo XIII sobre los restos de una mezquita, representa la transición del románico al gótico. Sus diversas fases constructivas reflejan la evolución histórica de la ciudad. Busca en su interior la imagen de Santiago Peregrino, patrono de los caminantes como tú.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Puente de Palmas</p>
-                  <p class="text-sm text-gray-700">Aunque no está en tu lista inicial, vale la pena visitarlo. Construido originalmente en el siglo XV y reconstruido varias veces tras las devastadoras crecidas del Guadiana, ha sido durante siglos el principal paso entre España y Portugal, simbolizando la conexión entre culturas que caracteriza esta región.</p>
-                </div>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 brand-text">Recomendaciones:</h5>
-                <ul class="space-y-1">
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Comienza tu día con un desayuno sustancioso que incluya alguna especialidad local como las "tostás" con aceite de oliva virgen extremeño.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Visita alguna de las iglesias locales y busca el símbolo de la vieira o concha de Santiago, emblema del peregrino presente en muchos templos del Camino.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Adquiere tu credencial del peregrino si aún no la tienes. Aunque no estarás en la ruta oficial hasta Portugal, este documento es esencial.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Haz las últimas compras necesarias, prestando especial atención al calzado y protección para los pies, causa principal de abandonos en el Camino.</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 accent-text">Datos históricos relevantes:</h5>
-                <p class="text-sm text-gray-700">
-                  Durante la Edad Media, numerosos peregrinos portugueses cruzaban por Badajoz en su camino hacia Santiago, utilizando la llamada "Vía de la Plata" que conectaba con el Camino Francés más al norte. En el siglo XII, la Orden de Santiago tuvo gran presencia en Extremadura, protegiendo a los peregrinos y manteniendo los caminos seguros en una época de frontera inestable. La tradición hospitalaria de Badajoz tiene raíces profundas: ya en el siglo XIV existían hospederías específicas para acoger a peregrinos y viajeros.
-                </p>
-              </div>
-            </div>
+        </button>
+        <div id="day19-content" class="hidden px-4 py-3 border-t">
+          <div class="prose max-w-none">
+            <h3>Día de aclimatación y preparación</h3>
+            <p>Día para aclimatarnos y prepararnos física y mentalmente, mientras nos impregnamos de la rica historia de esta ciudad extremeña.</p>
+            <h4>Lugares para visitar:</h4>
+            <ul>
+              <li><strong>Alcazaba árabe:</strong> Una de las fortalezas musulmanas más grandes de España (siglo XII).</li>
+              <li><strong>Plaza Alta:</strong> Corazón histórico de la ciudad desde el siglo XVI.</li>
+              <li><strong>Catedral de San Juan Bautista:</strong> Comenzada en el siglo XIII sobre los restos de una mezquita.</li>
+              <li><strong>Puente de Palmas:</strong> Construido originalmente en el siglo XV.</li>
+            </ul>
+            <h4>Recomendaciones:</h4>
+            <ul>
+              <li>Visitar alguna de las iglesias locales y buscar el símbolo de la vieira o concha de Santiago.</li>
+              <li>Adquirir la credencial del peregrino si aún no la tenemos.</li>
+              <li>Hacer las últimas compras necesarias, con especial atención al calzado.</li>
+            </ul>
+            <p><strong>Alojamiento:</strong> El mismo de la noche anterior en Badajoz</p>
           </div>
         </div>
       </div>
       
-      <!-- Día 3: Badajoz - Vila do Conde -->
-      <div class="border-b">
-        <div class="flex items-center justify-between p-4 bg-white hover:bg-gray-50 cursor-pointer accordion-header">
-          <div class="flex-1">
-            <h3 class="font-bold text-lg brand-text">Día 3: Badajoz - Vila do Conde</h3>
-            <p class="text-gray-600">Atravesando Fronteras Ancestrales</p>
-          </div>
-          <div class="text-right mr-4">
-            <p class="text-gray-600 font-medium">Martes 20 mayo</p>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      <!-- Day 3: May 20 -->
+      <div id="day-20-mayo" class="border rounded-lg overflow-hidden">
+        <button class="w-full bg-gray-50 px-4 py-3 text-left font-semibold flex justify-between items-center hover:bg-gray-100 transition-colors duration-200 focus:outline-none" onclick="toggleAccordion('day20-content')">
+          <span>Martes 20 de Mayo: Badajoz - Vila do Conde</span>
+          <svg class="h-5 w-5 transform transition-transform duration-200" id="day20-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
-        </div>
-        <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/4 mb-4 md:mb-0">
-              <div class="bg-gray-100 p-3 rounded-lg">
-                <h4 class="font-bold mb-2 brand-text">Detalles del trayecto</h4>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Transporte:</span> Coche</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Distancia:</span> ~460 km</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> 4-5 horas</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> N/A</p>
-              </div>
-            </div>
-            <div class="md:w-3/4 md:pl-6">
-              <h4 class="font-bold mb-3 brand-text">Atravesando Fronteras Ancestrales</h4>
-              <p class="text-gray-700 mb-4">
-                Hoy emprenderás un viaje que trasciende las fronteras modernas, siguiendo rutas comerciales milenarias que han conectado las tierras ibéricas desde tiempos inmemoriales. El trayecto desde Badajoz hasta Vila do Conde es un viaje a través del tiempo, cruzando paisajes que han presenciado el paso de fenicios, romanos, visigodos, musulmanes y cristianos, todos ellos dejando su huella en la península.
-              </p>
-              <p class="text-gray-700 mb-4">
-                La frontera hispano-portuguesa, conocida como "La Raya" (A Raia), es una de las más antiguas y estables de Europa, establecida formalmente por el Tratado de Alcañices en 1297. Este límite, que hoy cruzarás con facilidad, fue durante siglos una barrera fortificada con castillos y atalayas que vigilaban celosamente ambos lados. Sin embargo, también fue un espacio de intercambio cultural, comercial y humano, donde las tradiciones se entremezclaban creando una identidad única de frontera.
-              </p>
-              <p class="text-gray-700 mb-4">
-                El viaje te llevará a través del Alentejo portugués, una región de suaves colinas doradas, olivos centenarios y alcornoques que han sustentado la industria corchera durante generaciones. Este paisaje apenas ha cambiado desde que los primeros peregrinos medievales lo atravesaron en su camino hacia Compostela.
-              </p>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Lugares de interés en el camino:</h5>
-                <div class="daily-item">
-                  <p class="font-medium">Elvas</p>
-                  <p class="text-sm text-gray-700">Aunque no está directamente en tu ruta, esta ciudad fortificada portuguesa declarada Patrimonio Mundial se encuentra muy cerca de la frontera. Sus impresionantes fortificaciones abaluartadas del siglo XVII forman el mayor complejo de fortificaciones de este tipo en el mundo.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Évora</p>
-                  <p class="text-sm text-gray-700">Esta joya alentejana, Patrimonio de la Humanidad, conserva vestigios de 2000 años de historia. El Templo Romano de Diana (en realidad dedicado al culto imperial) del siglo I d.C., la Catedral románico-gótica del siglo XIII y la macabra pero fascinante Capela dos Ossos (Capilla de los Huesos) del siglo XVII te recordarán la naturaleza transitoria de la vida, reflexión apropiada para un peregrino.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Porto</p>
-                  <p class="text-sm text-gray-700">Si tienes tiempo al acercarte a tu destino, esta ciudad portuaria ha sido durante siglos la puerta de Portugal al mundo. Su relación con el Camino de Santiago es antigua y profunda; ya en el siglo XII existía un hospital para peregrinos cerca de la Catedral. El puente de Dom Luís I, diseñado por un discípulo de Gustave Eiffel, sustituyó a los antiguos puentes de barcas que cruzaban peregrinos medievales.</p>
-                </div>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 brand-text">Recomendaciones para un viaje con sentido histórico:</h5>
-                <ul class="space-y-1">
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Inicia tu jornada al amanecer, como hacían los antiguos peregrinos que aprovechaban cada hora de luz solar. La frontera que cruzarás, otrora vigilada por soldados y aduaneros, hoy es apenas perceptible gracias al Acuerdo de Schengen (1995).</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Lleva contigo un pequeño cuaderno para anotar impresiones del paisaje cambiante y los monumentos que descubras. Los peregrinos medievales que sabían escribir hacían lo mismo.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Haz una parada en alguna panadería tradicional alentejana y prueba el "pão alentejano", elaborado siguiendo técnicas centenarias.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Escucha música fado durante el trayecto por tierras portuguesas; aunque originario de Lisboa, este canto melancólico refleja la "saudade" portuguesa, ese sentimiento de nostalgia y añoranza que muchos peregrinos experimentan.</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 accent-text">Datos históricos del trayecto:</h5>
-                <p class="text-sm text-gray-700">
-                  La calzada romana que conectaba Emerita Augusta (Mérida) con Olisipo (Lisboa) seguía aproximadamente la ruta que recorrerás hoy, siendo utilizada posteriormente por peregrinos medievales. Durante la época de las peregrinaciones medievales (siglos XI-XV), existían varios hospitales y albergues a lo largo de esta ruta para asistir a los viajeros que se dirigían a Santiago. Vila do Conde, tu destino final hoy, fue un importante puerto medieval que mantuvo estrechos vínculos comerciales con el norte de Europa, destacando en la construcción naval para los viajes de exploración portugueses de los siglos XV y XVI.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Día 4: Porto - Matosinhos (Agudela) -->
-      <div class="border-b">
-        <div class="flex items-center justify-between p-4 bg-white hover:bg-gray-50 cursor-pointer accordion-header">
-          <div class="flex-1">
-            <h3 class="font-bold text-lg brand-text">Día 4: Porto - Matosinhos (Agudela)</h3>
-            <p class="text-gray-600">El Camino y el Mar</p>
-          </div>
-          <div class="text-right mr-4">
-            <p class="text-gray-600 font-medium">Miércoles 21 mayo</p>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </div>
-        <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/4 mb-4 md:mb-0">
-              <div class="bg-gray-100 p-3 rounded-lg">
-                <h4 class="font-bold mb-2 brand-text">Detalles de la etapa</h4>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Distancia:</span> 17.5 km</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> 4-5 horas</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> Baja-Media</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Terreno:</span> Urbano y pasarelas costeras</p>
-              </div>
-            </div>
-            <div class="md:w-3/4 md:pl-6">
-              <h4 class="font-bold mb-3 brand-text">El Camino y el Mar</h4>
-              <p class="text-gray-700 mb-4">
-                Hoy comienza tu verdadera peregrinación a pie, siguiendo una ruta que mezcla la ancestral tradición jacobea con el eterno llamado del océano Atlántico. Esta primera etapa marca el inicio de tu Camino Portugués por la Costa, una variante que combina la espiritualidad del peregrino con la inmensidad azul que acompañó a tantos navegantes portugueses en la Era de los Descubrimientos.
-              </p>
-              <p class="text-gray-700 mb-4">
-                Porto, punto de partida de tu peregrinación, es una ciudad cuya historia está profundamente ligada al Camino. Ya en el siglo XII, el obispo D. Pedro Pitões mandó construir un albergue para peregrinos junto a la Catedral, evidencia de la importancia de esta ruta. La ciudad, estratégicamente ubicada en la desembocadura del Duero, ha sido durante siglos un punto de convergencia de rutas comerciales y espirituales.
-              </p>
-              <p class="text-gray-700 mb-4">
-                Al dejar atrás el bullicio urbano de Porto, tu camino te llevará progresivamente hacia paisajes más sosegados, donde el rumor del Atlántico sustituirá al sonido del tráfico. Los 17.5 kilómetros de esta primera etapa son un preludio perfecto para las jornadas venideras, permitiendo que tu cuerpo se adapte gradualmente al ritmo del Camino.
-              </p>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Descripción detallada del recorrido:</h5>
-                <p class="text-sm text-gray-700 mb-3">
-                  Tu camino comienza en la Catedral de Porto (Sé), estructura románica del siglo XII cuya fachada ha contemplado el paso de peregrinos durante casi un milenio. Desde allí, descenderás por las empinadas callejuelas del barrio de Ribeira hacia el río Duero. El puente de Dom Luís I, diseñado por un discípulo de Eiffel, te ofrece vistas espectaculares del centro histórico, declarado Patrimonio de la Humanidad en 1996.
-                </p>
-                <p class="text-sm text-gray-700 mb-3">
-                  Tras cruzar el puente, caminarás por Vila Nova de Gaia, famosa por sus bodegas de vino de Oporto, algunas con más de 300 años de antigüedad. Desde aquí, el Camino gira hacia el litoral, siguiendo la desembocadura del Duero hasta alcanzar el Atlántico en Foz do Douro.
-                </p>
-                <p class="text-sm text-gray-700">
-                  A partir de este punto, el océano será tu fiel compañero. El paseo marítimo te llevará a través de antiguas comunidades pesqueras hasta Matosinhos, ciudad cuya identidad está íntimamente ligada al mar. Su puerto, activo desde la época romana, ha sido durante siglos sustento de generaciones de familias y punto de partida para navegantes y pescadores que, como tú ahora, se encomendaban a Santiago antes de emprender sus viajes.
-                </p>
-              </div>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Puntos de interés histórico y cultural:</h5>
-                <div class="daily-item">
-                  <p class="font-medium">Catedral de Porto (Sé)</p>
-                  <p class="text-sm text-gray-700">Construida entre los siglos XII y XIII, su tesorería guarda una importante colección de arte sacro, incluyendo una estatua de plata de Santiago Peregrino del siglo XIV.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Barrio de Ribeira</p>
-                  <p class="text-sm text-gray-700">Con sus casas coloridas apretujadas junto al río, este antiguo barrio de pescadores y comerciantes conserva la esencia medieval de Porto. Sus empinadas callejuelas han visto pasar a mercaderes hanseáticos, marineros ingleses y peregrinos de toda Europa.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Igreja do Carmo</p>
-                  <p class="text-sm text-gray-700">Si pasas cerca, no dejes de observar sus azulejos exteriores, un magnífico ejemplo del arte portugués del siglo XVIII que narra historias bíblicas y de santos.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Castelo do Queijo</p>
-                  <p class="text-sm text-gray-700">Esta pequeña fortaleza del siglo XVII que encontrarás en tu camino hacia Matosinhos fue construida para defender la costa de piratas y corsarios, recordatorio de los peligros que acechaban a viajeros y peregrinos en siglos pasados.</p>
-                </div>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 brand-text">Recomendaciones para el peregrino:</h5>
-                <ul class="space-y-1">
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Inicia tu jornada con la primera luz del alba, siguiendo la tradición de los peregrinos medievales. La salida del sol sobre el Duero y posteriormente sobre el Atlántico te regalará una experiencia visual inolvidable.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Antes de partir, visita brevemente la Catedral de Porto y busca el sello del peregrino para tu credencial, primer testimonio de tu viaje a Compostela.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>El tramo costero puede ser ventoso; lleva una prenda cortavientos además de protección solar. El océano Atlántico, que ha moldeado la historia y el carácter de Portugal, puede ser implacable con los desprevenidos.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Al pasar por Matosinhos, prueba su famoso pescado a la brasa, preparado según técnicas tradicionales que se remontan a siglos atrás.</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 accent-text">Notas históricas sobre la ruta:</h5>
-                <p class="text-sm text-gray-700">
-                  La variante costera del Camino Portugués, aunque menos documentada históricamente que la ruta central, tiene evidencias de uso por pescadores y comerciantes locales que peregrinaban a Santiago desde al menos el siglo XV. Las flechas amarillas que seguirás hoy comenzaron a pintarse en los años 80 como parte del renacimiento moderno del Camino, pero siguen rutas utilizadas durante siglos. La importancia de Porto como punto de partida para peregrinos está documentada en el Códice Calixtino (siglo XII), que menciona la ruta desde Portugal hacia Compostela.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Día 5: Matosinhos - Póvoa de Varzim -->
-      <div class="border-b">
-        <div class="flex items-center justify-between p-4 bg-white hover:bg-gray-50 cursor-pointer accordion-header">
-          <div class="flex-1">
-            <h3 class="font-bold text-lg brand-text">Día 5: Matosinhos - Póvoa de Varzim</h3>
-            <p class="text-gray-600">Entre Arenas y Piedras Ancestrales</p>
-          </div>
-          <div class="text-right mr-4">
-            <p class="text-gray-600 font-medium">Jueves 22 mayo</p>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </div>
-        <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/4 mb-4 md:mb-0">
-              <div class="bg-gray-100 p-3 rounded-lg">
-                <h4 class="font-bold mb-2 brand-text">Detalles de la etapa</h4>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Distancia:</span> 20.4 km</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> 5-6 horas</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> Media</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Terreno:</span> Pasarelas costeras y tramos urbanos</p>
-              </div>
-            </div>
-            <div class="md:w-3/4 md:pl-6">
-              <h4 class="font-bold mb-3 brand-text">Entre Arenas y Piedras Ancestrales</h4>
-              <p class="text-gray-700 mb-4">
-                Despiertas con el murmullo del Atlántico, listo para tu segunda jornada de peregrinación. El camino de hoy te llevará a través de un mosaico de paisajes costeros donde la huella humana se remonta a tiempos prehistóricos. Los 20.4 kilómetros que separan Agudela de Póvoa de Varzim son un testimonio vivo de la relación milenaria entre los habitantes de esta costa y el océano, una simbiosis que ha moldeado culturas, creencias y formas de vida.
-              </p>
-              <p class="text-gray-700 mb-4">
-                Esta etapa te conectará con los estratos más profundos de la historia portuguesa. Caminarás por tramos donde pescadores neolíticos dejaron sus primeras herramientas hace más de 5.000 años, pasarás cerca de asentamientos romanos que exportaban garum (salsa de pescado) a Roma, y atravesarás pueblos medievales cuyos habitantes han vivido del mar generación tras generación, venerando tanto a Santiago como a Nossa Senhora dos Navegantes, protectora de los marineros.
-              </p>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Descripción detallada del recorrido:</h5>
-                <p class="text-sm text-gray-700 mb-3">
-                  Abandonas Agudela cuando las primeras luces del alba comienzan a dibujar sombras sobre la arena. El camino te lleva inmediatamente junto al océano, donde las pasarelas de madera protegen el frágil ecosistema dunar. Este sistema de protección es reciente, pero el sendero que sigues ha sido utilizado durante siglos por pescadores, comerciantes y peregrinos.
-                </p>
-                <p class="text-sm text-gray-700 mb-3">
-                  Pronto llegarás a Angeiras, pequeño pueblo pesquero donde aún se practica la pesca artesanal y se pueden ver los "sargaços" o algas secándose al sol para ser utilizadas como fertilizante, una práctica que se remonta al menos al siglo XIII. Sus habitantes conservan técnicas de pesca y construcción naval heredadas de generaciones anteriores, creando una continuidad cultural raramente vista en nuestros días.
-                </p>
-                <p class="text-sm text-gray-700">
-                  Continuando hacia el norte, el Camino atraviesa Labruge, donde la Capela de Nossa Senhora das Neves del siglo XVII marca un importante punto para los navegantes. Cerca se encuentran los "Cavalos de Fão", formaciones rocosas donde la tradición local sitúa leyendas de barcos fantasma y sirenas que algunos relacionan con antiguos cultos precristianos a divinidades marinas.
-                </p>
-              </div>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Puntos de interés histórico y cultural:</h5>
-                <div class="daily-item">
-                  <p class="font-medium">Masseiras de Aguçadoura</p>
-                  <p class="text-sm text-gray-700">Estas peculiares explotaciones agrícolas, excavadas en las dunas para proteger los cultivos del viento salino, representan un método agrícola único desarrollado probablemente en el siglo XIV por comunidades monásticas locales. Su nombre deriva de "masseira" (artesa), por su forma rectangular hundida.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Castro de São Paio (cerca de Labruge)</p>
-                  <p class="text-sm text-gray-700">Aunque ligeramente desviado del Camino, este asentamiento fortificado de la Edad del Hierro (siglo IV a.C.) evidencia la antigua ocupación de estas costas. Los habitantes de estos castros ya mantenían contactos comerciales marítimos con otras comunidades atlánticas, prefigurando las rutas que siglos después utilizarían los peregrinos.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Monasterio de Santa Clara (Vila do Conde)</p>
-                  <p class="text-sm text-gray-700">Fundado en 1318 por D. Afonso Sanches, hijo ilegítimo del rey D. Dinis, este imponente complejo gótico dominaba la vida espiritual y económica de la región. Su iglesia alberga valiosas tallas de Santiago Peregrino, testimonio de la importancia del Camino en la zona.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Acueducto de Vila do Conde</p>
-                  <p class="text-sm text-gray-700">Impresionante obra hidráulica de 999 arcos construida en el siglo XVIII para abastecer de agua al Convento de Santa Clara. Su construcción empleó técnicas romanas preservadas a través de los siglos por maestros canteros locales.</p>
-                </div>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 brand-text">Recomendaciones para el peregrino:</h5>
-                <ul class="space-y-1">
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Al pasar por Angeiras, detente a observar los "masseireiros" (cultivadores de las masseiras) trabajando en estos peculiares campos hundidos, sistema agrícola único en el mundo que ha perdurado desde la Edad Media.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>En Vila do Conde, busca el antiguo Hospital do Espírito Santo, fundado en el siglo XV específicamente para atender a peregrinos jacobeos, evidencia material de la importancia histórica de esta ruta.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Lleva contigo monedas para el peaje si decides cruzar el puente metálico sobre el río Ave, construido a finales del siglo XIX por discípulos de Gustave Eiffel.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Al llegar a Póvoa de Varzim, dirige tus pasos al barrio pesquero de Bairro da Matriz, cuyo trazado medieval de callejuelas estrechas ha cambiado poco desde que los primeros peregrinos pasaron por aquí rumbo a Santiago.</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 accent-text">Curiosidades históricas del camino:</h5>
-                <p class="text-sm text-gray-700">
-                  Las pasarelas de madera por las que caminarás hoy siguen aproximadamente el trazado de antiguos caminos costeros utilizados desde la Edad Media, cuando las comunicaciones por el interior eran más peligrosas debido a bandidos y accidentes geográficos. En Vila do Conde, durante los siglos XV y XVI, se construyeron muchas de las naves que participaron en los viajes de descubrimiento portugueses. Sus astilleros, activos desde el siglo XIII, produjeron embarcaciones que llegaron hasta India, Brasil y Japón. Las mujeres de los pescadores de esta costa desarrollaron una forma única de traje tradicional con faldas negras de múltiples capas que, según la tradición, representan las diferentes olas del mar. Estas "siete saias" (siete faldas) podrían tener también un simbolismo relacionado con los siete dolores de la Virgen María, muy venerada en las comunidades pesqueras.
-                </p>
-              </div>
-            </div>
+        </button>
+        <div id="day20-content" class="hidden px-4 py-3 border-t">
+          <div class="prose max-w-none">
+            <h3>Viaje: Badajoz - Vila do Conde (coche)</h3>
+            <p>Hoy emprenderemos un viaje que trasciende las fronteras modernas, siguiendo rutas comerciales milenarias que han conectado las tierras ibéricas desde tiempos inmemoriales.</p>
+            <h4>Datos históricos del trayecto:</h4>
+            <ul>
+              <li>La calzada romana que conectaba Emerita Augusta (Mérida) con Olisipo (Lisboa) seguía aproximadamente la ruta que recorreremos hoy.</li>
+              <li>La frontera hispano-portuguesa, "La Raya" (A Raia), es una de las más antiguas y estables de Europa, establecida en 1297.</li>
+              <li>Vila do Conde fue un importante puerto medieval con vínculos comerciales con el norte de Europa.</li>
+            </ul>
+            <h4>Lugares de interés en el camino:</h4>
+            <ul>
+              <li><strong>Elvas:</strong> Ciudad fortificada portuguesa declarada Patrimonio Mundial.</li>
+              <li><strong>Évora:</strong> Joya alentejana, Patrimonio de la Humanidad, con 2000 años de historia.</li>
+              <li><strong>Porto:</strong> Si tenemos tiempo, esta ciudad portuaria tiene una relación antigua y profunda con el Camino de Santiago.</li>
+            </ul>
+            <p><strong>Alojamiento:</strong> Vila do Conde</p>
           </div>
         </div>
       </div>
       
-
-      <!-- Día 6: Póvoa de Varzim - Esposende -->
-      <div class="border-b">
-        <div class="flex items-center justify-between p-4 bg-white hover:bg-gray-50 cursor-pointer accordion-header">
-          <div class="flex-1">
-            <h3 class="font-bold text-lg brand-text">Día 6: Póvoa de Varzim - Esposende</h3>
-            <p class="text-gray-600">Molinos, Sal y Memorias Ancestrales</p>
-          </div>
-          <div class="text-right mr-4">
-            <p class="text-gray-600 font-medium">Viernes 23 mayo</p>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      <!-- Day 4: May 21 -->
+      <div id="day-21-mayo" class="border rounded-lg overflow-hidden">
+        <button class="w-full bg-gray-50 px-4 py-3 text-left font-semibold flex justify-between items-center hover:bg-gray-100 transition-colors duration-200 focus:outline-none" onclick="toggleAccordion('day21-content')">
+          <span>Miércoles 21 de Mayo: Porto - Matosinhos (17.5 km)</span>
+          <svg class="h-5 w-5 transform transition-transform duration-200" id="day21-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
-        </div>
-        <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/4 mb-4 md:mb-0">
-              <div class="bg-gray-100 p-3 rounded-lg">
-                <h4 class="font-bold mb-2 brand-text">Detalles de la etapa</h4>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Distancia:</span> 21 km</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> 5-6 horas</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> Media</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Terreno:</span> Costero con algunas carreteras locales</p>
-              </div>
-            </div>
-            <div class="md:w-3/4 md:pl-6">
-              <h4 class="font-bold mb-3 brand-text">Molinos, Sal y Memorias Ancestrales</h4>
-              <p class="text-gray-700 mb-4">
-                El tercer día de tu peregrinación te llevará a través de un paisaje donde la naturaleza y la mano humana han coexistido en delicado equilibrio durante milenios. Los 21 kilómetros que recorrerás hoy entre Póvoa de Varzim y Esposende atraviesan uno de los tramos más hermosos y significativos de la costa portuguesa, donde las tradiciones ancestrales relacionadas con el mar y la tierra perduran como testimonio vivo de un pasado que se resiste a desaparecer.
-              </p>
-              <p class="text-gray-700 mb-4">
-                Al despertar en Póvoa de Varzim, respiras el aire salado que ha moldeado la identidad de esta región durante incontables generaciones. Ante ti se extiende un camino que ha sido transitado por pescadores, comerciantes, agricultores y peregrinos desde hace más de mil años, cada uno dejando su huella imperceptible en la ruta que hoy sigues tú.
-              </p>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Recorrido detallado:</h5>
-                <p class="text-sm text-gray-700 mb-3">
-                  Tu jornada comienza en el centro histórico de Póvoa de Varzim, dejando atrás la Igreja Matriz mientras las primeras luces del alba doran las fachadas de azulejos tan característicos de la arquitectura portuguesa. El Camino te lleva hacia el norte por la Avenida dos Banhos, bordeando playas que durante siglos han sido sustento y desafío para las comunidades locales.
-                </p>
-                <p class="text-sm text-gray-700 mb-3">
-                  Pronto el paisaje urbano da paso a un entorno más natural al entrar en el municipio de Esposende. Aquí el Camino alterna entre pasarelas de madera sobre dunas protegidas, senderos arenosos junto a la playa y pequeños tramos por carreteras locales. Esta variedad de terrenos refleja la diversidad geológica de una costa en constante transformación por la acción de vientos, mareas y corrientes.
-                </p>
-                <p class="text-sm text-gray-700">
-                  Al llegar a Apúlia, el horizonte se puebla con las siluetas de antiguos molinos de viento, testigos silenciosos de técnicas agrícolas centenarias. Cerca de ellos, encontrarás los "sargaços" o secaderos de algas, estructuras tradicionales donde las algas recogidas del mar se secan al sol antes de ser utilizadas como fertilizante, una práctica documentada desde al menos el siglo XIV.
-                </p>
-              </div>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Puntos de interés histórico y cultural:</h5>
-                <div class="daily-item">
-                  <p class="font-medium">Molinos de viento de Apúlia</p>
-                  <p class="text-sm text-gray-700">Estos molinos tradicionales, cuyo origen se remonta al siglo XV, son testimonios de las técnicas preindustriales para aprovechar la energía eólica. Su característica forma cilíndrica con techo cónico giratorio permitía orientar las aspas hacia los vientos dominantes. Durante siglos molieron el grano cultivado en las fértiles tierras ganadas a las dunas, sustentando a las comunidades locales y a los viajeros que transitaban por la ruta costera.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Sargaços de Apúlia</p>
-                  <p class="text-sm text-gray-700">Estas estructuras tradicionales para el secado de algas marinas representan una actividad económica ancestral que ha modelado las relaciones entre las comunidades costeras y el océano. La recolección de algas (principalmente Saccorhiza polyschides y Laminaria hyperborea) está documentada desde el medievo y constituía un complemento fundamental para la agricultura local, creando un ciclo ecológico sostenible entre mar y tierra.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Castro de São Lourenço (cerca de Esposende)</p>
-                  <p class="text-sm text-gray-700">Este asentamiento fortificado, ocupado desde la Edad del Bronce hasta la época romana, evidencia la antigua humanización de esta costa. Su privilegiada ubicación con vistas al océano y al valle del Cávado permitía controlar las rutas comerciales marítimas y fluviales que siglos después utilizarían también los peregrinos jacobeos.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Forte de São João Baptista (Esposende)</p>
-                  <p class="text-sm text-gray-700">Construido en el siglo XVII como parte del sistema defensivo costero ordenado por D. João IV tras la Restauración de la independencia portuguesa en 1640. Estas fortificaciones protegían la costa de incursiones corsarias y ataques de potencias enemigas, garantizando la seguridad de pescadores, comerciantes y peregrinos.</p>
-                </div>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 brand-text">Recomendaciones para el peregrino:</h5>
-                <ul class="space-y-1">
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Al pasar por Apúlia, visita los molinos de viento, algunos de los cuales han sido restaurados y permiten comprender el ingenio de las soluciones preindustriales. Estos molinos funcionaron hasta mediados del siglo XX, manteniendo viva una tradición tecnológica milenaria.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Observa atentamente los campos agrícolas entre las dunas; este sistema de cultivo, perfeccionado durante siglos para aprovechar las áreas resguardadas del viento marino, representa un conocimiento ecológico tradicional que ha permitido la sostenibilidad de estas comunidades costeras.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>En los tramos de pasarelas de madera sobre dunas, mantente en el camino marcado. Estas estructuras, aunque modernas, siguen aproximadamente las sendas tradicionales utilizadas durante siglos y protegen un ecosistema dunar frágil que ha coexistido con la actividad humana desde la prehistoria.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Al llegar al río Cávado, tómate un momento para contemplar su desembocadura. Este estuario ha sido durante milenios una importante vía de comunicación entre la costa y el interior, además de proporcionar recursos pesqueros abundantes.</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 accent-text">Contexto histórico del área:</h5>
-                <p class="text-sm text-gray-700">
-                  La franja costera que recorrerás hoy ha sido habitada continuamente desde tiempos prehistóricos. Los romanos establecieron aquí importantes explotaciones salineras y vías secundarias que conectaban con la calzada principal entre Olisipo (Lisboa) y Bracara Augusta (Braga). Durante la Edad Media, mientras el Camino de Santiago se consolidaba como ruta de peregrinación, esta zona costera vio surgir pequeñas comunidades dedicadas a la agricultura, la pesca y la extracción de sal, actividades que generaron un comercio local floreciente. En el siglo XII, el primer rey de Portugal, D. Afonso Henriques, concedió fueros (cartas de privilegios) a varias poblaciones de esta costa, reconociendo su importancia estratégica y económica.
-                </p>
-              </div>
-            </div>
+        </button>
+        <div id="day21-content" class="hidden px-4 py-3 border-t">
+          <div class="prose max-w-none">
+            <h3>1ª Etapa: Porto - Matosinhos (Agudela) - 17.5 km</h3>
+            <p>Hoy comienza nuestra verdadera peregrinación a pie, siguiendo una ruta que mezcla la ancestral tradición jacobea con el eterno llamado del océano Atlántico.</p>
+            <h4>Descripción del recorrido:</h4>
+            <p>Nuestro camino comienza en la Catedral de Porto (Sé), estructura románica del siglo XII. Desde allí, descenderemos hacia el río Duero, cruzaremos el puente de Dom Luís I y caminaremos por Vila Nova de Gaia. El Camino gira hacia el litoral, siguiendo la desembocadura del Duero hasta alcanzar el Atlántico en Foz do Douro.</p>
+            <h4>Puntos de interés:</h4>
+            <ul>
+              <li><strong>Catedral de Porto (Sé):</strong> Construida entre los siglos XII y XIII.</li>
+              <li><strong>Barrio de Ribeira:</strong> Con sus casas coloridas apretujadas junto al río.</li>
+              <li><strong>Castelo do Queijo:</strong> Pequeña fortaleza del siglo XVII.</li>
+              <li><strong>Igreja do Bom Jesus de Matosinhos:</strong> Templo barroco del siglo XVIII.</li>
+            </ul>
+            <h4>Recomendaciones especiales para mayores:</h4>
+            <ul>
+              <li>Caminar a un ritmo tranquilo, ajustado a nuestras capacidades.</li>
+              <li>Hacer paradas frecuentes para hidratarse y descansar.</li>
+              <li>Llevar protección solar y contra el viento, ya que el tramo costero puede ser ventoso.</li>
+            </ul>
+            <p><strong>Alojamiento:</strong> Matosinhos/Agudela</p>
           </div>
         </div>
       </div>
       
-      <!-- Día 7: Esposende - Viana do Castelo -->
-      <div class="border-b">
-        <div class="flex items-center justify-between p-4 bg-white hover:bg-gray-50 cursor-pointer accordion-header">
-          <div class="flex-1">
-            <h3 class="font-bold text-lg brand-text">Día 7: Esposende - Viana do Castelo</h3>
-            <p class="text-gray-600">Caminos de Agua y Piedra</p>
-          </div>
-          <div class="text-right mr-4">
-            <p class="text-gray-600 font-medium">Sábado 24 mayo</p>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      <!-- Day 5: May 22 -->
+      <div id="day-22-mayo" class="border rounded-lg overflow-hidden">
+        <button class="w-full bg-gray-50 px-4 py-3 text-left font-semibold flex justify-between items-center hover:bg-gray-100 transition-colors duration-200 focus:outline-none" onclick="toggleAccordion('day22-content')">
+          <span>Jueves 22 de Mayo: Matosinhos - Póvoa de Varzim (20.4 km)</span>
+          <svg class="h-5 w-5 transform transition-transform duration-200" id="day22-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
-        </div>
-        <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/4 mb-4 md:mb-0">
-              <div class="bg-gray-100 p-3 rounded-lg">
-                <h4 class="font-bold mb-2 brand-text">Detalles de la etapa</h4>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Distancia:</span> 24 km</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> 6-7 horas</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> Media-Alta</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Terreno:</span> Mixto (costero y rural)</p>
-              </div>
-            </div>
-            <div class="md:w-3/4 md:pl-6">
-              <h4 class="font-bold mb-3 brand-text">Caminos de Agua y Piedra</h4>
-              <p class="text-gray-700 mb-4">
-                La cuarta etapa de nuestro Camino supone un desafío mayor con sus 24 kilómetros, pero también ofrece una extraordinaria diversidad de paisajes y patrimonio. Desde Esposende hasta Viana do Castelo, seguirás rutas que han conectado comunidades pesqueras y agrícolas durante siglos, alternando entre tramos costeros con vistas al Atlántico y senderos interiores que muestran la rica tradición rural portuguesa.
-              </p>
-              <p class="text-gray-700 mb-4">
-                Esta jornada nos permitirá apreciar cómo el agua, tanto la del océano como la de los ríos, ha moldeado la vida, la cultura y la economía de la región a lo largo de la historia. El río Lima, que cruzaremos al llegar a Viana do Castelo, era conocido por los romanos como el mítico río Lethes o "río del olvido", y según la leyenda, los soldados temían cruzarlo porque creían que perderían todos sus recuerdos.
-              </p>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Puntos de interés histórico y cultural:</h5>
-                <div class="daily-item">
-                  <p class="font-medium">Playa de Ofir</p>
-                  <p class="text-sm text-gray-700">Esta extensa playa ha servido históricamente como puerto natural para pequeñas embarcaciones pesqueras. Las dunas que la rodean fueron estabilizadas con plantaciones de pinos durante el reinado de D. Dinis (siglo XIII), una temprana intervención de gestión ambiental.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Neiva y su iglesia</p>
-                  <p class="text-sm text-gray-700">Este pequeño pueblo conserva una iglesia románica cuyo origen se remonta al siglo XII. En sus proximidades existió un hospital medieval para peregrinos, evidencia de la importancia histórica de esta ruta.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Santuario de Santa Luzia (Viana do Castelo)</p>
-                  <p class="text-sm text-gray-700">Situado en lo alto de la colina que domina Viana do Castelo, este templo neobizantino del siglo XX se construyó sobre los restos de un antiguo templo pagano y posteriormente una ermita medieval. Ofrece unas vistas espectaculares de la desembocadura del Lima y la costa atlántica.</p>
-                </div>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 brand-text">Recomendaciones para el peregrino:</h5>
-                <ul class="space-y-1">
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Salir temprano ya que es una etapa más larga. Los peregrinos medievales iniciaban su caminar con los primeros rayos del sol.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Llevar provisiones extra de agua y comida. Hay tramos con pocos servicios.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Si hay tiempo y energía, subir al Santuario de Santa Luzia para disfrutar de las vistas panorámicas.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Visitar el centro histórico de Viana do Castelo, con sus edificios renacentistas y barrocos que testimonian la prosperidad que esta ciudad portuaria alcanzó gracias al comercio marítimo.</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 accent-text">Datos históricos relevantes:</h5>
-                <p class="text-sm text-gray-700">
-                  Viana do Castelo, fundada en 1258 por Alfonso III de Portugal, fue un importante puerto durante la Era de los Descubrimientos (siglos XV-XVI). De aquí partieron muchas expediciones hacia Brasil, África y Asia. La ciudad prosperó gracias al comercio marítimo, especialmente con el norte de Europa y las colonias portuguesas, lo que se refleja en la rica arquitectura de su centro histórico. El puente metálico que cruza el río Lima fue diseñado por un discípulo de Gustave Eiffel a finales del siglo XIX.
-                </p>
-              </div>
-            </div>
+        </button>
+        <div id="day22-content" class="hidden px-4 py-3 border-t">
+          <div class="prose max-w-none">
+            <h3>2ª Etapa: Matosinhos (Agudela) - Póvoa de Varzim - 20.4 km</h3>
+            <p>Esta etapa nos llevará a través de un mosaico de paisajes costeros donde la huella humana se remonta a tiempos prehistóricos.</p>
+            <h4>Descripción del recorrido:</h4>
+            <p>El camino nos lleva inmediatamente junto al océano, donde las pasarelas de madera protegen el frágil ecosistema dunar. Pronto llegaremos a Angeiras, pequeño pueblo pesquero. Continuando hacia el norte, el Camino atraviesa Labruge, donde la Capela de Nossa Senhora das Neves marca un importante punto para los navegantes.</p>
+            <h4>Puntos de interés:</h4>
+            <ul>
+              <li><strong>Masseiras de Aguçadoura:</strong> Peculiares explotaciones agrícolas excavadas en las dunas.</li>
+              <li><strong>Monasterio de Santa Clara (Vila do Conde):</strong> Fundado en 1318.</li>
+              <li><strong>Acueducto de Vila do Conde:</strong> Impresionante obra hidráulica de 999 arcos construida en el siglo XVIII.</li>
+              <li><strong>Igreja da Lapa (Póvoa de Varzim):</strong> Templo neoclásico del siglo XVIII.</li>
+            </ul>
+            <h4>Recomendaciones especiales para mayores:</h4>
+            <ul>
+              <li>Ser especialmente cuidadosos en las pasarelas de madera, que pueden estar resbaladizas.</li>
+              <li>Considerar utilizar bastones de senderismo para mayor estabilidad.</li>
+              <li>Aplicar crema solar frecuentemente en estas zonas expuestas.</li>
+            </ul>
+            <p><strong>Alojamiento:</strong> Póvoa de Varzim</p>
           </div>
         </div>
       </div>
       
-      <!-- Día 8: Viana do Castelo - Caminha -->
-      <div class="border-b">
-        <div class="flex items-center justify-between p-4 bg-white hover:bg-gray-50 cursor-pointer accordion-header">
-          <div class="flex-1">
-            <h3 class="font-bold text-lg brand-text">Día 8: Viana do Castelo - Caminha</h3>
-            <p class="text-gray-600">Entre Dos Reinos</p>
-          </div>
-          <div class="text-right mr-4">
-            <p class="text-gray-600 font-medium">Domingo 25 mayo</p>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      <!-- Day 6: May 23 -->
+      <div id="day-23-mayo" class="border rounded-lg overflow-hidden">
+        <button class="w-full bg-gray-50 px-4 py-3 text-left font-semibold flex justify-between items-center hover:bg-gray-100 transition-colors duration-200 focus:outline-none" onclick="toggleAccordion('day23-content')">
+          <span>Viernes 23 de Mayo: Póvoa de Varzim - Esposende (21 km)</span>
+          <svg class="h-5 w-5 transform transition-transform duration-200" id="day23-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
-        </div>
-        <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/4 mb-4 md:mb-0">
-              <div class="bg-gray-100 p-3 rounded-lg">
-                <h4 class="font-bold mb-2 brand-text">Detalles de la etapa</h4>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Distancia:</span> 26.8 km</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> 7-8 horas</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> Alta</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Terreno:</span> Variado con algunas subidas</p>
-              </div>
-            </div>
-            <div class="md:w-3/4 md:pl-6">
-              <h4 class="font-bold mb-3 brand-text">Entre Dos Reinos</h4>
-              <p class="text-gray-700 mb-4">
-                La quinta etapa de nuestro Camino es la más exigente en términos de distancia, con casi 27 kilómetros por recorrer. Esta jornada conecta Viana do Castelo con Caminha, el último pueblo portugués antes de la frontera española marcada por el río Miño (Minho en portugués). Históricamente, esta zona ha sido un espacio de transición entre culturas, donde las influencias gallegas y portuguesas se entrelazan creando una identidad fronteriza única.
-              </p>
-              <p class="text-gray-700 mb-4">
-                El camino se aleja ligeramente de la costa para adentrarse en un paisaje más ondulado, con colinas suaves desde las que se obtienen magníficas vistas del Atlántico y, al acercarnos a Caminha, del imponente monte Santa Tecla ya en territorio gallego. El contraste entre el azul del océano, el verde del paisaje rural y los pueblos blancos creará recuerdos visuales imborrables.
-              </p>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Recorrido detallado:</h5>
-                <p class="text-sm text-gray-700 mb-3">
-                  La jornada comienza en Viana do Castelo, abandonando la ciudad por el norte tras cruzar el hermoso puente metálico sobre el río Lima. Durante los primeros kilómetros el Camino alterna entre tramos costeros y pequeñas incursiones hacia el interior, pasando por localidades como Areosa y Carreço, cuyos orígenes se remontan a asentamientos prerromanos.
-                </p>
-                <p class="text-sm text-gray-700 mb-3">
-                  A medida que avanzamos hacia el norte, el paisaje se vuelve más rural y ondulado. Atravesaremos bosques de pinos y eucaliptos, así como pequeñas aldeas donde el tiempo parece haberse detenido, manteniendo tradiciones agrícolas y artesanales que se remontan a siglos atrás. Los muros de piedra seca que delimitan los campos y las eiras (espacios circulares para la trilla del grano) que encontrarás en tu camino son testimonios vivos de una cultura rural ancestral.
-                </p>
-                <p class="text-sm text-gray-700">
-                  El último tramo antes de llegar a Caminha ofrece impresionantes vistas del estuario del río Miño y del monte Santa Tecla en la orilla española. Este monte, con su importante castro (asentamiento fortificado de la Edad del Hierro), ha sido durante milenios un punto de referencia para navegantes y viajeros, y marca visualmente la transición entre los reinos ibéricos.
-                </p>
-              </div>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Puntos de interés histórico y cultural:</h5>
-                <div class="daily-item">
-                  <p class="font-medium">Vila Praia de Âncora</p>
-                  <p class="text-sm text-gray-700">Este pueblo pesquero debe su nombre a un ancla romana encontrada en sus aguas. Durante siglos fue un punto importante para la pesca del sábalo y la lamprea, especies que remontaban los ríos de la zona y eran muy apreciadas en la gastronomía medieval. Su puerto natural ha servido de refugio a embarcaciones desde tiempos inmemoriales.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Monte de Santa Tecla</p>
-                  <p class="text-sm text-gray-700">Este monte alberga un importante castro (poblado fortificado) de la Edad del Hierro que fue habitado entre los siglos IV a.C. y I d.C. Dominando la desembocadura del Miño, ha sido un punto estratégico y un hito visual para navegantes y viajeros durante milenios. Desde la ruta, tendrás excelentes vistas de este monte que ya se encuentra en territorio gallego.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Caminha</p>
-                  <p class="text-sm text-gray-700">Esta villa fortificada, cuya fundación se remonta al siglo XIII, fue una importante plaza defensiva en la frontera con España. Su torre del Reloj, parte de la antigua muralla medieval, y su iglesia matriz del siglo XVI con influencias manuelinas representan el rico patrimonio arquitectónico de la localidad. Su trazado urbano conserva la esencia medieval de calles estrechas organizadas en torno a plazas comerciales.</p>
-                </div>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 brand-text">Recomendaciones para el peregrino:</h5>
-                <ul class="space-y-1">
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Iniciar muy temprano debido a la longitud de la etapa y gestionar bien los descansos.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Prestar atención a las señales, pues en algunos tramos el camino se aleja de la costa.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Llevar bastones para ayudar en las subidas y bajadas de esta etapa más ondulada.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Celebrar al llegar a Caminha, has completado la parte portuguesa del Camino.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Si el tiempo lo permite, tómate un momento en Caminha para contemplar el estuario del Miño, frontera natural entre Portugal y España desde el Tratado de Alcañices de 1297.</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 accent-text">Curiosidades históricas:</h5>
-                <p class="text-sm text-gray-700">
-                  La frontera entre España y Portugal en esta zona, marcada por el río Miño, es una de las más antiguas y estables de Europa. Caminha fue durante siglos un punto estratégico de defensa del reino portugués, con fortificaciones que vigilaban la entrada al río. Desde aquí partían también barcos de peregrinos que, en lugar de continuar a pie por la costa gallega, preferían navegar hasta puertos más cercanos a Santiago como Padrón, siguiendo la tradición de la llegada por mar del cuerpo del Apóstol según la leyenda jacobea. Esta ruta marítima permitía evitar el difícil cruce de los numerosos ríos y rías de la costa gallega, siendo una opción popular entre los peregrinos medievales.
-                </p>
-              </div>
-            </div>
+        </button>
+        <div id="day23-content" class="hidden px-4 py-3 border-t">
+          <div class="prose max-w-none">
+            <h3>3ª Etapa: Póvoa de Varzim - Esposende - 21 km</h3>
+            <p>Los 21 kilómetros que recorreremos hoy atraviesan uno de los tramos más hermosos y significativos de la costa portuguesa.</p>
+            <h4>Descripción del recorrido:</h4>
+            <p>El Camino alterna entre pasarelas de madera sobre dunas protegidas, senderos arenosos junto a la playa y pequeños tramos por carreteras locales. Al llegar a Apúlia, el horizonte se puebla con las siluetas de antiguos molinos de viento. La etapa concluye con la llegada a Esposende, tras cruzar el río Cávado.</p>
+            <h4>Puntos de interés:</h4>
+            <ul>
+              <li><strong>Molinos de viento de Apúlia:</strong> Estos molinos tradicionales se remontan al siglo XV.</li>
+              <li><strong>Sargaços de Apúlia:</strong> Estructuras tradicionales para el secado de algas marinas.</li>
+              <li><strong>Parque Natural do Litoral Norte:</strong> Área protegida desde 1987.</li>
+              <li><strong>Forte de São João Baptista (Esposende):</strong> Construido en el siglo XVII.</li>
+            </ul>
+            <h4>Recomendaciones especiales para mayores:</h4>
+            <ul>
+              <li>El tramo final puede resultar algo agotador, considerar un descanso más largo a mitad de recorrido.</li>
+              <li>Atención al cruce del río Cávado, seguir siempre las indicaciones.</li>
+              <li>El viento en esta zona puede ser intenso, usar ropa adecuada.</li>
+            </ul>
+            <p><strong>Alojamiento:</strong> Esposende</p>
           </div>
         </div>
       </div>
-
-      <!-- Día 9: Caminha - Santiago de Compostela -->
-      <div class="border-b">
-        <div class="flex items-center justify-between p-4 bg-white hover:bg-gray-50 cursor-pointer accordion-header">
-          <div class="flex-1">
-            <h3 class="font-bold text-lg brand-text">Día 9: Caminha - Santiago de Compostela</h3>
-            <p class="text-gray-600">La Meta del Peregrino</p>
-          </div>
-          <div class="text-right mr-4">
-            <p class="text-gray-600 font-medium">Lunes 26 mayo</p>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      
+      <!-- Day 7: May 24 -->
+      <div id="day-24-mayo" class="border rounded-lg overflow-hidden">
+        <button class="w-full bg-gray-50 px-4 py-3 text-left font-semibold flex justify-between items-center hover:bg-gray-100 transition-colors duration-200 focus:outline-none" onclick="toggleAccordion('day24-content')">
+          <span>Sábado 24 de Mayo: Esposende - Viana do Castelo (24 km)</span>
+          <svg class="h-5 w-5 transform transition-transform duration-200" id="day24-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
-        </div>
-        <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/4 mb-4 md:mb-0">
-              <div class="bg-gray-100 p-3 rounded-lg">
-                <h4 class="font-bold mb-2 brand-text">Detalles del día</h4>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Transporte:</span> Coche</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Distancia:</span> ~130 km en coche</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> 2 horas de viaje + visita</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Actividad:</span> Llegada y exploración</p>
-              </div>
-            </div>
-            <div class="md:w-3/4 md:pl-6">
-              <h4 class="font-bold mb-3 brand-text">La Meta del Peregrino</h4>
-              <p class="text-gray-700 mb-4">
-                Tras completar las etapas a pie del Camino Portugués por la Costa, hoy realizaremos el traslado en coche desde Caminha hasta Santiago de Compostela. Este día representa la culminación espiritual de nuestro viaje, llevándonos al destino que ha motivado a millones de peregrinos durante más de un milenio.
-              </p>
-              <p class="text-gray-700 mb-4">
-                Santiago de Compostela, declarada Patrimonio de la Humanidad por la UNESCO en 1985, es mucho más que una ciudad monumental; es un símbolo vivo de la fe cristiana, un nexo cultural que ha unido los pueblos europeos desde la Edad Media y un testimonio de cómo una tradición religiosa puede modelar la geografía, la arquitectura y la identidad de vastas regiones.
-              </p>
-              <p class="text-gray-700 mb-4">
-                El viaje en coche nos llevará atravesando tierras gallegas, cuyos paisajes de suaves colinas verdes, pequeñas aldeas y hórreos (graneros elevados característicos) contrastan con el litoral portugués que hemos recorrido. Este cambio de paisaje también refleja las diferentes tradiciones culturales que han confluido en el Camino de Santiago a lo largo de los siglos.
-              </p>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Lugares para visitar:</h5>
-                <div class="daily-item">
-                  <p class="font-medium">Catedral de Santiago</p>
-                  <p class="text-sm text-gray-700">Obra cumbre del románico español con elementos góticos y barrocos añadidos posteriormente. Su construcción se inició en 1075 sobre los restos de un templo anterior. El Pórtico de la Gloria, obra maestra del maestro Mateo (siglo XII), es uno de los conjuntos escultóricos más importantes del románico europeo. Aquí se encuentra la tumba del Apóstol Santiago, razón de ser de todas las rutas jacobeas.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Plaza del Obradoiro</p>
-                  <p class="text-sm text-gray-700">Gran espacio abierto frente a la fachada principal de la Catedral, enmarcado por cuatro edificios emblemáticos: la propia Catedral, el Pazo de Raxoi (actual ayuntamiento) del siglo XVIII, el Hostal de los Reyes Católicos (antiguo hospital para peregrinos fundado en 1499) y el Colegio de San Xerome (sede del rectorado universitario). Esta plaza ha sido durante siglos el escenario donde innumerables peregrinos han culminado su viaje.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Mercado de Abastos</p>
-                  <p class="text-sm text-gray-700">Mercado tradicional que data de 1873, donde se pueden encontrar los mejores productos frescos de la gastronomía gallega. Es un lugar perfecto para comprender la relación de Santiago con su entorno rural y marítimo, fuentes de la excelente cocina regional. Los peregrinos medievales ya encontraban aquí, aunque en estructuras anteriores, un lugar para abastecerse y compartir experiencias.</p>
-                </div>
-                <div class="daily-item">
-                  <p class="font-medium">Monasterio de San Martín Pinario</p>
-                  <p class="text-sm text-gray-700">El segundo monasterio más grande de España, solo superado por El Escorial. Su historia se remonta al siglo X, aunque el edificio actual es principalmente barroco (siglos XVII-XVIII). Su relación con el Camino de Santiago ha sido estrecha durante siglos, albergando monjes benedictinos que atendían las necesidades espirituales de los peregrinos.</p>
-                </div>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 brand-text">Recomendaciones:</h5>
-                <ul class="space-y-1">
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Asistir a la Misa del Peregrino en la Catedral, donde en ocasiones especiales se hace volar el botafumeiro (gran incensario), tradición que se remonta al siglo XIV y que servía originalmente para purificar el ambiente cuando la catedral estaba llena de peregrinos exhaustos.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Obtener la Compostela, documento que certifica la realización del Camino, en la Oficina del Peregrino (necesitarás mostrar la credencial sellada). Este certificado es el heredero moderno de las "cartas probatorias" que los peregrinos medievales llevaban de vuelta a sus lugares de origen.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Disfrutar de la gastronomía gallega: pulpo "a feira", empanada gallega, pimientos de Padrón, y la tarta de Santiago, recetas con siglos de antigüedad que han alimentado a generaciones de peregrinos.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Pasear por las callejuelas del casco histórico, observando los escudos nobiliarios, los soportales y las plazas históricas que han cambiado poco desde la Edad Media.</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 accent-text">Historia y tradición:</h5>
-                <p class="text-sm text-gray-700">
-                  Según la tradición, los restos del apóstol Santiago fueron descubiertos en el siglo IX en el lugar donde hoy se alza la catedral. Este hallazgo transformó un pequeño asentamiento en uno de los tres grandes centros de peregrinación del cristianismo medieval, junto a Roma y Jerusalén. El Camino de Santiago se convirtió en una arteria fundamental para la transmisión de ideas, estilos artísticos, técnicas constructivas y productos comerciales, contribuyendo decisivamente a la formación de la identidad cultural europea. Durante siglos, millones de peregrinos de todas las condiciones sociales y procedencias han recorrido los diversos caminos que conducen a Compostela, creando una tradición ininterrumpida que ha sobrevivido a guerras, epidemias, cambios políticos y revoluciones, manteniendo vivo el espíritu peregrino hasta nuestros días.
-                </p>
-              </div>
-            </div>
+        </button>
+        <div id="day24-content" class="hidden px-4 py-3 border-t">
+          <div class="prose max-w-none">
+            <h3>4ª Etapa: Esposende - Viana do Castelo - 24 km</h3>
+            <p>Esta es una etapa más larga, con mayor variedad de terrenos y paisajes cambiantes.</p>
+            <h4>Descripción del recorrido:</h4>
+            <p>Alternancia entre senderos costeros y caminos rurales, con algún tramo por carretera. El final de la etapa incluye el cruce del río Lima al llegar a Viana do Castelo, una de las ciudades históricas más bellas de Portugal.</p>
+            <h4>Puntos de interés:</h4>
+            <ul>
+              <li><strong>Playa de Ofir:</strong> Una de las más extensas y hermosas del norte de Portugal.</li>
+              <li><strong>Neiva:</strong> Pequeña localidad con una iglesia histórica.</li>
+              <li><strong>Santuario de Santa Luzia:</strong> Situado en lo alto de la colina en Viana, ofrece vistas espectaculares.</li>
+              <li><strong>Centro histórico de Viana do Castelo:</strong> Con sus plazas y edificios manuelinos.</li>
+            </ul>
+            <h4>Recomendaciones especiales para mayores:</h4>
+            <ul>
+              <li>Siendo una etapa larga, es fundamental salir temprano y mantener un ritmo constante.</li>
+              <li>Dividir la etapa en tramos de 6-8 km con descansos programados.</li>
+              <li>Si hay tiempo y energía, subir al Santuario de Santa Luzia (se puede usar el funicular).</li>
+            </ul>
+            <p><strong>Alojamiento:</strong> Viana do Castelo</p>
           </div>
         </div>
       </div>
-
-      <!-- Día 10: Santiago - Camp de Tarragona -->
-      <div class="border-b">
-        <div class="flex items-center justify-between p-4 bg-white hover:bg-gray-50 cursor-pointer accordion-header">
-          <div class="flex-1">
-            <h3 class="font-bold text-lg brand-text">Día 10: Santiago - Camp de Tarragona</h3>
-            <p class="text-gray-600">El Retorno del Peregrino</p>
-          </div>
-          <div class="text-right mr-4">
-            <p class="text-gray-600 font-medium">Martes 27 mayo</p>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      
+      <!-- Day 8: May 25 -->
+      <div id="day-25-mayo" class="border rounded-lg overflow-hidden">
+        <button class="w-full bg-gray-50 px-4 py-3 text-left font-semibold flex justify-between items-center hover:bg-gray-100 transition-colors duration-200 focus:outline-none" onclick="toggleAccordion('day25-content')">
+          <span>Domingo 25 de Mayo: Viana do Castelo - Caminha (26.8 km)</span>
+          <svg class="h-5 w-5 transform transition-transform duration-200" id="day25-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
-        </div>
-        <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/4 mb-4 md:mb-0">
-              <div class="bg-gray-100 p-3 rounded-lg">
-                <h4 class="font-bold mb-2 brand-text">Detalles del trayecto</h4>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Transporte:</span> Coche/Tren</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Distancia:</span> Variable según ruta</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> Todo el día</p>
-                <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> N/A</p>
-              </div>
-            </div>
-            <div class="md:w-3/4 md:pl-6">
-              <h4 class="font-bold mb-3 brand-text">El Retorno del Peregrino</h4>
-              <p class="text-gray-700 mb-4">
-                Nuestro último día de viaje está dedicado al regreso desde Santiago de Compostela hasta Camp de Tarragona. Este trayecto marca no solo el final físico de nuestra aventura, sino también el comienzo de la integración de todas las experiencias vividas, las lecciones aprendidas y las amistades forjadas en el Camino.
-              </p>
-              <p class="text-gray-700 mb-4">
-                Como han experimentado incontables peregrinos a lo largo de los siglos, el regreso a casa tras el Camino no es simplemente un viaje de vuelta, sino el inicio de un nuevo ciclo vital, enriquecido por las vivencias del peregrinaje. La tradición medieval consideraba que el verdadero Camino comenzaba al volver a la vida cotidiana, aplicando la sabiduría y la transformación personal adquiridas durante la ruta.
-              </p>
-              <p class="text-gray-700 mb-4">
-                Este viaje de regreso nos llevará a través de diferentes paisajes y regiones de la península Ibérica, recordándonos la diversidad geográfica, cultural e histórica de estas tierras, unidas durante siglos por las rutas de peregrinación que, como arterias de un organismo vivo, han permitido la circulación de personas, ideas, estilos artísticos y tradiciones.
-              </p>
-              
-              <div class="mb-4">
-                <h5 class="font-semibold mb-2 brand-text">Significado histórico del retorno:</h5>
-                <p class="text-sm text-gray-700 mb-3">
-                  Desde la Edad Media, el regreso del peregrino a su lugar de origen era un momento cargado de simbolismo. A menudo el peregrino portaba consigo pequeños recuerdos de su viaje: la concha de vieira (venera) cosida a su sombrero o capa, pequeñas imágenes del Apóstol y, en el caso de los peregrinos letrados, la "compostela" o documento que certificaba haber llegado a Santiago.
-                </p>
-                <p class="text-sm text-gray-700 mb-3">
-                  La llegada del peregrino a su hogar solía ser motivo de celebración comunitaria, pues representaba no solo un logro personal sino también un beneficio espiritual para toda la comunidad. En muchas localidades europeas, los peregrinos retornados eran recibidos con ceremonias especiales y se les consideraba portadores de bendiciones y sabiduría.
-                </p>
-                <p class="text-sm text-gray-700">
-                  Esta transformación interior del peregrino constituye quizás el legado más duradero y significativo del Camino de Santiago, trasciendiendo épocas, culturas y creencias. Como expresó el escritor y peregrino Paulo Coelho: "El Camino no es solo una experiencia física, sino una experiencia del alma."
-                </p>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 brand-text">Recomendaciones para el viaje de regreso:</h5>
-                <ul class="space-y-1">
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Aprovecha el viaje para reflexionar y compartir impresiones sobre la experiencia vivida. La tradición oral de relatar las experiencias del Camino es tan antigua como la propia peregrinación.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Revisar las fotografías tomadas, identificando los momentos más significativos que quedarán como testimonio visual de tu peregrinación.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Llevar un pequeño souvenir o recuerdo que te conecte con el espíritu del Camino, continuando la tradición de los peregrinos medievales que portaban insignias y reliquias como prueba de su viaje.</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="marker-dot mt-1.5"></span>
-                    <span>Realizar paradas estratégicas para descansar y disfrutar del paisaje durante el trayecto, apreciando la diversidad geográfica de la península que ha sido transitada por peregrinos durante más de mil años.</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold mb-2 accent-text">Reflexión final:</h5>
-                <p class="text-sm text-gray-700">
-                  El filósofo alemán Goethe escribió: "Lo importante no es llegar, sino el camino". Esta frase resume perfectamente la esencia del Camino de Santiago, donde cada paso, cada encuentro, cada dificultad superada y cada paisaje contemplado forman parte de una experiencia transformadora que va mucho más allá de alcanzar la meta física en la Catedral de Santiago. Como han descubierto millones de peregrinos a lo largo de más de mil años, el verdadero viaje ocurre en el interior de cada caminante, y sus efectos perduran mucho después de haber regresado a casa.
-                </p>
-                <p class="text-sm text-gray-700">
-                  La historiadora medieval Karen Berggren señaló que "para el peregrino medieval, el verdadero final del viaje no era Santiago, sino el regreso transformado a la comunidad de origen". Esta misma transformación sigue siendo la esencia de la experiencia jacobea en el siglo XXI, donde cada peregrino, independientemente de sus motivaciones iniciales (religiosas, culturales, deportivas o personales), descubre en el Camino un espacio privilegiado para el encuentro consigo mismo y con los demás, en una tradición viva que ha sobrevivido al paso de los siglos.
-                </p>
-              </div>
-            </div>
+        </button>
+        <div id="day25-content" class="hidden px-4 py-3 border-t">
+          <div class="prose max-w-none">
+            <h3>5ª Etapa: Viana do Castelo - Caminha - 26.8 km</h3>
+            <p>La etapa más larga de nuestro recorrido, que nos llevará hasta el último pueblo portugués del camino.</p>
+            <h4>Descripción del recorrido:</h4>
+            <p>El camino se aleja ligeramente de la costa, con terreno ondulado y algunas subidas moderadas. Esta etapa nos acerca a la frontera con España, marcada por el río Miño.</p>
+            <h4>Puntos de interés:</h4>
+            <ul>
+              <li><strong>Vila Praia de Âncora:</strong> Pintoresco pueblo pesquero.</li>
+              <li><strong>Vistas al monte Santa Tecla:</strong> Ya en territorio español, visible desde la ruta.</li>
+              <li><strong>Desembocadura del río Miño:</strong> Frontera natural con España.</li>
+              <li><strong>Caminha:</strong> Último pueblo portugués del camino, con su centro histórico fortificado.</li>
+            </ul>
+            <h4>Recomendaciones especiales para mayores:</h4>
+            <ul>
+              <li>Considerar la posibilidad de dividir esta etapa en dos para adaptarla a nuestro ritmo.</li>
+              <li>Alternativa: usar transporte público para acortar algún tramo inicial o final.</li>
+              <li>Celebrar la llegada a Caminha con un buen descanso, hemos completado la parte portuguesa del Camino.</li>
+            </ul>
+            <p><strong>Actividad adicional:</strong> Traslado en coche desde Caminha a Santiago (como indicado en el itinerario original).</p>
           </div>
         </div>
       </div>
-
+      
+      <!-- Day 9: May 26 -->
+      <div id="day-26-mayo" class="border rounded-lg overflow-hidden">
+        <button class="w-full bg-gray-50 px-4 py-3 text-left font-semibold flex justify-between items-center hover:bg-gray-100 transition-colors duration-200 focus:outline-none" onclick="toggleAccordion('day26-content')">
+          <span>Lunes 26 de Mayo: Llegada a Santiago de Compostela</span>
+          <svg class="h-5 w-5 transform transition-transform duration-200" id="day26-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="day26-content" class="hidden px-4 py-3 border-t">
+          <div class="prose max-w-none">
+            <h3>Exploración de Santiago de Compostela</h3>
+            <p>Llegada y exploración de la meta de nuestra peregrinación, Santiago de Compostela.</p>
+            <h4>Lugares para visitar:</h4>
+            <ul>
+              <li><strong>Catedral de Santiago:</strong> Recogida de la Compostela si hemos completado los requisitos.</li>
+              <li><strong>Plaza del Obradoiro:</strong> Centro neurálgico de la ciudad.</li>
+              <li><strong>Casco histórico:</strong> Declarado Patrimonio de la Humanidad por la UNESCO.</li>
+              <li><strong>Mercado de Abastos:</strong> Para descubrir la gastronomía local.</li>
+            </ul>
+            <h4>Recomendaciones:</h4>
+            <ul>
+              <li>Asistir a la Misa del Peregrino en la Catedral, una experiencia única.</li>
+              <li>Pasear tranquilamente por las calles empedradas del casco antiguo.</li>
+              <li>Disfrutar de la gastronomía gallega (pulpo, empanada, etc.) en algún restaurante tradicional.</li>
+              <li>Descansar y celebrar la culminación de nuestro Camino.</li>
+            </ul>
+            <p><strong>Alojamiento:</strong> Santiago de Compostela</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Day 10: May 27 -->
+      <div id="day-27-mayo" class="border rounded-lg overflow-hidden">
+        <button class="w-full bg-gray-50 px-4 py-3 text-left font-semibold flex justify-between items-center hover:bg-gray-100 transition-colors duration-200 focus:outline-none" onclick="toggleAccordion('day27-content')">
+          <span>Martes 27 de Mayo: Regreso a casa</span>
+          <svg class="h-5 w-5 transform transition-transform duration-200" id="day27-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="day27-content" class="hidden px-4 py-3 border-t">
+          <div class="prose max-w-none">
+            <h3>Viaje de Regreso: Santiago - Camp de Tarragona</h3>
+            <p>Regreso a nuestro punto de origen, llevando con nosotros no solo recuerdos, sino la experiencia transformadora del Camino.</p>
+            <h4>Recomendaciones para el viaje:</h4>
+            <ul>
+              <li>Confirmar con antelación los horarios de transporte.</li>
+              <li>Prever tiempo suficiente para llegar a la estación/aeropuerto.</li>
+              <li>Llevar un pequeño souvenir del Camino como recuerdo.</li>
+              <li>Compartir impresiones y experiencias con nuestros compañeros durante el viaje de regreso.</li>
+            </ul>
+            <p>Finalizamos aquí nuestra peregrinación, pero el espíritu del Camino permanecerá con nosotros.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Tips Section -->
+<!-- Tips Section with Emojis -->
 <section id="tips" class="py-12">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-6 text-center brand-text">Consejos para el Camino</h2>
@@ -1535,32 +905,26 @@ body {
       <!-- Equipamiento -->
       <div class="bg-white rounded-lg shadow-md overflow-hidden tip-card">
         <div class="brand-bg text-white p-4">
-          <h3 class="font-bold text-xl">Equipamiento</h3>
+          <h3 class="font-bold text-xl flex items-center">
+            <span class="text-2xl mr-2">🎒</span> Equipamiento
+          </h3>
         </div>
         <div class="p-5">
           <ul class="space-y-3">
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">👟</span>
               <span><span class="font-medium">Calzado adecuado:</span> Utiliza zapatos de senderismo ya usados con buena sujeción y amortiguación. Nunca estrenes zapatos en el Camino.</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">🥾</span>
               <span><span class="font-medium">Bastones de trekking:</span> Altamente recomendados para mayor estabilidad y reducir la carga en rodillas y tobillos.</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">🧳</span>
               <span><span class="font-medium">Mochila ligera:</span> Máximo 6-8 kg para adultos mayores. Considera un servicio de transporte de equipaje entre etapas.</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">🧥</span>
               <span><span class="font-medium">Capas de ropa:</span> Sistema de capas para adaptarse a los cambios climáticos del Atlántico. Imprescindible chubasquero ligero.</span>
             </li>
           </ul>
@@ -1570,32 +934,26 @@ body {
       <!-- Salud y Preparación -->
       <div class="bg-white rounded-lg shadow-md overflow-hidden tip-card">
         <div class="brand-bg text-white p-4">
-          <h3 class="font-bold text-xl">Salud y Preparación</h3>
+          <h3 class="font-bold text-xl flex items-center">
+            <span class="text-2xl mr-2">⚕️</span> Salud y Preparación
+          </h3>
         </div>
         <div class="p-5">
           <ul class="space-y-3">
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">🏥</span>
               <span><span class="font-medium">Revisión médica:</span> Consulta a tu médico antes del viaje y lleva un informe con tu historial médico básico.</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">💊</span>
               <span><span class="font-medium">Medicación:</span> Lleva medicamentos para 2-3 días más de lo previsto y conserva las recetas médicas.</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">🚶‍♀️</span>
               <span><span class="font-medium">Entrenamiento previo:</span> Prepárate con caminatas regulares de 2-3 horas, 3 veces por semana, durante 3 meses.</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">🔰</span>
               <span><span class="font-medium">Seguro de viaje:</span> Contrata un seguro específico para mayores con buena cobertura médica y repatriación.</span>
             </li>
           </ul>
@@ -1605,32 +963,26 @@ body {
       <!-- Durante el Camino -->
       <div class="bg-white rounded-lg shadow-md overflow-hidden tip-card">
         <div class="brand-bg text-white p-4">
-          <h3 class="font-bold text-xl">Durante el Camino</h3>
+          <h3 class="font-bold text-xl flex items-center">
+            <span class="text-2xl mr-2">🚶‍♂️</span> Durante el Camino
+          </h3>
         </div>
         <div class="p-5">
           <ul class="space-y-3">
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">⏱️</span>
               <span><span class="font-medium">Ritmo personalizado:</span> Camina a tu propio ritmo. No es una competición. Mejor llegar tarde que lesionado.</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">💧</span>
               <span><span class="font-medium">Hidratación constante:</span> Bebe agua regularmente, incluso antes de sentir sed, especialmente en días calurosos.</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">🪑</span>
               <span><span class="font-medium">Descansos frecuentes:</span> Haz pausas de 10-15 minutos cada hora para recuperar energía y revisar tus pies.</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
+              <span class="text-xl mr-2 flex-shrink-0">☀️</span>
               <span><span class="font-medium">Protección solar:</span> Aplica protector solar SPF 50+ cada 2 horas, usa gorra y gafas de sol.</span>
             </li>
           </ul>
@@ -1640,48 +992,54 @@ body {
     
     <!-- Adaptaciones específicas para mayores -->
     <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-      <h3 class="text-xl font-bold mb-4 brand-text">Adaptaciones para peregrinos mayores </h3>
+      <h3 class="text-xl font-bold mb-4 brand-text flex items-center">
+        <span class="text-2xl mr-2">👵🏻👴🏻</span> Adaptaciones para peregrinos mayores
+      </h3>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <h4 class="font-semibold mb-3 brand-text">Planificación de etapas</h4>
+          <h4 class="font-semibold mb-3 brand-text flex items-center">
+            <span class="text-xl mr-2">📆</span> Planificación de etapas
+          </h4>
           <ul class="space-y-2">
             <li class="flex items-start">
-              <span class="marker-dot mt-1.5"></span>
+              <span class="text-lg mr-2 flex-shrink-0">📏</span>
               <span>Reduce la distancia diaria entre un 25-30% respecto a las etapas oficiales.</span>
             </li>
             <li class="flex items-start">
-              <span class="marker-dot mt-1.5"></span>
+              <span class="text-lg mr-2 flex-shrink-0">🛌</span>
               <span>Considera tomar días de descanso cada 2-3 etapas para recuperación completa.</span>
             </li>
             <li class="flex items-start">
-              <span class="marker-dot mt-1.5"></span>
+              <span class="text-lg mr-2 flex-shrink-0">⛰️</span>
               <span>Las etapas de nuestro itinerario están adaptadas para el grupo, con un máximo de 27 km.</span>
             </li>
             <li class="flex items-start">
-              <span class="marker-dot mt-1.5"></span>
+              <span class="text-lg mr-2 flex-shrink-0">🚌</span>
               <span>Utiliza transporte para tramos urbanos complicados o zonas de alto tráfico.</span>
             </li>
           </ul>
         </div>
         
         <div>
-          <h4 class="font-semibold mb-3 brand-text">Alojamiento y comodidades</h4>
+          <h4 class="font-semibold mb-3 brand-text flex items-center">
+            <span class="text-xl mr-2">🏨</span> Alojamiento y comodidades
+          </h4>
           <ul class="space-y-2">
             <li class="flex items-start">
-              <span class="marker-dot mt-1.5"></span>
+              <span class="text-lg mr-2 flex-shrink-0">🛏️</span>
               <span>Prioriza hoteles con habitaciones privadas y baño propio en lugar de albergues compartidos.</span>
             </li>
             <li class="flex items-start">
-              <span class="marker-dot mt-1.5"></span>
+              <span class="text-lg mr-2 flex-shrink-0">🏙️</span>
               <span>Elige alojamientos céntricos para minimizar desplazamientos adicionales.</span>
             </li>
             <li class="flex items-start">
-              <span class="marker-dot mt-1.5"></span>
+              <span class="text-lg mr-2 flex-shrink-0">📝</span>
               <span>Reserva con antelación para garantizar opciones accesibles y sin escaleras.</span>
             </li>
             <li class="flex items-start">
-              <span class="marker-dot mt-1.5"></span>
+              <span class="text-lg mr-2 flex-shrink-0">👕</span>
               <span>Consulta si ofrecen servicios específicos como lavandería o transporte de equipaje.</span>
             </li>
           </ul>
@@ -1691,17 +1049,27 @@ body {
     
     <!-- Testimonios -->
     <div class="bg-gray-100 rounded-lg p-6">
-      <h3 class="text-xl font-bold mb-4 text-center brand-text">Testimonios de peregrinos mayores</h3>
+      <h3 class="text-xl font-bold mb-4 text-center brand-text flex items-center justify-center">
+        <span class="text-2xl mr-2">💬</span> Testimonios de peregrinos mayores
+      </h3>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-white p-4 rounded shadow-md">
-          <p class="italic text-gray-700 mb-2">"A mis 74 años completé el Camino Portugués y fue una experiencia transformadora. La clave fue adaptar las etapas a mi ritmo y no tener prisa. El paisaje atlántico me llenó de energía cada día."</p>
-          <p class="text-right text-gray-600 font-medium">— Carmen, 74 años</p>
+          <p class="italic text-gray-700 mb-2">
+            <span class="text-xl mr-1">❝</span>
+            "A mis 74 años completé el Camino Portugués y fue una experiencia transformadora. La clave fue adaptar las etapas a mi ritmo y no tener prisa. El paisaje atlántico me llenó de energía cada día."
+            <span class="text-xl ml-1">❞</span>
+          </p>
+          <p class="text-right text-gray-600 font-medium">— Carmen, 74 años 👵🏻</p>
         </div>
         
         <div class="bg-white p-4 rounded shadow-md">
-          <p class="italic text-gray-700 mb-2">"Después de la jubilación, hacer el Camino me devolvió un propósito. Mis bastones de trekking fueron mis mejores amigos, y la gente que conocí en el camino se convirtió en familia. No importa la edad, el Camino te acoge."</p>
-          <p class="text-right text-gray-600 font-medium">— Antonio, 78 años</p>
+          <p class="italic text-gray-700 mb-2">
+            <span class="text-xl mr-1">❝</span>
+            "Después de la jubilación, hacer el Camino me devolvió un propósito. Mis bastones de trekking fueron mis mejores amigos, y la gente que conocí en el camino se convirtió en familia. No importa la edad, el Camino te acoge."
+            <span class="text-xl ml-1">❞</span>
+          </p>
+          <p class="text-right text-gray-600 font-medium">— Antonio, 78 años 👴🏻</p>
         </div>
       </div>
     </div>
@@ -1728,81 +1096,19 @@ body {
               <th>Domingo</th>
             </tr>
           </thead>
-          <tbody>
-            <!-- Primera semana -->
+          <tbody>            
+            <!-- Tercera semana (solo una fila con el inicio) -->
             <tr>
-              <td class="out-of-range">
-                <div class="date">28</div>
-              </td>
-              <td class="out-of-range">
-                <div class="date">29</div>
-              </td>
-              <td class="out-of-range">
-                <div class="date">30</div>
-              </td>
-              <td>
-                <div class="date">1</div>
-              </td>
-              <td>
-                <div class="date">2</div>
-              </td>
-              <td>
-                <div class="date">3</div>
-              </td>
-              <td>
-                <div class="date">4</div>
-              </td>
-            </tr>
-            
-            <!-- Segunda semana -->
-            <tr>
-              <td>
-                <div class="date">5</div>
-              </td>
-              <td>
-                <div class="date">6</div>
-              </td>
-              <td>
-                <div class="date">7</div>
-              </td>
-              <td>
-                <div class="date">8</div>
-              </td>
-              <td>
-                <div class="date">9</div>
-              </td>
-              <td>
-                <div class="date">10</div>
-              </td>
-              <td>
-                <div class="date">11</div>
-              </td>
-            </tr>
-            
-            <!-- Tercera semana -->
-            <tr>
-              <td>
-                <div class="date">12</div>
-              </td>
-              <td>
-                <div class="date">13</div>
-              </td>
-              <td>
-                <div class="date">14</div>
-              </td>
-              <td>
-                <div class="date">15</div>
-              </td>
-              <td>
-                <div class="date">16</div>
-              </td>
-              <td>
-                <div class="date">17</div>
-              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td class="today">
                 <div class="date">18</div>
                 <div>
-                  <a href="#itinerary" class="destination-tag porto-tag">Camp de Tarragona - Badajoz</a>
+                  <a href="#day-18-mayo" class="destination-tag">Camp de Tarragona - Badajoz</a>
                 </div>
                 <div class="text-xs text-gray-600">Inicio del viaje</div>
               </td>
@@ -1813,116 +1119,78 @@ body {
               <td>
                 <div class="date">19</div>
                 <div>
-                  <a href="#itinerary" class="destination-tag porto-tag">Badajoz</a>
+                  <a href="#day-19-mayo" class="destination-tag">Badajoz</a>
                 </div>
                 <div class="text-xs text-gray-600">Visita cultural</div>
               </td>
               <td>
                 <div class="date">20</div>
                 <div>
-                  <a href="#itinerary" class="destination-tag porto-tag">Badajoz - Vila do Conde</a>
+                  <a href="#day-20-mayo" class="destination-tag">Badajoz - Vila do Conde</a>
                 </div>
                 <div class="text-xs text-gray-600">Traslado</div>
               </td>
               <td>
                 <div class="date">21</div>
                 <div>
-                  <a href="#itinerary" class="destination-tag porto-tag">Porto - Matosinhos</a>
+                  <a href="#day-21-mayo" class="destination-tag walking-day">Porto - Matosinhos</a>
                 </div>
                 <div class="text-xs text-gray-600">17.5 km</div>
               </td>
               <td>
                 <div class="date">22</div>
                 <div>
-                  <a href="#itinerary" class="destination-tag povoa-tag">Matosinhos - Póvoa de Varzim</a>
+                  <a href="#day-22-mayo" class="destination-tag walking-day">Matosinhos - Póvoa de Varzim</a>
                 </div>
                 <div class="text-xs text-gray-600">20.4 km</div>
               </td>
               <td>
                 <div class="date">23</div>
                 <div>
-                  <a href="#itinerary" class="destination-tag esposende-tag">Póvoa de Varzim - Esposende</a>
+                  <a href="#day-23-mayo" class="destination-tag walking-day">Póvoa de Varzim - Esposende</a>
                 </div>
                 <div class="text-xs text-gray-600">21 km</div>
               </td>
               <td>
                 <div class="date">24</div>
                 <div>
-                  <a href="#itinerary" class="destination-tag viana-tag">Esposende - Viana do Castelo</a>
+                  <a href="#day-24-mayo" class="destination-tag walking-day">Esposende - Viana do Castelo</a>
                 </div>
                 <div class="text-xs text-gray-600">24 km</div>
               </td>
               <td>
                 <div class="date">25</div>
                 <div>
-                  <a href="#itinerary" class="destination-tag caminha-tag">Viana do Castelo - Caminha</a>
+                  <a href="#day-25-mayo" class="destination-tag walking-day">Viana do Castelo - Caminha</a>
                 </div>
                 <div class="text-xs text-gray-600">26.8 km</div>
               </td>
             </tr>
             
-            <!-- Quinta semana -->
+            <!-- Quinta semana (solo inicio) -->
             <tr>
               <td>
                 <div class="date">26</div>
                 <div>
-                  <a href="#itinerary" class="destination-tag santiago-tag">Caminha - Santiago</a>
+                  <a href="#day-26-mayo" class="destination-tag">Caminha - Santiago</a>
                 </div>
                 <div class="text-xs text-gray-600">Traslado y visita</div>
               </td>
               <td>
                 <div class="date">27</div>
                 <div>
-                  <a href="#itinerary" class="destination-tag porto-tag">Santiago - Camp de Tarragona</a>
+                  <a href="#day-27-mayo" class="destination-tag">Santiago - Camp de Tarragona</a>
                 </div>
                 <div class="text-xs text-gray-600">Regreso</div>
               </td>
-              <td>
-                <div class="date">28</div>
-              </td>
-              <td>
-                <div class="date">29</div>
-              </td>
-              <td>
-                <div class="date">30</div>
-              </td>
-              <td>
-                <div class="date">31</div>
-              </td>
-              <td class="out-of-range">
-                <div class="date">1</div>
-              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
           </tbody>
         </table>
-      </div>
-    </div>
-    
-    <!-- Leyenda -->
-    <div class="mt-6 flex flex-wrap gap-3 justify-center">
-      <div class="flex items-center">
-        <span class="inline-block w-3 h-3 rounded-full bg-blue-500 mr-2"></span>
-        <span class="text-sm">Porto/Tarragona</span>
-      </div>
-      <div class="flex items-center">
-        <span class="inline-block w-3 h-3 rounded-full bg-purple-500 mr-2"></span>
-        <span class="text-sm">Póvoa de Varzim</span>
-      </div>
-      <div class="flex items-center">
-        <span class="inline-block w-3 h-3 rounded-full bg-green-500 mr-2"></span>
-        <span class="text-sm">Esposende</span>
-      </div>
-      <div class="flex items-center">
-        <span class="inline-block w-3 h-3 rounded-full bg-orange-500 mr-2"></span>
-        <span class="text-sm">Viana do Castelo</span>
-      </div>
-      <div class="flex items-center">
-        <span class="inline-block w-3 h-3 rounded-full bg-teal-600 mr-2"></span>
-        <span class="text-sm">Caminha</span>
-      </div>
-      <div class="flex items-center">
-        <span class="inline-block w-3 h-3 rounded-full bg-red-500 mr-2"></span>
-        <span class="text-sm">Santiago</span>
       </div>
     </div>
   </div>
@@ -1948,28 +1216,6 @@ body {
             </tr>
           </thead>
           <tbody>
-            <!-- Badajoz -->
-            <tr class="border-b hotel-row bg-highlight">
-              <td class="py-3 px-4 whitespace-nowrap">
-                <div class="text-sm font-medium text-gray-900">18-20 Mayo</div>
-                <div class="text-xs text-gray-500">Domingo - Martes</div>
-              </td>
-              <td class="py-3 px-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Badajoz</div>
-              </td>
-              <td class="py-3 px-4">
-                <div class="text-sm font-medium text-gray-900">Por confirmar</div>
-              </td>
-              <td class="py-3 px-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Hotel</div>
-              </td>
-              <td class="py-3 px-4">
-                <div class="text-sm text-gray-500">Wi-Fi, ubicación céntrica</div>
-              </td>
-              <td class="py-3 px-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Pendiente</div>
-              </td>
-            </tr>
             
             <!-- Vila do Conde -->
             <tr class="border-b hotel-row">
@@ -2004,17 +1250,17 @@ body {
                 <div class="text-sm text-gray-900">Viana do Castelo</div>
               </td>
               <td class="py-3 px-4">
-                <div class="text-sm font-medium text-gray-900">Por confirmar</div>
-                <div class="text-xs text-gray-500">Aún no se el hotel</div>
+                <div class="text-sm font-medium text-gray-900">B&B Hotel Viana do Castelo</div>
+                <div class="text-xs text-gray-500">Hotel céntrico</div>
               </td>
               <td class="py-3 px-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Hotel</div>
+                <div class="text-sm text-gray-900">Bed & Breakfast</div>
               </td>
               <td class="py-3 px-4">
-                <div class="text-sm text-gray-500">Wi-Fi, ubicación céntrica</div>
+                <div class="text-sm text-gray-500">Wi-Fi, desayuno incluido, ubicación céntrica</div>
               </td>
               <td class="py-3 px-4 whitespace-nowrap">
-                <div class="text-sm text-yellow-600 font-medium">En trámite</div>
+                <div class="text-sm text-green-600 font-medium">Confirmado</div>
               </td>
             </tr>
             
@@ -2591,7 +1837,55 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+    function toggleAccordion(contentId) {
+      const content = document.getElementById(contentId);
+      const arrowId = contentId.replace('content', 'arrow');
+      const arrow = document.getElementById(arrowId);
+      
+      // Toggle content visibility
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+      }
+    }
+    
+    // Function to open a specific day when clicking from calendar
+    function openDay(dayId) {
+      const targetElement = document.getElementById(dayId);
+      if (targetElement) {
+        // Scroll to the element
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+        
+        // Find the content ID based on the day ID
+        const contentId = dayId.replace('day-', 'day') + '-content';
+        
+        // Open the accordion after a small delay to ensure scrolling completes
+        setTimeout(() => {
+          const content = document.getElementById(contentId);
+          const arrowId = contentId.replace('content', 'arrow');
+          const arrow = document.getElementById(arrowId);
+          
+          if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            arrow.classList.add('rotate-180');
+          }
+        }, 500);
+      }
+    }
+    
+    // Check if URL has a hash and open corresponding accordion
+    document.addEventListener('DOMContentLoaded', function() {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#day-')) {
+        openDay(hash.substring(1));
+      }
+    });
+
 });
+
  
 </script>
 
