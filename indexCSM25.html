@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Camino de Santiago 2025 - Ruta Portuguesa</title>
+  
+  <!-- Core CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  
+  <style>
+:root {
+  --primary-color: #8E7B52;
+  --primary-dark: #6d5e3f;
+  --primary-light: #d0c4a0;
+  --secondary-color: #3e5669;
+  --accent-color: #ba3e48;
+  --background-light: #f5f3e8;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-light);
+}
+
+.brand-bg {
+  background-color: var(--primary-color);
+}
+
+.brand-text {
+  color: var(--primary-color);
+}
+
+.brand-border {
+  border-color: var(--primary-color);
+}
+
+.accent-bg {
+  background-color: var(--accent-color);
+}
+
+.accent-text {
+  color: var(--accent-color);
+}
+
+.accent-border {
+  border-color: var(--accent-color);
+}
+
+.secondary-bg {
+  background-color: var(--secondary-color);
+}
+
+.secondary-text {
+  color: var(--secondary-color);
+}
+
+.secondary-border {
+  border-color: var(--secondary-color);
+}
+
+.brand-button {
+  background-color: var(--primary-color);
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.brand-button:hover {
+  background-color: var(--primary-dark);
+}
+
+.accent-button {
+  background-color: var(--accent-color);
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.accent-button:hover {
+  background-color: #a02c34;
+}
+
+/* Accordion styles */
+.accordion-item {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.accordion-header {
+  cursor: pointer;
+  padding: 1rem;
+  background-color: var(--background-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.accordion-header:hover {
+  background-color: #eae8dd;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: white;
+}
+
+.accordion-content.active {
+  max-height: 1000px;
+}
+
+/* Calendar styles */
+.calendar {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendar th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 0.85rem;
+}
+
+.calendar td {
+  height: 80px;
+  border: 1px solid #e5e7eb;
+  vertical-align: top;
+  padding: 8px;
+  background-color: white;
+}
+
+.calendar .date {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+}
+
+.calendar .today {
+  background-color: #f0ebd7;
+  border: 2px solid var(--primary-color);
+}
+
+.calendar .out-of-range {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+}
+
+.destination-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: white;
+  margin-top: 2px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  margin-bottom: 3px;
+}
+
+.destination-tag:hover {
+  transform: scale(1.05);
+}
+
+.porto-tag {
+  background-color: #3182ce;
+}
+
+.povoa-tag {
+  background-color: #805ad5;
+}
+
+.esposende-tag {
+  background-color: #38a169;
+}
+
+.viana-tag {
+  background-color: #dd6b20;
+}
+
+.caminha-tag {
+  background-color: #0d9488;
+}
+
+.santiago-tag {
+  background-color: #e53e3e;
+}
+
+/* Journey map styles */
+.journey-map-horizontal {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.journey-map-vertical {
+  display: none;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+}
+
+.map-line {
+  height: 5px;
+  background-color: var(--primary-color);
+  margin: 30px 0;
+  position: relative;
+}
+
+.map-line-vertical {
+  width: 5px;
+  background-color: var(--primary-color);
+  margin: 0 auto;
+  position: relative;
+  height: 600px;
+}
+
+.map-stop {
+  position: absolute;
+  top: -8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-stop-vertical {
+  position: absolute;
+  left: -8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.map-dot {
+  width: 20px;
+  height: 20px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.map-label {
+  margin-top: 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.map-label-vertical {
+  margin-left: 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Current location styling */
+.current-location .map-dot {
+  background-color: white !important;
+  border: 3px solid var(--accent-color) !important;
+  box-shadow: 0 0 0 2px var(--accent-color), 0 0 10px rgba(186, 62, 72, 0.5) !important;
+  animation: pulse 2s infinite !important;
+}
+
+.current-location a,
+.current-location p.font-medium,
+.current-location p {
+  color: var(--accent-color) !important;
+  font-weight: bold !important;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(186, 62, 72, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(186, 62, 72, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(186, 62, 72, 0);
+  }
+}
+
+/* Hotel row highlighting */
+.hotel-row.bg-highlight {
+  background-color: #f0ebd7;
+  position: relative;
+}
+
+.hotel-row.bg-highlight::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--primary-color);
+}
+
+/* Countdown styles */
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.countdown-box {
+  background: var(--secondary-color);
+  border-radius: 8px;
+  color: white;
+  padding: 15px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.countdown-value {
+  font-size: 28px;
+  font-weight: bold;
+  font-family: 'Roboto Mono', monospace;
+  line-height: 1;
+}
+
+.countdown-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.countdown-separator {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--accent-color);
+  line-height: 1;
+  margin-top: -8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .journey-map-horizontal {
+    display: none;
+  }
+  .journey-map-vertical {
+    display: flex;
+  }
+  
+  #hotels table th:nth-child(3),
+  #hotels table td:nth-child(3),
+  #hotels table th:nth-child(6),
+  #hotels table td:nth-child(6),
+  #hotels table th:nth-child(8),
+  #hotels table td:nth-child(8) {
+    display: none;
+  }
+  
+  .calendar th {
+    font-size: 0.7rem;
+    padding: 6px 2px;
+  }
+  
+  .calendar .date {
+    font-size: 0.8rem;
+  }
+  
+  .destination-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+  
+  .countdown-value {
+    font-size: 20px;
+  }
+  
+  .countdown-label {
+    font-size: 10px;
+  }
+  
+  .countdown-separator {
+    font-size: 20px;
+  }
+  
+  .countdown-unit {
+    min-width: 45px;
+  }
+}
+
+/* Navigation styles */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+  border-bottom: 3px solid var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-image {
+  background-image: url('https://www.caminosantiagodecompostela.com/wp-content/uploads/2020/03/camino-portugues-por-la-costa.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.tip-card {
+  transition: transform 0.3s ease;
+}
+
+.tip-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Animated flag effect */
+.flag-container {
+  position: relative;
+  overflow: hidden;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.flag-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.flag-container:hover img {
+  transform: scale(1.1);
+}
+
+.daily-item {
+  border-left: 4px solid var(--primary-light);
+  margin-bottom: 0.75rem;
+  padding-left: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.daily-item:hover {
+  border-color: var(--primary-color);
+}
+
+.marker-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  margin-right: 5px;
+}
+  </style>
+</head>
+
+<body class="bg-gray-50">
+
+<!-- Navigation Menu -->
+<nav class="sticky-nav">
+  <div class="max-w-6xl mx-auto px-4 py-3">
+    <div class="flex justify-between items-center">
+      <div class="brand-text font-bold text-xl">CAMINO DE SANTIAGO 2025</div>
+      
+      <!-- Desktop Navigation Menu -->
+      <div class="hidden md:flex md:items-center md:space-x-6">
+        <a href="#info" class="text-gray-700 hover:text-gray-900">Información General</a>
+        <a href="#itinerary" class="text-gray-700 hover:text-gray-900">Itinerario</a>
+        <a href="#calendar" class="text-gray-700 hover:text-gray-900">Calendario</a>
+        <a href="#hotels" class="text-gray-700 hover:text-gray-900">Alojamientos</a>
+        <a href="#journey" class="text-gray-700 hover:text-gray-900">Ruta</a>
+        <a href="#tips" class="text-gray-700 hover:text-gray-900">Consejos</a>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-gray-700 hover:text-gray-900 focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-2 pb-2">
+      <div class="flex flex-col space-y-3">
+        <a href="#info" class="text-gray-700 hover:text-gray-900 py-2 border-b border-gray-200">Información General</a>
+        <a href="#itinerary" class="text-gray-700 hover:text-gray-900 py-2 border-b border-gray-200">Itinerario</a>
+        <a href="#calendar" class="text-gray-700 hover:text-gray-900 py-2 border-b border-gray-200">Calendario</a>
+        <a href="#hotels" class="text-gray-700 hover:text-gray-900 py-2 border-b border-gray-200">Alojamientos</a>
+        <a href="#journey" class="text-gray-700 hover:text-gray-900 py-2 border-b border-gray-200">Ruta</a>
+        <a href="#tips" class="text-gray-700 hover:text-gray-900 py-2">Consejos</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-image py-16 text-white text-center">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="bg-black bg-opacity-50 p-8 rounded-lg inline-block">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Camino de Santiago 2025</h1>
+      <p class="text-xl md:text-2xl mb-6">Ruta Portuguesa por la Costa</p>
+      <p class="text-lg">Del 18 al 27 de mayo de 2025</p>
+    </div>
+  </div>
+</section>
+
+<!-- Countdown Section -->
+<section class="bg-white py-6 shadow-md">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="countdown-container">
+      <div class="countdown-box">
+        <div class="countdown-unit">
+          <span id="countdown-days" class="countdown-value">000</span>
+          <span class="countdown-label">días</span>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-unit">
+          <span id="countdown-hours" class="countdown-value">00</span>
+          <span class="countdown-label">horas</span>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-unit">
+          <span id="countdown-minutes" class="countdown-value">00</span>
+          <span class="countdown-label">minutos</span>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-unit">
+          <span id="countdown-seconds" class="countdown-value">00</span>
+          <span class="countdown-label">segundos</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-4">
+      <p class="text-lg font-bold brand-text">
+        <span id="text-countdown-days">390</span> días para nuestra aventura
+      </p>
+      <p class="text-sm text-gray-600">Comienza el domingo 18 de mayo de 2025</p>
+    </div>
+  </div>
+</section>
+
+<!-- Itinerary Section -->
+<section id="itinerary" class="py-12 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center brand-text">Itinerario Detallado</h2>
+    <p class="text-center text-gray-600 mb-8">Descubre día a día nuestra ruta hacia Santiago</p>
+
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <!-- Día 1: Camp de Tarragona - Badajoz -->
+      <div class="border-b accordion-item">
+        <div class="accordion-header">
+          <span class="flex-grow">Día 1: Camp de Tarragona - Badajoz</span>
+          <span class="text-sm text-gray-600 w-32 text-right mr-3">Domingo 18 mayo</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-content p-5">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-1/4 mb-4 md:mb-0">
+              <div class="bg-gray-100 p-3 rounded-lg">
+                <h4 class="font-bold mb-2 brand-text">Detalles del trayecto</h4>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Transporte:</span> Tren RENFE</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Distancia:</span> N/A (día de viaje)</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> Todo el día</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> N/A</p>
+              </div>
+            </div>
+            <div class="md:w-3/4 md:pl-6">
+              <h4 class="font-bold mb-3 brand-text">El viaje comienza</h4>
+              <p class="text-gray-700 mb-4">
+                El viaje comienza en Camp de Tarragona, tierra de historia romana y medieval, donde el emperador Augusto estableció la antigua Tarraco, capital de la Hispania Citerior. Hoy inicias tu propio camino histórico mientras el tren atraviesa la península, cruzando paisajes que han sido testigos de peregrinaciones durante siglos.
+              </p>
+              <p class="text-gray-700 mb-4">
+                El trayecto ferroviario te llevará a través de la España interior, pasando por Madrid y adentrándose en Extremadura, una región donde las culturas romana, visigoda, musulmana y cristiana han dejado profundas huellas. Este viaje en tren no es solo un medio para llegar a tu destino, sino una transición espiritual, un tiempo de introspección antes de comenzar tu peregrinación.
+              </p>
+              
+              <div class="mt-4">
+                <h5 class="font-semibold mb-2 brand-text">Recomendaciones:</h5>
+                <ul class="space-y-1">
+                  <li class="flex items-start">
+                    <span class="marker-dot mt-1.5"></span>
+                    <span>Aprovecha el viaje para leer sobre la historia del Camino de Santiago y la Ruta Portuguesa.</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="marker-dot mt-1.5"></span>
+                    <span>Prepara una pequeña mochila con lo esencial para el trayecto (agua, snacks, documentación).</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="marker-dot mt-1.5"></span>
+                    <span>Comienza un diario de viaje, tradición que muchos peregrinos han mantenido a lo largo de los siglos.</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="mt-4">
+                <h5 class="font-semibold mb-2 accent-text">Datos históricos:</h5>
+                <p class="text-sm text-gray-700">
+                  Badajoz fue fundada por Ibn Marwan en el año 875, siendo una importante ciudad fronteriza durante siglos, disputada entre reinos cristianos y musulmanes, y posteriormente entre España y Portugal. Su ubicación estratégica la convirtió en punto clave para viajeros y comerciantes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Día 2: Badajoz -->
+      <div class="border-b accordion-item">
+        <div class="accordion-header">
+          <span class="flex-grow">Día 2: Badajoz</span>
+          <span class="text-sm text-gray-600 w-32 text-right mr-3">Lunes 19 mayo</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-content p-5">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-1/4 mb-4 md:mb-0">
+              <div class="bg-gray-100 p-3 rounded-lg">
+                <h4 class="font-bold mb-2 brand-text">Detalles del día</h4>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Actividad:</span> Visita cultural</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Lugares clave:</span> Alcazaba, Plaza Alta, Catedral</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> Día completo</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> Baja</p>
+              </div>
+            </div>
+            <div class="md:w-3/4 md:pl-6">
+              <h4 class="font-bold mb-3 brand-text">Un Día Entre Murallas Históricas</h4>
+              <p class="text-gray-700 mb-4">
+                Amaneces en Badajoz, ciudad fronteriza cuya historia ha estado marcada por su ubicación estratégica entre reinos y naciones. Hoy es un día para aclimatarte, prepararte física y mentalmente, mientras te impregnas de la rica historia de esta ciudad extremeña que ha sido testigo de innumerables viajeros y comerciantes a lo largo de los siglos.
+              </p>
+              
+              <div class="mb-4">
+                <h5 class="font-semibold mb-2 brand-text">Lugares para visitar y su contexto histórico:</h5>
+                <div class="daily-item">
+                  <p class="font-medium">Alcazaba árabe</p>
+                  <p class="text-sm text-gray-700">Una de las fortalezas musulmanas más grandes de España, construida en el siglo XII. Sus imponentes murallas ofrecen un testimonio pétreo del pasado islámico de la ciudad. Desde lo alto de sus torres, los antiguos centinelas vigilaban la aproximación de ejércitos enemigos.</p>
+                </div>
+                <div class="daily-item">
+                  <p class="font-medium">Plaza Alta</p>
+                  <p class="text-sm text-gray-700">Corazón histórico de la ciudad desde el siglo XVI, fue testigo de mercados, celebraciones y hasta autos de fe durante la Inquisición. Las casas pintadas de colores vivos que la rodean son reminiscencia de la época en que este espacio era el centro neurálgico de la vida social pacense.</p>
+                </div>
+                <div class="daily-item">
+                  <p class="font-medium">Catedral de San Juan Bautista</p>
+                  <p class="text-sm text-gray-700">Comenzada en el siglo XIII sobre los restos de una mezquita, representa la transición del románico al gótico. Sus diversas fases constructivas reflejan la evolución histórica de la ciudad. Busca en su interior la imagen de Santiago Peregrino, patrono de los caminantes.</p>
+                </div>
+              </div>
+              
+              <div class="mt-4">
+                <h5 class="font-semibold mb-2 brand-text">Recomendaciones:</h5>
+                <ul class="space-y-1">
+                  <li class="flex items-start">
+                    <span class="marker-dot mt-1.5"></span>
+                    <span>Comienza tu día con un desayuno sustancioso que incluya alguna especialidad local.</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="marker-dot mt-1.5"></span>
+                    <span>Visita alguna de las iglesias locales y busca el símbolo de la vieira o concha de Santiago.</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="marker-dot mt-1.5"></span>
+                    <span>Adquiere tu credencial del peregrino si aún no la tienes.</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="marker-dot mt-1.5"></span>
+                    <span>Haz las últimas compras necesarias, prestando especial atención al calzado.</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="mt-4">
+                <h5 class="font-semibold mb-2 accent-text">Datos históricos relevantes:</h5>
+                <p class="text-sm text-gray-700">
+                  Durante la Edad Media, numerosos peregrinos portugueses cruzaban por Badajoz en su camino hacia Santiago, utilizando la llamada "Vía de la Plata" que conectaba con el Camino Francés más al norte. En el siglo XII, la Orden de Santiago tuvo gran presencia en Extremadura, protegiendo a los peregrinos y manteniendo los caminos seguros en una época de frontera inestable.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Puedes añadir el resto de días siguiendo este mismo formato -->
+      
+      <!-- Día 7: Esposende - Viana do Castelo -->
+      <div class="border-b accordion-item">
+        <div class="accordion-header">
+          <span class="flex-grow">Día 7: Esposende - Viana do Castelo</span>
+          <span class="text-sm text-gray-600 w-32 text-right mr-3">Sábado 24 mayo</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-content p-5">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-1/4 mb-4 md:mb-0">
+              <div class="bg-gray-100 p-3 rounded-lg">
+                <h4 class="font-bold mb-2 brand-text">Detalles de la etapa</h4>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Distancia:</span> 24 km</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Duración:</span> 6-7 horas</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Dificultad:</span> Media-Alta</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold">Terreno:</span> Mixto (costero y rural)</p>
+              </div>
+            </div>
+            <div class="md:w-3/4 md:pl-6">
+              <h4 class="font-bold mb-3 brand-text">Caminos de Agua y Piedra</h4>
+              <p class="text-gray-700 mb-4">
+                La cuarta etapa de nuestro Camino supone un desafío mayor con sus 24 kilómetros, pero también ofrece una extraordinaria diversidad de paisajes y patrimonio. Desde Esposende hasta Viana do Castelo, seguirás rutas que han conectado comunidades pesqueras y agrícolas durante siglos, alternando entre tramos costeros con vistas al Atlántico y senderos interiores que muestran la rica tradición rural portuguesa.
+              </p>
+              <p class="text-gray-700 mb-4">
+                Esta jornada nos permitirá apreciar cómo el agua, tanto la del océano como la de los ríos, ha moldeado la vida, la cultura y la economía de la región a lo largo de la historia. El río Lima, que cruzaremos al llegar a Viana do Castelo, era conocido por los romanos como el mítico río Lethes o "río del olvido", y según la leyenda, los soldados temían cruzarlo porque creían que perderían todos sus recuerdos.
+              </p>
+              
+              <div class="mb-4">
+                <h5 class="font-semibold mb-2 brand-text">Puntos de interés histórico y cultural:</h5>
+                <div class="daily-item">
+                  <p class="font-medium">Playa de Ofir</p>
+                  <p class="text-sm text-gray-700">Esta extensa playa ha servido históricamente como puerto natural para pequeñas embarcaciones pesqueras. Las dunas que la rodean fueron estabilizadas con plantaciones de pinos durante el reinado de D. Dinis (siglo XIII), una temprana intervención de gestión ambiental.</p>
+                </div>
+                <div class="daily-item">
+                  <p class="font-medium">Neiva y su iglesia</p>
+                  <p class="text-sm text-gray-700">Este pequeño pueblo conserva una iglesia románica cuyo origen se remonta al siglo XII. En sus proximidades existió un hospital medieval para peregrinos, evidencia de la importancia histórica de esta ruta.</p>
+                </div>
+                <div class="daily-item">
+                  <p class="font-medium">Santuario de Santa Luzia (Viana do Castelo)</p>
+                  <p class="text-sm text-gray-700">Situado en lo alto de la colina que domina Viana do Castelo, este templo neobizantino del siglo XX se construyó sobre los restos de un antiguo templo pagano y posteriormente una ermita medieval. Ofrece unas vistas espectaculares de la desembocadura del Lima y la costa atlántica.</p>
+                </div>
+              </div>
+              
+              <div class="mt-4">
+                <h5 class="font-semibold mb-2 brand-text">Recomendaciones para el peregrino:</h5>
+                <ul class="space-y-1">
+                  <li class="flex items-start">
+                    <span class="marker-dot mt-1.5"></span>
+                    <span>Salir temprano ya que es una etapa más larga. Los peregrinos medievales iniciaban su caminar con los primeros rayos del sol.</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="marker-dot mt-1.5"></span>
+                    <span>Llevar provisiones extra de agua y comida. Hay tramos con pocos servicios.</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="marker-dot mt-1.5"></span>
+                    <span>Si hay tiempo y energía, subir al Santuario de Santa Luzia para disfrutar de las vistas panorámicas.</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="marker-dot mt-1.5"></span>
+                    <span>Visitar el centro histórico de Viana do Castelo, con sus edificios renacentistas y barrocos que testimonian la prosperidad que esta ciudad portuaria alcanzó gracias al comercio marítimo.</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="mt-4">
+                <h5 class="font-semibold mb-2 accent-text">Datos históricos relevantes:</h5>
+                <p class="text-sm text-gray-700">
+                  Viana do Castelo, fundada en 1258 por Alfonso III de Portugal, fue un importante puerto durante la Era de los Descubrimientos (siglos XV-XVI). De aquí partieron muchas expediciones hacia Brasil, África y Asia. La ciudad prosperó gracias al comercio marítimo, especialmente con el norte de Europa y las colonias portuguesas, lo que se refleja en la rica arquitectura de su centro histórico. El puente metálico que cruza el río Lima fue diseñado por un discípulo de Gustave Eiffel a finales del siglo XIX.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Tips Section -->
+<section id="tips" class="py-12">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center brand-text">Consejos para el Camino</h2>
+    <p class="text-center text-gray-600 mb-8">Recomendaciones para peregrinos</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <!-- Equipamiento -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden tip-card">
+        <div class="brand-bg text-white p-4">
+          <h3 class="font-bold text-xl">Equipamiento</h3>
+        </div>
+        <div class="p-5">
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Calzado adecuado:</span> Utiliza zapatos de senderismo ya usados con buena sujeción y amortiguación. Nunca estrenes zapatos en el Camino.</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Bastones de trekking:</span> Altamente recomendados para mayor estabilidad y reducir la carga en rodillas y tobillos.</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Mochila ligera:</span> Máximo 6-8 kg para adultos mayores. Considera un servicio de transporte de equipaje entre etapas.</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Capas de ropa:</span> Sistema de capas para adaptarse a los cambios climáticos del Atlántico. Imprescindible chubasquero ligero.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Salud y Preparación -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden tip-card">
+        <div class="brand-bg text-white p-4">
+          <h3 class="font-bold text-xl">Salud y Preparación</h3>
+        </div>
+        <div class="p-5">
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Revisión médica:</span> Consulta a tu médico antes del viaje y lleva un informe con tu historial médico básico.</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Medicación:</span> Lleva medicamentos para 2-3 días más de lo previsto y conserva las recetas médicas.</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Entrenamiento previo:</span> Prepárate con caminatas regulares de 2-3 horas, 3 veces por semana, durante 3 meses.</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Seguro de viaje:</span> Contrata un seguro específico para mayores con buena cobertura médica y repatriación.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Durante el Camino -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden tip-card">
+        <div class="brand-bg text-white p-4">
+          <h3 class="font-bold text-xl">Durante el Camino</h3>
+        </div>
+        <div class="p-5">
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Ritmo personalizado:</span> Camina a tu propio ritmo. No es una competición. Mejor llegar tarde que lesionado.</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Hidratación constante:</span> Bebe agua regularmente, incluso antes de sentir sed, especialmente en días calurosos.</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Descansos frecuentes:</span> Haz pausas de 10-15 minutos cada hora para recuperar energía y revisar tus pies.</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 brand-text mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span><span class="font-medium">Protección solar:</span> Aplica protector solar SPF 50+ cada 2 horas, usa gorra y gafas de sol.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Adaptaciones específicas para mayores -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+      <h3 class="text-xl font-bold mb-4 brand-text">Adaptaciones para peregrinos mayores </h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold mb-3 brand-text">Planificación de etapas</h4>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <span class="marker-dot mt-1.5"></span>
+              <span>Reduce la distancia diaria entre un 25-30% respecto a las etapas oficiales.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="marker-dot mt-1.5"></span>
+              <span>Considera tomar días de descanso cada 2-3 etapas para recuperación completa.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="marker-dot mt-1.5"></span>
+              <span>Las etapas de nuestro itinerario están adaptadas para el grupo, con un máximo de 27 km.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="marker-dot mt-1.5"></span>
+              <span>Utiliza transporte para tramos urbanos complicados o zonas de alto tráfico.</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-3 brand-text">Alojamiento y comodidades</h4>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <span class="marker-dot mt-1.5"></span>
+              <span>Prioriza hoteles con habitaciones privadas y baño propio en lugar de albergues compartidos.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="marker-dot mt-1.5"></span>
+              <span>Elige alojamientos céntricos para minimizar desplazamientos adicionales.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="marker-dot mt-1.5"></span>
+              <span>Reserva con antelación para garantizar opciones accesibles y sin escaleras.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="marker-dot mt-1.5"></span>
+              <span>Consulta si ofrecen servicios específicos como lavandería o transporte de equipaje.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Testimonios -->
+    <div class="bg-gray-100 rounded-lg p-6">
+      <h3 class="text-xl font-bold mb-4 text-center brand-text">Testimonios de peregrinos mayores</h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white p-4 rounded shadow-md">
+          <p class="italic text-gray-700 mb-2">"A mis 74 años completé el Camino Portugués y fue una experiencia transformadora. La clave fue adaptar las etapas a mi ritmo y no tener prisa. El paisaje atlántico me llenó de energía cada día."</p>
+          <p class="text-right text-gray-600 font-medium">— Carmen, 74 años</p>
+        </div>
+        
+        <div class="bg-white p-4 rounded shadow-md">
+          <p class="italic text-gray-700 mb-2">"Después de la jubilación, hacer el Camino me devolvió un propósito. Mis bastones de trekking fueron mis mejores amigos, y la gente que conocí en el camino se convirtió en familia. No importa la edad, el Camino te acoge."</p>
+          <p class="text-right text-gray-600 font-medium">— Antonio, 78 años</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Calendar Section -->
+<section id="calendar" class="py-12 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center brand-text">Calendario del Viaje</h2>
+    <p class="text-center text-gray-600 mb-8">Mayo 2025</p>
+    
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="p-6">
+        <table class="calendar w-full">
+          <thead>
+            <tr>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miércoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+              <th>Sábado</th>
+              <th>Domingo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Primera semana -->
+            <tr>
+              <td class="out-of-range">
+                <div class="date">28</div>
+              </td>
+              <td class="out-of-range">
+                <div class="date">29</div>
+              </td>
+              <td class="out-of-range">
+                <div class="date">30</div>
+              </td>
+              <td>
+                <div class="date">1</div>
+              </td>
+              <td>
+                <div class="date">2</div>
+              </td>
+              <td>
+                <div class="date">3</div>
+              </td>
+              <td>
+                <div class="date">4</div>
+              </td>
+            </tr>
+            
+            <!-- Segunda semana -->
+            <tr>
+              <td>
+                <div class="date">5</div>
+              </td>
+              <td>
+                <div class="date">6</div>
+              </td>
+              <td>
+                <div class="date">7</div>
+              </td>
+              <td>
+                <div class="date">8</div>
+              </td>
+              <td>
+                <div class="date">9</div>
+              </td>
+              <td>
+                <div class="date">10</div>
+              </td>
+              <td>
+                <div class="date">11</div>
+              </td>
+            </tr>
+            
+            <!-- Tercera semana -->
+            <tr>
+              <td>
+                <div class="date">12</div>
+              </td>
+              <td>
+                <div class="date">13</div>
+              </td>
+              <td>
+                <div class="date">14</div>
+              </td>
+              <td>
+                <div class="date">15</div>
+              </td>
+              <td>
+                <div class="date">16</div>
+              </td>
+              <td>
+                <div class="date">17</div>
+              </td>
+              <td class="today">
+                <div class="date">18</div>
+                <div>
+                  <a href="#itinerary" class="destination-tag porto-tag">Camp de Tarragona - Badajoz</a>
+                </div>
+                <div class="text-xs text-gray-600">Inicio del viaje</div>
+              </td>
+            </tr>
+            
+            <!-- Cuarta semana -->
+            <tr>
+              <td>
+                <div class="date">19</div>
+                <div>
+                  <a href="#itinerary" class="destination-tag porto-tag">Badajoz</a>
+                </div>
+                <div class="text-xs text-gray-600">Visita cultural</div>
+              </td>
+              <td>
+                <div class="date">20</div>
+                <div>
+                  <a href="#itinerary" class="destination-tag porto-tag">Badajoz - Vila do Conde</a>
+                </div>
+                <div class="text-xs text-gray-600">Traslado</div>
+              </td>
+              <td>
+                <div class="date">21</div>
+                <div>
+                  <a href="#itinerary" class="destination-tag porto-tag">Porto - Matosinhos</a>
+                </div>
+                <div class="text-xs text-gray-600">17.5 km</div>
+              </td>
+              <td>
+                <div class="date">22</div>
+                <div>
+                  <a href="#itinerary" class="destination-tag povoa-tag">Matosinhos - Póvoa de Varzim</a>
+                </div>
+                <div class="text-xs text-gray-600">20.4 km</div>
+              </td>
+              <td>
+                <div class="date">23</div>
+                <div>
+                  <a href="#itinerary" class="destination-tag esposende-tag">Póvoa de Varzim - Esposende</a>
+                </div>
+                <div class="text-xs text-gray-600">21 km</div>
+              </td>
+              <td>
+                <div class="date">24</div>
+                <div>
+                  <a href="#itinerary" class="destination-tag viana-tag">Esposende - Viana do Castelo</a>
+                </div>
+                <div class="text-xs text-gray-600">24 km</div>
+              </td>
+              <td>
+                <div class="date">25</div>
+                <div>
+                  <a href="#itinerary" class="destination-tag caminha-tag">Viana do Castelo - Caminha</a>
+                </div>
+                <div class="text-xs text-gray-600">26.8 km</div>
+              </td>
+            </tr>
+            
+            <!-- Quinta semana -->
+            <tr>
+              <td>
+                <div class="date">26</div>
+                <div>
+                  <a href="#itinerary" class="destination-tag santiago-tag">Caminha - Santiago</a>
+                </div>
+                <div class="text-xs text-gray-600">Traslado y visita</div>
+              </td>
+              <td>
+                <div class="date">27</div>
+                <div>
+                  <a href="#itinerary" class="destination-tag porto-tag">Santiago - Camp de Tarragona</a>
+                </div>
+                <div class="text-xs text-gray-600">Regreso</div>
+              </td>
+              <td>
+                <div class="date">28</div>
+              </td>
+              <td>
+                <div class="date">29</div>
+              </td>
+              <td>
+                <div class="date">30</div>
+              </td>
+              <td>
+                <div class="date">31</div>
+              </td>
+              <td class="out-of-range">
+                <div class="date">1</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Leyenda -->
+    <div class="mt-6 flex flex-wrap gap-3 justify-center">
+      <div class="flex items-center">
+        <span class="inline-block w-3 h-3 rounded-full bg-blue-500 mr-2"></span>
+        <span class="text-sm">Porto/Tarragona</span>
+      </div>
+      <div class="flex items-center">
+        <span class="inline-block w-3 h-3 rounded-full bg-purple-500 mr-2"></span>
+        <span class="text-sm">Póvoa de Varzim</span>
+      </div>
+      <div class="flex items-center">
+        <span class="inline-block w-3 h-3 rounded-full bg-green-500 mr-2"></span>
+        <span class="text-sm">Esposende</span>
+      </div>
+      <div class="flex items-center">
+        <span class="inline-block w-3 h-3 rounded-full bg-orange-500 mr-2"></span>
+        <span class="text-sm">Viana do Castelo</span>
+      </div>
+      <div class="flex items-center">
+        <span class="inline-block w-3 h-3 rounded-full bg-teal-600 mr-2"></span>
+        <span class="text-sm">Caminha</span>
+      </div>
+      <div class="flex items-center">
+        <span class="inline-block w-3 h-3 rounded-full bg-red-500 mr-2"></span>
+        <span class="text-sm">Santiago</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hotels Section -->
+<section id="hotels" class="py-12">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center brand-text">Alojamientos</h2>
+    <p class="text-center text-gray-600 mb-8">Seleccionados especialmente para nuestro grupo de peregrinos</p>
+    
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full">
+          <thead>
+            <tr class="bg-gray-100 border-b">
+              <th class="py-3 px-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Fecha</th>
+              <th class="py-3 px-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Ciudad</th>
+              <th class="py-3 px-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Alojamiento</th>
+              <th class="py-3 px-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tipo</th>
+              <th class="py-3 px-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Características</th>
+              <th class="py-3 px-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Badajoz -->
+            <tr class="border-b hotel-row bg-highlight">
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-900">18-20 Mayo</div>
+                <div class="text-xs text-gray-500">Domingo - Martes</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Badajoz</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="text-sm font-medium text-gray-900">Por confirmar</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Hotel</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="text-sm text-gray-500">Wi-Fi, ubicación céntrica</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Pendiente</div>
+              </td>
+            </tr>
+            
+            <!-- Vila do Conde -->
+            <tr class="border-b hotel-row">
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-900">20-23 Mayo</div>
+                <div class="text-xs text-gray-500">Martes - Viernes</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Vila do Conde</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="text-sm font-medium text-gray-900">B&B Hotel</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Bed & Breakfast</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="text-sm text-gray-500">Wi-Fi, desayuno incluido</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-green-600 font-medium">Confirmado</div>
+              </td>
+            </tr>
+            
+            <!-- Viana do Castelo -->
+            <tr class="border-b hotel-row">
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-900">23-25 Mayo</div>
+                <div class="text-xs text-gray-500">Viernes - Domingo</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Viana do Castelo</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="text-sm font-medium text-gray-900">Por confirmar</div>
+                <div class="text-xs text-gray-500">Aún no se el hotel</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Hotel</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="text-sm text-gray-500">Wi-Fi, ubicación céntrica</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-yellow-600 font-medium">En trámite</div>
+              </td>
+            </tr>
+            
+            <!-- Santiago de Compostela -->
+            <tr class="hotel-row">
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-900">25-27 Mayo</div>
+                <div class="text-xs text-gray-500">Domingo - Martes</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Santiago de Compostela</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="text-sm font-medium text-gray-900">Hotel Universal</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Hotel</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="text-sm text-gray-500">Wi-Fi, céntrico, cerca de la Catedral</div>
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="text-sm text-green-600 font-medium">Confirmado</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Información adicional sobre alojamientos -->
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Check-in/out tips -->
+      <div class="bg-white rounded-lg shadow-md p-6 border-l-4 brand-border">
+        <h3 class="font-bold text-lg brand-text mb-2">Horarios de Check-in/out</h3>
+        <ul class="text-gray-700 space-y-2 text-sm">
+          <li class="flex items-start">
+            <svg class="h-5 w-5 brand-text mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Check-in estándar: 14:00 - 16:00</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="h-5 w-5 brand-text mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Check-out estándar: 11:00 - 12:00</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="h-5 w-5 brand-text mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Contactad si llegáis fuera de estos horarios</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Características de los alojamientos -->
+      <div class="bg-white rounded-lg shadow-md p-6 border-l-4 brand-border">
+        <h3 class="font-bold text-lg brand-text mb-2">Características</h3>
+        <ul class="text-gray-700 space-y-2 text-sm">
+          <li class="flex items-start">
+            <svg class="h-5 w-5 brand-text mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Wi-Fi disponible en todos los alojamientos</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="h-5 w-5 brand-text mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Hoteles seleccionados por su proximidad al Camino</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="h-5 w-5 brand-text mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Adaptados para personas mayores (ascensores disponibles)</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Documentos necesarios -->
+      <div class="bg-white rounded-lg shadow-md p-6 border-l-4 brand-border">
+        <h3 class="font-bold text-lg brand-text mb-2">Documentación</h3>
+        <ul class="text-gray-700 space-y-2 text-sm">
+          <li class="flex items-start">
+            <svg class="h-5 w-5 brand-text mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Confirmar reservas en móvil y papel</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="h-5 w-5 brand-text mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>DNI o pasaporte requerido para el check-in</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="h-5 w-5 brand-text mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Credencial del Peregrino para sellar en alojamientos</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Nota sobre actualizaciones -->
+    <div class="mt-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-md">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <p class="text-sm text-blue-700">
+            Los alojamientos pueden sufrir cambios hasta la fecha del viaje. Se comunicará cualquier actualización a través del grupo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Journey Map Section -->
+<section id="journey" class="py-12 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center brand-text">Nuestra Ruta</h2>
+    <p class="text-center text-gray-600 mb-8">Seguimos el Camino Portugués por la Costa - 110 km de Porto a Caminha</p>
+    
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <!-- Horizontal Map for Desktop -->
+      <div class="journey-map-horizontal">
+        <div class="relative">
+          <div class="map-line">
+            <!-- Porto -->
+            <div class="map-stop" style="left: 0%;">
+              <div class="map-dot"></div>
+              <div class="map-label">
+                <p class="font-medium">Porto</p>
+                <p class="text-xs text-gray-500">Inicio</p>
+              </div>
+            </div>
+            
+            <!-- Matosinhos -->
+            <div class="map-stop" style="left: 15%;">
+              <div class="map-dot"></div>
+              <div class="map-label">
+                <p class="font-medium">Matosinhos</p>
+                <p class="text-xs text-gray-500">17.5 km</p>
+              </div>
+            </div>
+            
+            <!-- Póvoa de Varzim -->
+            <div class="map-stop" style="left: 33%;">
+              <div class="map-dot"></div>
+              <div class="map-label">
+                <p class="font-medium">Póvoa de Varzim</p>
+                <p class="text-xs text-gray-500">20.4 km</p>
+              </div>
+            </div>
+            
+            <!-- Esposende -->
+            <div class="map-stop current-location" style="left: 52%;">
+              <div class="map-dot"></div>
+              <div class="map-label">
+                <p class="font-medium">Esposende</p>
+                <p class="text-xs text-gray-500">21 km</p>
+              </div>
+            </div>
+            
+            <!-- Viana do Castelo -->
+            <div class="map-stop" style="left: 71%;">
+              <div class="map-dot"></div>
+              <div class="map-label">
+                <p class="font-medium">Viana do Castelo</p>
+                <p class="text-xs text-gray-500">24 km</p>
+              </div>
+            </div>
+            
+            <!-- Caminha -->
+            <div class="map-stop" style="left: 90%;">
+              <div class="map-dot"></div>
+              <div class="map-label">
+                <p class="font-medium">Caminha</p>
+                <p class="text-xs text-gray-500">26.8 km</p>
+              </div>
+            </div>
+            
+            <!-- Santiago -->
+            <div class="map-stop" style="left: 100%;">
+              <div class="map-dot"></div>
+              <div class="map-label">
+                <p class="font-medium">Santiago</p>
+                <p class="text-xs text-gray-500">Final</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4 brand-text">Resumen de etapas</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="brand-text font-bold mr-2 text-lg">1.</span>
+                <div>
+                  <p class="font-medium">Porto - Matosinhos</p>
+                  <p class="text-sm text-gray-700">17.5 km | Dificultad: Baja-Media</p>
+                  <p class="text-sm text-gray-600">Salida urbana de Porto siguiendo el río Duero hasta el Atlántico, continuando por paseos marítimos con excelentes vistas al océano.</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="brand-text font-bold mr-2 text-lg">2.</span>
+                <div>
+                  <p class="font-medium">Matosinhos - Póvoa de Varzim</p>
+                  <p class="text-sm text-gray-700">20.4 km | Dificultad: Media</p>
+                  <p class="text-sm text-gray-600">Etapa costera con pasarelas sobre dunas y tramos urbanos por antiguos pueblos pesqueros. Terreno generalmente llano.</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="brand-text font-bold mr-2 text-lg">3.</span>
+                <div>
+                  <p class="font-medium">Póvoa de Varzim - Esposende</p>
+                  <p class="text-sm text-gray-700">21 km | Dificultad: Media</p>
+                  <p class="text-sm text-gray-600">Recorrido principalmente costero con tramos por bosques de pinos y pueblos tradicionales. Destacan los históricos molinos de viento de Apúlia.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="text-xl font-bold mb-4 brand-text">&nbsp;</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="brand-text font-bold mr-2 text-lg">4.</span>
+                <div>
+                  <p class="font-medium">Esposende - Viana do Castelo</p>
+                  <p class="text-sm text-gray-700">24 km | Dificultad: Media-Alta</p>
+                  <p class="text-sm text-gray-600">Etapa más variada alternando senderos costeros y caminos rurales. Cruce del río Lima al llegar a Viana do Castelo con impresionantes vistas.</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="brand-text font-bold mr-2 text-lg">5.</span>
+                <div>
+                  <p class="font-medium">Viana do Castelo - Caminha</p>
+                  <p class="text-sm text-gray-700">26.8 km | Dificultad: Alta</p>
+                  <p class="text-sm text-gray-600">La etapa más larga del recorrido, con terreno ligeramente ondulado y algunas subidas moderadas. Vistas al monte Santa Tecla al llegar a Caminha.</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="brand-text font-bold mr-2 text-lg">6.</span>
+                <div>
+                  <p class="font-medium">Caminha - Santiago de Compostela</p>
+                  <p class="text-sm text-gray-700">Traslado en vehículo | ~130 km</p>
+                  <p class="text-sm text-gray-600">Transporte organizado desde Caminha hasta Santiago de Compostela, donde culmina nuestro Camino visitando la Catedral.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Vertical Map for Mobile -->
+      <div class="journey-map-vertical">
+        <div class="relative flex justify-center">
+          <div class="map-line-vertical">
+            <!-- Porto -->
+            <div class="map-stop-vertical" style="top: 0%;">
+              <div class="map-dot"></div>
+              <div class="map-label-vertical">
+                <p class="font-medium">Porto</p>
+                <p class="text-xs text-gray-500">Inicio</p>
+              </div>
+            </div>
+            
+            <!-- Matosinhos -->
+            <div class="map-stop-vertical" style="top: 15%;">
+              <div class="map-dot"></div>
+              <div class="map-label-vertical">
+                <p class="font-medium">Matosinhos</p>
+                <p class="text-xs text-gray-500">17.5 km</p>
+              </div>
+            </div>
+            
+            <!-- Póvoa de Varzim -->
+            <div class="map-stop-vertical" style="top: 30%;">
+              <div class="map-dot"></div>
+              <div class="map-label-vertical">
+                <p class="font-medium">Póvoa de Varzim</p>
+                <p class="text-xs text-gray-500">20.4 km</p>
+              </div>
+            </div>
+            
+            <!-- Esposende -->
+            <div class="map-stop-vertical current-location" style="top: 45%;">
+              <div class="map-dot"></div>
+              <div class="map-label-vertical">
+                <p class="font-medium">Esposende</p>
+                <p class="text-xs text-gray-500">21 km</p>
+              </div>
+            </div>
+            
+            <!-- Viana do Castelo -->
+            <div class="map-stop-vertical" style="top: 60%;">
+              <div class="map-dot"></div>
+              <div class="map-label-vertical">
+                <p class="font-medium">Viana do Castelo</p>
+                <p class="text-xs text-gray-500">24 km</p>
+              </div>
+            </div>
+            
+            <!-- Caminha -->
+            <div class="map-stop-vertical" style="top: 75%;">
+              <div class="map-dot"></div>
+              <div class="map-label-vertical">
+                <p class="font-medium">Caminha</p>
+                <p class="text-xs text-gray-500">26.8 km</p>
+              </div>
+            </div>
+            
+            <!-- Santiago -->
+            <div class="map-stop-vertical" style="top: 90%;">
+              <div class="map-dot"></div>
+              <div class="map-label-vertical">
+                <p class="font-medium">Santiago</p>
+                <p class="text-xs text-gray-500">Final</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-8">
+          <h3 class="text-xl font-bold mb-4 brand-text">Resumen de etapas</h3>
+          <div class="space-y-4">
+            <div class="bg-gray-50 p-3 rounded">
+              <p class="font-medium brand-text">1. Porto - Matosinhos</p>
+              <p class="text-sm text-gray-700">17.5 km | Dificultad: Baja-Media</p>
+            </div>
+            <div class="bg-gray-50 p-3 rounded">
+              <p class="font-medium brand-text">2. Matosinhos - Póvoa de Varzim</p>
+              <p class="text-sm text-gray-700">20.4 km | Dificultad: Media</p>
+            </div>
+            <div class="bg-gray-50 p-3 rounded">
+              <p class="font-medium brand-text">3. Póvoa de Varzim - Esposende</p>
+              <p class="text-sm text-gray-700">21 km | Dificultad: Media</p>
+            </div>
+            <div class="bg-gray-50 p-3 rounded">
+              <p class="font-medium brand-text">4. Esposende - Viana do Castelo</p>
+              <p class="text-sm text-gray-700">24 km | Dificultad: Media-Alta</p>
+            </div>
+            <div class="bg-gray-50 p-3 rounded">
+              <p class="font-medium brand-text">5. Viana do Castelo - Caminha</p>
+              <p class="text-sm text-gray-700">26.8 km | Dificultad: Alta</p>
+            </div>
+            <div class="bg-gray-50 p-3 rounded">
+              <p class="font-medium brand-text">6. Caminha - Santiago de Compostela</p>
+              <p class="text-sm text-gray-700">Traslado en vehículo | ~130 km</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Distance Information -->
+      <div class="mt-8 bg-gray-50 p-4 rounded-lg border border-gray-200">
+        <h3 class="text-lg font-bold mb-3 brand-text">Resumen de distancias</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p class="mb-2"><span class="font-medium">Distancia total a pie:</span> 109.7 km</p>
+            <p><span class="font-medium">Promedio diario:</span> 21.9 km</p>
+          </div>
+          <div>
+            <p class="mb-2"><span class="font-medium">Etapa más corta:</span> 17.5 km (Porto - Matosinhos)</p>
+            <p><span class="font-medium">Etapa más larga:</span> 26.8 km (Viana do Castelo - Caminha)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Flags of the regions we'll visit -->
+    <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+      <h3 class="text-xl font-bold mb-6 text-center brand-text">Regiones del Camino</h3>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="flag-container mb-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png" alt="Portugal">
+          </div>
+          <p class="font-medium">Portugal</p>
+          <p class="text-sm text-gray-600">5 días</p>
+        </div>
+        
+        <div>
+          <div class="flag-container mb-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Flag_of_Porto.svg/1200px-Flag_of_Porto.svg.png" alt="Porto">
+          </div>
+          <p class="font-medium">Porto</p>
+          <p class="text-sm text-gray-600">1 día</p>
+        </div>
+        
+        <div>
+          <div class="flag-container mb-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Flag_of_Galicia.svg/1200px-Flag_of_Galicia.svg.png" alt="Galicia">
+          </div>
+          <p class="font-medium">Galicia</p>
+          <p class="text-sm text-gray-600">2 días</p>
+        </div>
+        
+        <div>
+          <div class="flag-container mb-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Flag_of_Spain.svg/1200px-Flag_of_Spain.svg.png" alt="España">
+          </div>
+          <p class="font-medium">España</p>
+          <p class="text-sm text-gray-600">5 días</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="brand-bg text-white py-8">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h3 class="text-3xl font-bold mb-3">CAMINO DE SANTIAGO 2025</h3>
+    <p class="mb-4">Del 18 al 27 de mayo de 2025</p>
+    <p class="text-white text-opacity-80">Buen Camino / Bom Caminho</p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+// COUNTDOWN FUNCTIONALITY
+function getTimeUntilTrip() {
+  const now = new Date();
+  // Trip start date - May 18, 2025
+  const tripStart = new Date(2025, 4, 18, 0, 0, 0); // May 18, 2025 at 00:00:00
+  
+  // Calculate time difference in milliseconds
+  const diffTime = tripStart.getTime() - now.getTime();
+  
+  // If the trip has already started
+  if (diffTime <= 0) {
+    const tripEnd = new Date(2025, 4, 27); // May 27, 2025
+    if (now <= tripEnd) {
+      // Trip in progress
+      const dayOfTrip = Math.floor(Math.abs(diffTime) / (1000 * 60 * 60 * 24)) + 1;
+      return {
+        status: 'in-progress',
+        days: dayOfTrip,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
+    } else {
+      // Trip already ended
+      return {
+        status: 'ended',
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
+    }
+  }
+  
+  // Trip hasn't started yet - calculate remaining time
+  const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+  
+  return {
+    status: 'upcoming',
+    days,
+    hours,
+    minutes,
+    seconds
+  };
+}
+
+function updateCountdown() {
+  const countdown = getTimeUntilTrip();
+  
+  // Update countdown values
+  document.getElementById('countdown-days').textContent = String(countdown.days).padStart(3, '0');
+  document.getElementById('countdown-hours').textContent = String(countdown.hours).padStart(2, '0');
+  document.getElementById('countdown-minutes').textContent = String(countdown.minutes).padStart(2, '0');
+  document.getElementById('countdown-seconds').textContent = String(countdown.seconds).padStart(2, '0');
+  document.getElementById('text-countdown-days').textContent = countdown.days;
+  
+  // Update status message if needed
+  if (countdown.status === 'in-progress') {
+    document.querySelector('.countdown-container p.text-lg').textContent = `¡Estamos en el día ${countdown.days} de nuestro Camino!`;
+    document.querySelector('.countdown-container p.text-sm').textContent = 'Termina el 27 de mayo de 2025';
+  } else if (countdown.status === 'ended') {
+    document.querySelector('.countdown-container p.text-lg').textContent = '¡El viaje ha terminado!';
+    document.querySelector('.countdown-container p.text-sm').textContent = 'Esperamos que haya sido una gran experiencia';
+  }
+}
+
+// Update countdown every second
+setInterval(updateCountdown, 1000);
+
+// Initial update
+updateCountdown();
+
+// ACCORDION FUNCTIONALITY
+document.addEventListener('DOMContentLoaded', function() {
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+
+  // Close menu when links are clicked
+  if (mobileMenu) {
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  }
+  
+  // Smooth scroll for internal links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        const scrollPosition = targetElement.offsetTop - 80;
+        
+        window.scrollTo({
+          top: scrollPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+  // ACCORDION FUNCTIONALITY
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+  
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', function() {
+      // Toggle the active class
+      this.classList.toggle('active');
+      
+      // Get the content panel
+      const content = this.nextElementSibling;
+      
+      // Toggle between max-height 0 and max-height needed
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+      
+      // Rotate the arrow icon
+      const arrow = this.querySelector('svg');
+      if (arrow) {
+        arrow.classList.toggle('rotate-180');
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
