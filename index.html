@@ -11,582 +11,725 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
   
   <style>
-:root {
-  --primary-color: #8E7B52;
-  --primary-dark: #6d5e3f;
-  --primary-light: #d0c4a0;
-  --secondary-color: #3e5669;
-  --accent-color: #ba3e48;
-  --background-light: #f5f3e8;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--background-light);
-}
-
-.brand-bg {
-  background-color: var(--primary-color);
-}
-
-.brand-text {
-  color: var(--primary-color);
-}
-
-.brand-border {
-  border-color: var(--primary-color);
-}
-
-.accent-bg {
-  background-color: var(--accent-color);
-}
-
-.accent-text {
-  color: var(--accent-color);
-}
-
-.accent-border {
-  border-color: var(--accent-color);
-}
-
-.secondary-bg {
-  background-color: var(--secondary-color);
-}
-
-.secondary-text {
-  color: var(--secondary-color);
-}
-
-.secondary-border {
-  border-color: var(--secondary-color);
-}
-
-.brand-button {
-  background-color: var(--primary-color);
-  color: white;
-  transition: background-color 0.3s;
-}
-
-.brand-button:hover {
-  background-color: var(--primary-dark);
-}
-
-.accent-button {
-  background-color: var(--accent-color);
-  color: white;
-  transition: background-color 0.3s;
-}
-
-.accent-button:hover {
-  background-color: #a02c34;
-}
-
-/* Accordion styles */
-.accordion-item {
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.accordion-header {
-  cursor: pointer;
-  padding: 1rem;
-  background-color: var(--background-light);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-  color: var(--primary-color);
-}
-
-.accordion-header:hover {
-  background-color: #eae8dd;
-}
-
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease-out;
-  background-color: white;
-}
-
-.accordion-content.active {
-  max-height: 2000px; /* Aumentado para asegurar que todo el contenido sea visible */
-}
-/* Estilos para el calendario */
-.calendar {
-  border-collapse: separate;
-  border-spacing: 2px;
-  width: 100%;
-  table-layout: fixed; /* Hace que todas las columnas tengan el mismo ancho */
-}
-
-.calendar th {
-  padding: 6px 2px;
-  font-weight: 500;
-  color: #4a5568;
-  font-size: 0.85rem;
-  text-align: center;
-}
-
-.calendar td {
-  vertical-align: top;
-  padding: 6px 4px;
-  height: 85px;
-  width: 14.285%; /* Exactamente 1/7 para 7 días */
-  border-radius: 4px;
-  border: 1px solid #e2e8f0;
-  font-size: 0.9rem;
-}
-
-.calendar td:empty {
-  background-color: #f7fafc;
-  border: 1px dashed #e2e8f0;
-}
-
-.calendar .date {
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-/* Contenedor para permitir scroll horizontal en pantallas pequeñas */
-.calendar-container {
-  overflow-x: auto;
-}
-
-.destination-tag {
-  display: block;
-  padding: 2px 6px;
-  margin-bottom: 2px;
-  border-radius: 4px;
-  background-color: #4299e1;
-  color: white;
-  font-size: 0.75rem;
-  text-decoration: none;
-  white-space: normal; /* Cambiado de nowrap a normal */
-  overflow: hidden;
-  line-height: 1.2; /* Añadido para mejorar el espaciado entre líneas */
-  max-height: 36px; /* Altura máxima para aproximadamente 2 líneas */
-  overflow: hidden;
-}
-
-.walking-day {
-  background-color: #48bb78;
-}
-
-.destination-tag:hover {
-  opacity: 0.9;
-  text-decoration: none;
-}
-
-/* Para pantallas medianas y pequeñas */
-@media (max-width: 768px) {
-  .calendar {
-    min-width: 680px; /* Ancho mínimo para asegurar que sea legible */
-  }
-  
-  .calendar td {
-    height: 70px;
-    padding: 4px 2px;
-  }
-  
-  .calendar th {
-    font-size: 0.7rem;
-  }
-  
-  .destination-tag {
-    font-size: 0.7rem;
-    padding: 2px 4px;
-    max-height: 32px; /* Ajustar para tamaño de fuente más pequeño */
-  }
-}
-
-/* Para pantallas muy pequeñas */
-@media (max-width: 480px) {
-  .calendar {
-    min-width: 640px; /* Mantiene un tamaño mínimo para evitar que se comprima demasiado */
-  }
-  
-  .calendar th {
-    font-size: 0.65rem;
-    padding: 2px 1px;
-  }
-  
-  .calendar td {
-    height: 60px;
-    padding: 2px 1px;
-  }
-  
-  .destination-tag {
-    font-size: 0.65rem;
-    padding: 1px 2px;
-    max-height: 30px; /* Ajustar para tamaño de fuente aún más pequeño */
-  }
-  
-  .calendar .date {
-    font-size: 0.7rem;
-    margin-bottom: 1px;
-  }
-  
-  /* Opcionalmente, ocultar texto descriptivo en pantallas muy pequeñas */
-  .calendar .text-xs {
-    display: none;
-  }
-}
-/* Journey map styles */
-.journey-map-horizontal {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.journey-map-vertical {
-  display: none;
-  flex-direction: column;
-  padding: 20px;
-  width: 100%;
-}
-
-.map-line {
-  height: 5px;
-  background-color: var(--primary-color);
-  margin: 30px 0;
-  position: relative;
-}
-
-.map-line-vertical {
-  width: 5px;
-  background-color: var(--primary-color);
-  margin: 0 auto;
-  position: relative;
-  height: 600px;
-}
-
-.map-stop {
-  position: absolute;
-  top: -8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.map-stop-vertical {
-  position: absolute;
-  left: -8px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.map-dot {
-  width: 20px;
-  height: 20px;
-  background-color: var(--primary-color);
-  border-radius: 50%;
-  border: 3px solid white;
-  box-shadow: 0 0 0 2px var(--primary-color);
-}
-
-.map-label {
-  margin-top: 12px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.map-label-vertical {
-  margin-left: 12px;
-  text-align: left;
-  white-space: nowrap;
-}
-
-/* Current location styling */
-.current-location .map-dot {
-  background-color: white !important;
-  border: 3px solid var(--accent-color) !important;
-  box-shadow: 0 0 0 2px var(--accent-color), 0 0 10px rgba(186, 62, 72, 0.5) !important;
-  animation: pulse 2s infinite !important;
-}
-
-.current-location a,
-.current-location p.font-medium,
-.current-location p {
-  color: var(--accent-color) !important;
-  font-weight: bold !important;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(186, 62, 72, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 6px rgba(186, 62, 72, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(186, 62, 72, 0);
-  }
-}
-
-/* Hotel row highlighting */
-.hotel-row.bg-highlight {
-  background-color: #f0ebd7;
-  position: relative;
-}
-
-.hotel-row.bg-highlight::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background-color: var(--primary-color);
-}
-
-/* Countdown styles */
-.countdown-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.countdown-box {
-  background: var(--secondary-color);
-  border-radius: 8px;
-  color: white;
-  padding: 15px 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.countdown-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 60px;
-}
-
-.countdown-value {
-  font-size: 28px;
-  font-weight: bold;
-  font-family: 'Roboto Mono', monospace;
-  line-height: 1;
-}
-
-.countdown-label {
-  font-size: 12px;
-  text-transform: uppercase;
-  opacity: 0.7;
-  margin-top: 4px;
-}
-
-.countdown-separator {
-  font-size: 28px;
-  font-weight: bold;
-  color: var(--accent-color);
-  line-height: 1;
-  margin-top: -8px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .journey-map-horizontal {
-    display: none;
-  }
-  .journey-map-vertical {
-    display: flex;
-  }
-  
-  #hotels table th:nth-child(3),
-  #hotels table td:nth-child(3),
-  #hotels table th:nth-child(6),
-  #hotels table td:nth-child(6),
-  #hotels table th:nth-child(8),
-  #hotels table td:nth-child(8) {
-    display: none;
-  }
-  
-  .calendar th {
-    font-size: 0.7rem;
-    padding: 6px 2px;
-  }
-  
-  .calendar .date {
-    font-size: 0.8rem;
-  }
-  
-  .destination-tag {
-    font-size: 10px;
-    padding: 2px 6px;
-  }
-  
-  .countdown-value {
-    font-size: 20px;
-  }
-  
-  .countdown-label {
-    font-size: 10px;
-  }
-  
-  .countdown-separator {
-    font-size: 20px;
-  }
-  
-  .countdown-unit {
-    min-width: 45px;
-  }
-}
-
-/* Navigation styles */
-.sticky-nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: white;
-  border-bottom: 3px solid var(--primary-color);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.hero-image {
-  background-image: url('https://www.caminosantiagodecompostela.com/wp-content/uploads/2020/03/camino-portugues-por-la-costa.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-.tip-card {
-  transition: transform 0.3s ease;
-}
-
-.tip-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Animated flag effect */
-.flag-container {
-  position: relative;
-  overflow: hidden;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  margin: 0 auto;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.flag-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.flag-container:hover img {
-  transform: scale(1.1);
-}
-
-.daily-item {
-  border-left: 4px solid var(--primary-light);
-  margin-bottom: 0.75rem;
-  padding-left: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.daily-item:hover {
-  border-color: var(--primary-color);
-}
-
-.marker-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-color: var(--primary-color);
-  border-radius: 50%;
-  margin-right: 5px;
-}
-/* Estilos adicionales para mejorar la apariencia */
-.accordion-header {
-  transition: background-color 0.2s ease;
-}
-
-.accordion-header:hover {
-  background-color: #f9fafb;
-}
-
-.accordion-header.active {
-  background-color: #f3f4f6;
-  border-bottom: none;
-}
-
-
-/* Añade esta definición CSS para la clase daily-item */
-.daily-item {
-  border-left: 4px solid var(--primary-light);
-  margin-bottom: 0.75rem;
-  padding-left: 1rem;
-  transition: border-color 0.3s ease;
-  background-color: white; /* Asegura que el fondo sea blanco */
-  display: block; /* Garantiza que se comporte como bloque */
-  overflow: hidden; /* Previene desbordamiento de contenido */
-  position: relative; /* Establece un contexto de posicionamiento */
-}
-
-.daily-item:hover {
-  border-color: var(--primary-color);
-}
-
-/* Asegura que los párrafos dentro de daily-item tengan espacio adecuado */
-.daily-item p {
-  margin-bottom: 0.5rem;
-}
-
-/* Garantiza que el contenido del acordeón tenga suficiente espacio */
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease-out;
-  background-color: white;
-}
-
-.accordion-content.active {
-  max-height: 2000px; /* Valor alto para asegurar que todo el contenido sea visible */
-}
-
-/* Mejora la transición del acordeón */
-.accordion-header svg {
-  transition: transform 0.3s ease;
-}
-.start-point {
-  width: 24px;
-  height: 24px;
-  background-color: white;
-  border: 3px solid #8E7B52;
-  box-shadow: 0 0 0 2px white, 0 0 5px rgba(0,0,0,0.3);
-  margin-top: -2px;
-}
-
-.end-point {
-  width: 24px;
-  height: 24px;
-  background-color: white;
-  border: 3px solid #8E7B52;
-  box-shadow: 0 0 0 2px white, 0 0 5px rgba(0,0,0,0.3);
-  margin-top: -2px;
-}
-
-/* Ajustes para las etiquetas de inicio y final */
-.map-stop:first-child .map-label,
-.map-stop:last-child .map-label {
-  font-weight: 600;
-}
-
-/* Ajuste para la línea del recorrido */
-.map-line {
-  height: 5px;
-  background-color: var(--primary-color);
-  margin: 30px 0;
-  position: relative;
-  border-radius: 2.5px;
-}
-
+    :root {
+  --primary-color: #293f8a;     /* Azul del logo del Camino de Santiago */
+  --primary-dark: #1d2c64;      /* Versión más oscura del azul */
+  --primary-light: #4a5da6;     /* Versión más clara del azul */
+  --secondary-color: #f2c94c;   /* Amarillo dorado del logo */
+  --secondary-dark: #d9b43e;    /* Versión más oscura del amarillo */
+  --secondary-light: #f7d97a;   /* Versión más clara del amarillo */
+  --accent-color: #ba3e48;      /* Mantener el acento rojo para contraste */
+  --background-light: #f5f5f5;  /* Un gris más neutral para el fondo */
+}
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-light);
+    }
+    
+    .brand-bg {
+      background-color: var(--primary-color);
+    }
+    
+    .brand-text {
+      color: var(--primary-color);
+    }
+    
+    .brand-border {
+      border-color: var(--primary-color);
+    }
+    
+    .accent-bg {
+      background-color: var(--accent-color);
+    }
+    
+    .accent-text {
+      color: var(--accent-color);
+    }
+    
+    .accent-border {
+      border-color: var(--accent-color);
+    }
+    
+    .secondary-bg {
+      background-color: var(--secondary-color);
+    }
+    
+    .secondary-text {
+      color: var(--secondary-color);
+    }
+    
+    .secondary-border {
+      border-color: var(--secondary-color);
+    }
+    
+    .brand-button {
+      background-color: var(--primary-color);
+      color: white;
+      transition: background-color 0.3s;
+    }
+    
+    .brand-button:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .accent-button {
+      background-color: var(--accent-color);
+      color: white;
+      transition: background-color 0.3s;
+    }
+    
+    .accent-button:hover {
+      background-color: #a02c34;
+    }
+    
+    /* Accordion styles */
+    .accordion-item {
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .accordion-header {
+      cursor: pointer;
+      padding: 1rem;
+      background-color: var(--background-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    
+    .accordion-header:hover {
+      background-color: #eae8dd;
+    }
+    
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out;
+      background-color: white;
+    }
+    
+    .accordion-content.active {
+      max-height: 2000px; /* Aumentado para asegurar que todo el contenido sea visible */
+    }
+    
+    /* Estilos para el calendario */
+    .calendar {
+      border-collapse: separate;
+      border-spacing: 2px;
+      width: 100%;
+      table-layout: fixed; /* Hace que todas las columnas tengan el mismo ancho */
+    }
+    
+    .calendar th {
+      padding: 6px 2px;
+      font-weight: 500;
+      color: #4a5568;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    
+    .calendar td {
+      vertical-align: top;
+      padding: 6px 4px;
+      height: 85px;
+      width: 14.285%; /* Exactamente 1/7 para 7 días */
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+      font-size: 0.9rem;
+    }
+    
+    .calendar td:empty {
+      background-color: #f7fafc;
+      border: 1px dashed #e2e8f0;
+    }
+    
+    .calendar .date {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    /* Contenedor para permitir scroll horizontal en pantallas pequeñas */
+    .calendar-container {
+      overflow-x: auto;
+    }
+    
+    .destination-tag {
+      display: block;
+      padding: 2px 6px;
+      margin-bottom: 2px;
+      border-radius: 4px;
+      background-color: #4299e1;
+      color: white;
+      font-size: 0.75rem;
+      text-decoration: none;
+      white-space: normal; /* Cambiado de nowrap a normal */
+      overflow: hidden;
+      line-height: 1.2; /* Añadido para mejorar el espaciado entre líneas */
+      max-height: 36px; /* Altura máxima para aproximadamente 2 líneas */
+      overflow: hidden;
+    }
+    
+    .walking-day {
+      background-color: #48bb78;
+    }
+    
+    .destination-tag:hover {
+      opacity: 0.9;
+      text-decoration: none;
+    }
+    
+    /* Para pantallas medianas y pequeñas */
+    @media (max-width: 768px) {
+      .calendar {
+        min-width: 680px; /* Ancho mínimo para asegurar que sea legible */
+      }
+      
+      .calendar td {
+        height: 70px;
+        padding: 4px 2px;
+      }
+      
+      .calendar th {
+        font-size: 0.7rem;
+      }
+      
+      .destination-tag {
+        font-size: 0.7rem;
+        padding: 2px 4px;
+        max-height: 32px; /* Ajustar para tamaño de fuente más pequeño */
+      }
+    }
+    
+    /* Para pantallas muy pequeñas */
+    @media (max-width: 480px) {
+      .calendar {
+        min-width: 640px; /* Mantiene un tamaño mínimo para evitar que se comprima demasiado */
+      }
+      
+      .calendar th {
+        font-size: 0.65rem;
+        padding: 2px 1px;
+      }
+      
+      .calendar td {
+        height: 60px;
+        padding: 2px 1px;
+      }
+      
+      .destination-tag {
+        font-size: 0.65rem;
+        padding: 1px 2px;
+        max-height: 30px; /* Ajustar para tamaño de fuente aún más pequeño */
+      }
+      
+      .calendar .date {
+        font-size: 0.7rem;
+        margin-bottom: 1px;
+      }
+      
+      /* Opcionalmente, ocultar texto descriptivo en pantallas muy pequeñas */
+      .calendar .text-xs {
+        display: none;
+      }
+    }
+    
+    /* Journey map styles */
+    .journey-map-horizontal {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    
+    .journey-map-vertical {
+      display: none;
+      flex-direction: column;
+      padding: 20px;
+      width: 100%;
+    }
+    
+    /* Estilos específicos para los puntos iniciales y finales */
+    .start-point, .end-point {
+      width: 24px;
+      height: 24px;
+      background-color: white;
+      border: 3px solid #8E7B52;
+      box-shadow: 0 0 0 2px white, 0 0 5px rgba(0,0,0,0.3);
+      border-radius: 50%;
+    }
+    
+    .map-stop:first-child .map-label,
+    .map-stop:last-child .map-label {
+      width: 90px; /* Ampliado para dar más espacio al texto */
+    }
+    
+    /* Asegurar que los puntos son redondos */
+    .map-dot {
+      border-radius: 50% !important;
+      min-width: 20px;
+      min-height: 20px;
+      max-width: 20px;
+      max-height: 20px;
+      display: block;
+      overflow: visible;
+    }
+    
+    /* Estilo específico para el mapa */
+    .map-line {
+      height: 5px;
+      background-color: #8E7B52;
+      margin: 50px 0;
+      position: relative;
+      width: 100%;
+    }
+    
+    /* Ajustes para la línea y los puntos */
+    .map-line::before,
+    .map-line::after {
+      display: none; /* Eliminar cualquier pseudo-elemento existente */
+    }
+    
+    .map-stop {
+      position: absolute;
+      top: -10px; /* Ajustado de -8px a -10px para centrar mejor */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .map-stop-vertical {
+      position: absolute;
+      left: -8px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    
+    /* Ajuste específico para las etiquetas */
+    .map-label {
+      margin-top: 20px; /* Aumentado de 12px a 20px para dar más espacio */
+      text-align: center;
+      white-space: nowrap;
+    }
+    
+    .map-label-vertical {
+      margin-left: 12px;
+      text-align: left;
+      white-space: nowrap;
+      width: 150px; /* Ancho fijo para controlar el espacio */
+    }
+    
+    /* Current location styling */
+    .current-location .map-dot {
+      background-color: white !important;
+      border: 3px solid var(--accent-color) !important;
+      box-shadow: 0 0 0 2px var(--accent-color), 0 0 10px rgba(186, 62, 72, 0.5) !important;
+      animation: pulse 2s infinite !important;
+    }
+    
+    .current-location a,
+    .current-location p.font-medium,
+    .current-location p {
+      color: var(--accent-color) !important;
+      font-weight: bold !important;
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(186, 62, 72, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 6px rgba(186, 62, 72, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(186, 62, 72, 0);
+      }
+    }
+    
+    /* Ocultar la versión vertical en dispositivos de escritorio */
+    @media (min-width: 993x) {
+      .journey-map-vertical {
+        display: none;
+      }
+    }
+    
+    /* Mostrar versión vertical solo en móviles */
+    @media (max-width: 992px) {
+      .journey-map-horizontal {
+        display: none;
+      }
+      
+      .journey-map-vertical {
+        display: block;
+      }
+      
+      .map-line-vertical {
+        width: 5px;
+        background-color: #8E7B52;
+        height: 600px;
+        position: relative;
+        margin: 0 auto;
+      }
+    }
+    
+    /* Hotel row highlighting */
+    .hotel-row.bg-highlight {
+      background-color: #f0ebd7;
+      position: relative;
+    }
+    
+    .hotel-row.bg-highlight::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: var(--primary-color);
+    }
+    
+    /* Countdown styles */
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    
+    .countdown-box {
+      background: var(--secondary-color);
+      border-radius: 8px;
+      color: white;
+      padding: 15px 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 60px;
+    }
+    
+    .countdown-value {
+      font-size: 28px;
+      font-weight: bold;
+      font-family: 'Roboto Mono', monospace;
+      line-height: 1;
+    }
+    
+    .countdown-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+    
+    .countdown-separator {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--accent-color);
+      line-height: 1;
+      margin-top: -8px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .journey-map-horizontal {
+        display: none;
+      }
+      .journey-map-vertical {
+        display: flex;
+      }
+      
+      #hotels table th:nth-child(3),
+      #hotels table td:nth-child(3),
+      #hotels table th:nth-child(6),
+      #hotels table td:nth-child(6),
+      #hotels table th:nth-child(8),
+      #hotels table td:nth-child(8) {
+        display: none;
+      }
+      
+      .calendar th {
+        font-size: 0.7rem;
+        padding: 6px 2px;
+      }
+      
+      .calendar .date {
+        font-size: 0.8rem;
+      }
+      
+      .destination-tag {
+        font-size: 10px;
+        padding: 2px 6px;
+      }
+      
+      .countdown-value {
+        font-size: 20px;
+      }
+      
+      .countdown-label {
+        font-size: 10px;
+      }
+      
+      .countdown-separator {
+        font-size: 20px;
+      }
+      
+      .countdown-unit {
+        min-width: 45px;
+      }
+    }
+    
+    /* Navigation styles */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: white;
+      border-bottom: 3px solid var(--primary-color);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .hero-image {
+        position: relative;
+        background-color: var(--primary-color);
+        overflow: hidden;
+      }
+    
+      .hero-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://www.caminosantiagodecompostela.com/wp-content/uploads/2020/03/camino-portugues-por-la-costa.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.5;
+    }
+
+    .hero-logo {
+      display: block;
+      width: 180px;
+      height: auto;
+      margin: 0 auto 20px auto;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .tip-card {
+      transition: transform 0.3s ease;
+    }
+    
+    .tip-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    /* Animated flag effect */
+    .flag-container {
+      position: relative;
+      overflow: hidden;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      margin: 0 auto;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .flag-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .flag-container:hover img {
+      transform: scale(1.1);
+    }
+    
+    .daily-item {
+      border-left: 4px solid var(--primary-light);
+      margin-bottom: 0.75rem;
+      padding-left: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .daily-item:hover {
+      border-color: var(--primary-color);
+    }
+    
+    .marker-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    
+    /* Estilos adicionales para mejorar la apariencia */
+    .accordion-header {
+      transition: background-color 0.2s ease;
+    }
+    
+    .accordion-header:hover {
+      background-color: #f9fafb;
+    }
+    
+    .accordion-header.active {
+      background-color: #f3f4f6;
+      border-bottom: none;
+    }
+    
+    /* Añade esta definición CSS para la clase daily-item */
+    .daily-item {
+      border-left: 4px solid var(--primary-light);
+      margin-bottom: 0.75rem;
+      padding-left: 1rem;
+      transition: border-color 0.3s ease;
+      background-color: white; /* Asegura que el fondo sea blanco */
+      display: block; /* Garantiza que se comporte como bloque */
+      overflow: hidden; /* Previene desbordamiento de contenido */
+      position: relative; /* Establece un contexto de posicionamiento */
+    }
+    
+    .daily-item:hover {
+      border-color: var(--primary-color);
+    }
+    
+    /* Asegura que los párrafos dentro de daily-item tengan espacio adecuado */
+    .daily-item p {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Garantiza que el contenido del acordeón tenga suficiente espacio */
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out;
+      background-color: white;
+    }
+    
+    .accordion-content.active {
+      max-height: 2000px; /* Valor alto para asegurar que todo el contenido sea visible */
+    }
+    
+    /* Mejora la transición del acordeón */
+    .accordion-header svg {
+      transition: transform 0.3s ease;
+    }
+    
+    /* Estilos específicos para solucionar el espacio entre etapas 3 y 4 */
+    /* Asegurar que todos los elementos de la lista tengan el mismo espaciado */
+    .journey-map-horizontal ul.space-y-4 li,
+    .journey-map-vertical .space-y-4 > div {
+      margin-bottom: 1rem !important;
+      padding-bottom: 1rem !important;
+    }
+    
+    /* Eliminar cualquier margen adicional que pudiera estar causando el problema */
+    .journey-map-horizontal ul.space-y-4 li + li,
+    .journey-map-vertical .space-y-4 > div + div {
+      margin-top: 0 !important;
+    }
+    
+    /* Asegurar que no hay espacios adicionales entre secciones */
+    .journey-map-horizontal > div,
+    .journey-map-vertical > div {
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Estilo consistente para todos los elementos numerados */
+    .journey-map-horizontal .brand-text.font-bold.mr-2.text-lg,
+    .journey-map-vertical .font-medium.brand-text {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Aplicar márgenes uniformes a todos los párrafos dentro de los elementos de la lista */
+    .journey-map-horizontal ul.space-y-4 li p,
+    .journey-map-vertical .space-y-4 > div p {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Eliminar el último margen de párrafo para evitar espacios adicionales */
+    .journey-map-horizontal ul.space-y-4 li p:last-child,
+    .journey-map-vertical .space-y-4 > div p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* CSS específico para corregir el espaciado en la sección journey */
+    /* Versión simplificada y limpia de los estilos del journey map */
+    
+    /* Corrige la sección horizontal */
+    #journey .journey-map-horizontal ul.space-y-4 li {
+      margin-bottom: 0.5rem !important;
+      padding-bottom: 0.25rem !important;
+    }
+    
+    #journey .journey-map-horizontal ul.space-y-4 li:last-child {
+      margin-bottom: 0 !important;
+    }
+    
+    /* Elimina cualquier margen extra entre elementos */
+    #journey .journey-map-horizontal ul.space-y-4 li + li {
+      margin-top: 0.5rem !important;
+    }
+    
+    /* Ajusta los márgenes para elementos dentro de los li */
+    #journey .journey-map-horizontal ul.space-y-4 li div p {
+      margin-bottom: 0.15rem !important;
+    }
+    
+    #journey .journey-map-horizontal ul.space-y-4 li div p:last-child {
+      margin-bottom: 0 !important;
+    }
+    
+    /* Forzar la visualización correcta y compacta */
+    #journey .journey-map-horizontal > div > ul::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+    /* Compactar los títulos y números */
+    #journey .journey-map-horizontal .brand-text.font-bold.mr-2.text-lg {
+      align-self: flex-start;
+      margin-top: 0.1rem;
+      margin-bottom: 0 !important;
+    }
+    
+    /* Ajustar el espaciado total de la sección resumida */
+    #journey .journey-map-horizontal .mt-16 .space-y-4 {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    
+    /* Reducir espacio entre columnas */
+    #journey .journey-map-horizontal.grid.gap-8 {
+      gap: 1rem !important;
+    }
+    
+    /* Reducir margen superior del grid */
+    #journey .journey-map-horizontal.mt-16 {
+      margin-top: 1.5rem !important;
+    }
+    
+    /* Ajustar espacios de encabezados */
+    #journey .journey-map-horizontal h3.mb-4 {
+      margin-bottom: 0.75rem !important;
+    }
 </style>
+
 </head>
 
 <body class="bg-gray-50">
@@ -634,10 +777,18 @@ body {
 <!-- Hero Section -->
 <section class="hero-image py-16 text-white text-center">
   <div class="max-w-6xl mx-auto px-4">
-    <div class="bg-black bg-opacity-50 p-8 rounded-lg inline-block">
+    <div class="hero-content bg-black bg-opacity-60 p-8 rounded-lg inline-block">
+      <!-- Logo del Camino de Santiago -->
+      <img src="https://i.etsystatic.com/23897032/r/il/97fb58/2427868649/il_340x270.2427868649_kvfy.jpg" alt="Logo del Camino de Santiago" class="hero-logo mb-6 rounded-full shadow-lg">
+      
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Camino de Santiago 2025</h1>
       <p class="text-xl md:text-2xl mb-6">Ruta Portuguesa por la Costa</p>
       <p class="text-lg">Del 18 al 27 de mayo de 2025</p>
+      
+      <!-- Opcional: Botón CTA -->
+      <a href="#itinerary" class="mt-6 inline-block px-6 py-3 rounded-lg secondary-bg text-primary-color font-bold hover:bg-opacity-90 transition-all shadow-md">
+        Ver Itinerario
+      </a>
     </div>
   </div>
 </section>
@@ -745,6 +896,7 @@ body {
           </svg>
         </div>
         <div class="accordion-content">
+          <div class="p-4 border-t border-gray-100">
           <div class="flex flex-col md:flex-row">
             <div class="md:w-1/4 mb-4 md:mb-0">
               <div class="bg-gray-100 p-3 rounded-lg">
@@ -815,6 +967,7 @@ body {
             </div>
           </div>
         </div>
+        </div>
       </div>
       
       <!-- Día 3: Badajoz - Vila do Conde -->
@@ -832,6 +985,7 @@ body {
           </svg>
         </div>
         <div class="accordion-content">
+          <div class="p-4 border-t border-gray-100">
           <div class="flex flex-col md:flex-row">
             <div class="md:w-1/4 mb-4 md:mb-0">
               <div class="bg-gray-100 p-3 rounded-lg">
@@ -900,6 +1054,7 @@ body {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
 
@@ -918,7 +1073,8 @@ body {
           </svg>
         </div>
         <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
+          <div class="p-4 border-t border-gray-100">
+            <div class="flex flex-col md:flex-row">
             <div class="md:w-1/4 mb-4 md:mb-0">
               <div class="bg-gray-100 p-3 rounded-lg">
                 <h4 class="font-bold mb-2 brand-text">Detalles de la etapa</h4>
@@ -1003,6 +1159,7 @@ body {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
 
@@ -1021,6 +1178,7 @@ body {
           </svg>
         </div>
         <div class="accordion-content">
+          <div class="p-4 border-t border-gray-100">
           <div class="flex flex-col md:flex-row">
             <div class="md:w-1/4 mb-4 md:mb-0">
               <div class="bg-gray-100 p-3 rounded-lg">
@@ -1103,6 +1261,7 @@ body {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
       
@@ -1122,7 +1281,8 @@ body {
           </svg>
         </div>
         <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
+          <div class="p-4 border-t border-gray-100">
+            <div class="flex flex-col md:flex-row">
             <div class="md:w-1/4 mb-4 md:mb-0">
               <div class="bg-gray-100 p-3 rounded-lg">
                 <h4 class="font-bold mb-2 brand-text">Detalles de la etapa</h4>
@@ -1204,6 +1364,7 @@ body {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
       
@@ -1222,7 +1383,8 @@ body {
           </svg>
         </div>
         <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
+          <div class="p-4 border-t border-gray-100">
+            <div class="flex flex-col md:flex-row">
             <div class="md:w-1/4 mb-4 md:mb-0">
               <div class="bg-gray-100 p-3 rounded-lg">
                 <h4 class="font-bold mb-2 brand-text">Detalles de la etapa</h4>
@@ -1287,6 +1449,7 @@ body {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
       
@@ -1305,7 +1468,8 @@ body {
           </svg>
         </div>
         <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
+          <div class="p-4 border-t border-gray-100">
+            <div class="flex flex-col md:flex-row">
             <div class="md:w-1/4 mb-4 md:mb-0">
               <div class="bg-gray-100 p-3 rounded-lg">
                 <h4 class="font-bold mb-2 brand-text">Detalles de la etapa</h4>
@@ -1387,6 +1551,7 @@ body {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
 
@@ -1405,7 +1570,8 @@ body {
           </svg>
         </div>
         <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
+          <div class="p-4 border-t border-gray-100">
+            <div class="flex flex-col md:flex-row">
             <div class="md:w-1/4 mb-4 md:mb-0">
               <div class="bg-gray-100 p-3 rounded-lg">
                 <h4 class="font-bold mb-2 brand-text">Detalles del día</h4>
@@ -1477,6 +1643,7 @@ body {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
 
@@ -1495,7 +1662,8 @@ body {
           </svg>
         </div>
         <div class="accordion-content">
-          <div class="flex flex-col md:flex-row">
+          <div class="p-4 border-t border-gray-100">
+            <div class="flex flex-col md:flex-row">
             <div class="md:w-1/4 mb-4 md:mb-0">
               <div class="bg-gray-100 p-3 rounded-lg">
                 <h4 class="font-bold mb-2 brand-text">Detalles del trayecto</h4>
@@ -1562,6 +1730,7 @@ body {
                 </p>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -1669,7 +1838,7 @@ body {
     <!-- Adaptaciones específicas para mayores -->
     <div class="bg-white rounded-lg shadow-md p-6 mb-8">
       <h3 class="text-xl font-bold mb-4 brand-text flex items-center">
-        <span class="text-2xl mr-2">👵🏻👴🏻</span> Adaptaciones para peregrinos mayores
+        <span class="text-2xl mr-2"></span> Consejos adicionales
       </h3>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1726,7 +1895,7 @@ body {
     <!-- Testimonios -->
     <div class="bg-gray-100 rounded-lg p-6">
       <h3 class="text-xl font-bold mb-4 text-center brand-text flex items-center justify-center">
-        <span class="text-2xl mr-2">💬</span> Testimonios de peregrinos mayores
+        <span class="text-2xl mr-2">💬</span> Testimonios de peregrinos 
       </h3>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -2063,146 +2232,84 @@ body {
   </div>
 </section>
 
-<!-- Journey Map Section -->
+<!-- Journey Map Section - Versión Responsive Mejorada -->
 <section id="journey" class="py-12 bg-gray-100">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-6 text-center brand-text">Nuestra Ruta</h2>
     <p class="text-center text-gray-600 mb-8">Seguimos el Camino Portugués por la Costa - 110 km de Porto a Caminha</p>
     
     <div class="bg-white rounded-lg shadow-md p-6">
-      <!-- Horizontal Map for Desktop -->
+      <!-- Mapa horizontal para pantallas anchas -->
       <div class="journey-map-horizontal">
-        <div class="relative">
-          <div class="map-line">
+        <div class="relative px-12">
+          <div class="map-line" style="position: relative; height: 5px; background-color: #8E7B52; margin: 50px 0; width: 100%;">
             <!-- Porto -->
-            <div class="map-stop" style="left: 0%;">
-              <div class="map-dot start-point"></div>
-              <div class="map-label">
+            <div class="map-stop" style="position: absolute; top: -12px; left: 0%; margin-left: -12px;">
+              <div class="map-dot start-point" style="width: 24px; height: 24px; background-color: white; border: 3px solid #8E7B52; border-radius: 50%; box-shadow: 0 0 0 2px white, 0 0 5px rgba(0,0,0,0.3);"></div>
+              <div class="map-label" style="position: absolute; width: 80px; text-align: center; margin-top: 20px; left: -28px;">
                 <p class="font-medium">Porto</p>
                 <p class="text-xs text-gray-500 font-semibold">Inicio</p>
               </div>
             </div>
             
             <!-- Matosinhos -->
-            <div class="map-stop" style="left: 15%;">
-              <div class="map-dot"></div>
-              <div class="map-label">
+            <div class="map-stop" style="position: absolute; top: -10px; left: 16.66%;">
+              <div class="map-dot" style="width: 20px; height: 20px; background-color: #8E7B52; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px #8E7B52;"></div>
+              <div class="map-label" style="position: absolute; width: 80px; text-align: center; margin-top: 20px; left: -30px;">
                 <p class="font-medium">Matosinhos</p>
                 <p class="text-xs text-gray-500">17.5 km</p>
               </div>
             </div>
             
             <!-- Póvoa de Varzim -->
-            <div class="map-stop" style="left: 33%;">
-              <div class="map-dot"></div>
-              <div class="map-label">
+            <div class="map-stop" style="position: absolute; top: -10px; left: 33.33%;">
+              <div class="map-dot" style="width: 20px; height: 20px; background-color: #8E7B52; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px #8E7B52;"></div>
+              <div class="map-label" style="position: absolute; width: 80px; text-align: center; margin-top: 20px; left: -30px;">
                 <p class="font-medium">Póvoa de Varzim</p>
                 <p class="text-xs text-gray-500">20.4 km</p>
               </div>
             </div>
             
             <!-- Esposende -->
-            <div class="map-stop" style="left: 52%;">
-              <div class="map-dot"></div>
-              <div class="map-label">
+            <div class="map-stop" style="position: absolute; top: -10px; left: 50%;">
+              <div class="map-dot" style="width: 20px; height: 20px; background-color: #8E7B52; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px #8E7B52;"></div>
+              <div class="map-label" style="position: absolute; width: 80px; text-align: center; margin-top: 20px; left: -30px;">
                 <p class="font-medium">Esposende</p>
                 <p class="text-xs text-gray-500">21 km</p>
               </div>
             </div>
             
             <!-- Viana do Castelo -->
-            <div class="map-stop" style="left: 71%;">
-              <div class="map-dot"></div>
-              <div class="map-label">
+            <div class="map-stop" style="position: absolute; top: -10px; left: 66.66%;">
+              <div class="map-dot" style="width: 20px; height: 20px; background-color: #8E7B52; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px #8E7B52;"></div>
+              <div class="map-label" style="position: absolute; width: 80px; text-align: center; margin-top: 20px; left: -30px;">
                 <p class="font-medium">Viana do Castelo</p>
                 <p class="text-xs text-gray-500">24 km</p>
               </div>
             </div>
             
             <!-- Caminha -->
-            <div class="map-stop" style="left: 90%;">
-              <div class="map-dot"></div>
-              <div class="map-label">
+            <div class="map-stop" style="position: absolute; top: -10px; left: 83.33%;">
+              <div class="map-dot" style="width: 20px; height: 20px; background-color: #8E7B52; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px #8E7B52;"></div>
+              <div class="map-label" style="position: absolute; width: 80px; text-align: center; margin-top: 20px; left: -30px;">
                 <p class="font-medium">Caminha</p>
                 <p class="text-xs text-gray-500">26.8 km</p>
               </div>
             </div>
             
             <!-- Santiago -->
-            <div class="map-stop" style="left: 100%;">
-              <div class="map-dot end-point"></div>
-              <div class="map-label">
+            <div class="map-stop" style="position: absolute; top: -12px; left: 100%; margin-left: -12px;">
+              <div class="map-dot end-point" style="width: 24px; height: 24px; background-color: white; border: 3px solid #8E7B52; border-radius: 50%; box-shadow: 0 0 0 2px white, 0 0 5px rgba(0,0,0,0.3);"></div>
+              <div class="map-label" style="position: absolute; width: 80px; text-align: center; margin-top: 20px; left: -28px;">
                 <p class="font-medium">Santiago</p>
                 <p class="text-xs text-gray-500 font-semibold">Final</p>
               </div>
             </div>
           </div>
         </div>
-        
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h3 class="text-xl font-bold mb-4 brand-text">Resumen de etapas</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start">
-                <span class="brand-text font-bold mr-2 text-lg">1.</span>
-                <div>
-                  <p class="font-medium">Porto - Matosinhos</p>
-                  <p class="text-sm text-gray-700">17.5 km | Dificultad: Baja-Media</p>
-                  <p class="text-sm text-gray-600">Salida urbana de Porto siguiendo el río Duero hasta el Atlántico, continuando por paseos marítimos con excelentes vistas al océano.</p>
-                </div>
-              </li>
-              <li class="flex items-start">
-                <span class="brand-text font-bold mr-2 text-lg">2.</span>
-                <div>
-                  <p class="font-medium">Matosinhos - Póvoa de Varzim</p>
-                  <p class="text-sm text-gray-700">20.4 km | Dificultad: Media</p>
-                  <p class="text-sm text-gray-600">Etapa costera con pasarelas sobre dunas y tramos urbanos por antiguos pueblos pesqueros. Terreno generalmente llano.</p>
-                </div>
-              </li>
-              <li class="flex items-start">
-                <span class="brand-text font-bold mr-2 text-lg">3.</span>
-                <div>
-                  <p class="font-medium">Póvoa de Varzim - Esposende</p>
-                  <p class="text-sm text-gray-700">21 km | Dificultad: Media</p>
-                  <p class="text-sm text-gray-600">Recorrido principalmente costero con tramos por bosques de pinos y pueblos tradicionales. Destacan los históricos molinos de viento de Apúlia.</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 class="text-xl font-bold mb-4 brand-text">&nbsp;</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start">
-                <span class="brand-text font-bold mr-2 text-lg">4.</span>
-                <div>
-                  <p class="font-medium">Esposende - Viana do Castelo</p>
-                  <p class="text-sm text-gray-700">24 km | Dificultad: Media-Alta</p>
-                  <p class="text-sm text-gray-600">Etapa más variada alternando senderos costeros y caminos rurales. Cruce del río Lima al llegar a Viana do Castelo con impresionantes vistas.</p>
-                </div>
-              </li>
-              <li class="flex items-start">
-                <span class="brand-text font-bold mr-2 text-lg">5.</span>
-                <div>
-                  <p class="font-medium">Viana do Castelo - Caminha</p>
-                  <p class="text-sm text-gray-700">26.8 km | Dificultad: Alta</p>
-                  <p class="text-sm text-gray-600">La etapa más larga del recorrido, con terreno ligeramente ondulado y algunas subidas moderadas. Vistas al monte Santa Tecla al llegar a Caminha.</p>
-                </div>
-              </li>
-              <li class="flex items-start">
-                <span class="brand-text font-bold mr-2 text-lg">6.</span>
-                <div>
-                  <p class="font-medium">Caminha - Santiago de Compostela</p>
-                  <p class="text-sm text-gray-700">Traslado en vehículo | ~130 km</p>
-                  <p class="text-sm text-gray-600">Transporte organizado desde Caminha hasta Santiago de Compostela, donde culmina nuestro Camino visitando la Catedral.</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
       
-      <!-- Vertical Map for Mobile -->
+      <!-- Mapa vertical para pantallas estrechas -->
       <div class="journey-map-vertical">
         <div class="relative flex justify-center">
           <div class="map-line-vertical">
@@ -2216,7 +2323,7 @@ body {
             </div>
             
             <!-- Matosinhos -->
-            <div class="map-stop-vertical" style="top: 15%;">
+            <div class="map-stop-vertical" style="top: 16.66%;">
               <div class="map-dot"></div>
               <div class="map-label-vertical">
                 <p class="font-medium">Matosinhos</p>
@@ -2225,7 +2332,7 @@ body {
             </div>
             
             <!-- Póvoa de Varzim -->
-            <div class="map-stop-vertical" style="top: 30%;">
+            <div class="map-stop-vertical" style="top: 33.33%;">
               <div class="map-dot"></div>
               <div class="map-label-vertical">
                 <p class="font-medium">Póvoa de Varzim</p>
@@ -2234,8 +2341,7 @@ body {
             </div>
             
             <!-- Esposende -->
-            <div class="map-stop-vertical
-            " style="top: 45%;">
+            <div class="map-stop-vertical" style="top: 50%;">
               <div class="map-dot"></div>
               <div class="map-label-vertical">
                 <p class="font-medium">Esposende</p>
@@ -2244,7 +2350,7 @@ body {
             </div>
             
             <!-- Viana do Castelo -->
-            <div class="map-stop-vertical" style="top: 60%;">
+            <div class="map-stop-vertical" style="top: 66.66%;">
               <div class="map-dot"></div>
               <div class="map-label-vertical">
                 <p class="font-medium">Viana do Castelo</p>
@@ -2253,7 +2359,7 @@ body {
             </div>
             
             <!-- Caminha -->
-            <div class="map-stop-vertical" style="top: 75%;">
+            <div class="map-stop-vertical" style="top: 83.33%;">
               <div class="map-dot"></div>
               <div class="map-label-vertical">
                 <p class="font-medium">Caminha</p>
@@ -2262,7 +2368,7 @@ body {
             </div>
             
             <!-- Santiago -->
-            <div class="map-stop-vertical" style="top: 90%;">
+            <div class="map-stop-vertical" style="top: 100%;">
               <div class="map-dot end-point"></div>
               <div class="map-label-vertical">
                 <p class="font-medium">Santiago</p>
@@ -2272,7 +2378,8 @@ body {
           </div>
         </div>
         
-        <div class="mt-8">
+        <!-- Resumen de etapas para vista vertical -->
+        <div class="journey-map-vertical mt-8">
           <h3 class="text-xl font-bold mb-4 brand-text">Resumen de etapas</h3>
           <div class="space-y-4">
             <div class="bg-gray-50 p-3 rounded">
@@ -2301,10 +2408,238 @@ body {
             </div>
           </div>
         </div>
+
       </div>
       
-      <!-- Distance Information -->
-      <div class="mt-8 bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <div class="journey-map-horizontal mt-8">
+        <h3 class="text-xl font-bold mb-4 brand-text text-center">Resumen de Etapas</h3>
+        
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-md">
+            <thead class="brand-bg text-white">
+              <tr>
+                <th class="py-3 px-4 text-left">#</th>
+                <th class="py-3 px-4 text-left">Etapa</th>
+                <th class="py-3 px-4 text-left">Distancia</th>
+                <th class="py-3 px-4 text-left">Dificultad</th>
+                <th class="py-3 px-4 text-left">Descripción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Etapa 1 -->
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="py-3 px-4 font-bold brand-text">1</td>
+                <td class="py-3 px-4 font-medium">Porto - Matosinhos</td>
+                <td class="py-3 px-4">17.5 km</td>
+                <td class="py-3 px-4">
+                  <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">Baja-Media</span>
+                </td>
+                <td class="py-3 px-4 text-sm text-gray-600">Salida urbana de Porto siguiendo el río Duero hasta el Atlántico, continuando por paseos marítimos con excelentes vistas al océano.</td>
+              </tr>
+              
+              <!-- Etapa 2 -->
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="py-3 px-4 font-bold brand-text">2</td>
+                <td class="py-3 px-4 font-medium">Matosinhos - Póvoa de Varzim</td>
+                <td class="py-3 px-4">20.4 km</td>
+                <td class="py-3 px-4">
+                  <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-700">Media</span>
+                </td>
+                <td class="py-3 px-4 text-sm text-gray-600">Etapa costera con pasarelas sobre dunas y tramos urbanos por antiguos pueblos pesqueros. Terreno generalmente llano.</td>
+              </tr>
+              
+              <!-- Etapa 3 -->
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="py-3 px-4 font-bold brand-text">3</td>
+                <td class="py-3 px-4 font-medium">Póvoa de Varzim - Esposende</td>
+                <td class="py-3 px-4">21 km</td>
+                <td class="py-3 px-4">
+                  <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-700">Media</span>
+                </td>
+                <td class="py-3 px-4 text-sm text-gray-600">Recorrido principalmente costero con tramos por bosques de pinos y pueblos tradicionales. Destacan los históricos molinos de viento de Apúlia.</td>
+              </tr>
+              
+              <!-- Etapa 4 -->
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="py-3 px-4 font-bold brand-text">4</td>
+                <td class="py-3 px-4 font-medium">Esposende - Viana do Castelo</td>
+                <td class="py-3 px-4">24 km</td>
+                <td class="py-3 px-4">
+                  <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-700">Media-Alta</span>
+                </td>
+                <td class="py-3 px-4 text-sm text-gray-600">Etapa más variada alternando senderos costeros y caminos rurales. Cruce del río Lima al llegar a Viana do Castelo con impresionantes vistas.</td>
+              </tr>
+              
+              <!-- Etapa 5 -->
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="py-3 px-4 font-bold brand-text">5</td>
+                <td class="py-3 px-4 font-medium">Viana do Castelo - Caminha</td>
+                <td class="py-3 px-4">26.8 km</td>
+                <td class="py-3 px-4">
+                  <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-700">Alta</span>
+                </td>
+                <td class="py-3 px-4 text-sm text-gray-600">La etapa más larga del recorrido, con terreno ligeramente ondulado y algunas subidas moderadas. Vistas al monte Santa Tecla al llegar a Caminha.</td>
+              </tr>
+              
+              <!-- Etapa 6 -->
+              <tr class="hover:bg-gray-50">
+                <td class="py-3 px-4 font-bold brand-text">6</td>
+                <td class="py-3 px-4 font-medium">Caminha - Santiago de Compostela</td>
+                <td class="py-3 px-4">~130 km</td>
+                <td class="py-3 px-4">
+                  <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">Traslado</span>
+                </td>
+                <td class="py-3 px-4 text-sm text-gray-600">Transporte organizado desde Caminha hasta Santiago de Compostela, donde culmina nuestro Camino visitando la Catedral.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Resumen estadístico en pequeñas tarjetas -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="bg-white p-4 rounded-lg shadow-md border-l-4 brand-border">
+            <h4 class="text-sm text-gray-500 uppercase">Distancia total</h4>
+            <p class="text-xl font-bold brand-text">109.7 km</p>
+          </div>
+          <div class="bg-white p-4 rounded-lg shadow-md border-l-4 brand-border">
+            <h4 class="text-sm text-gray-500 uppercase">Promedio diario</h4>
+            <p class="text-xl font-bold brand-text">21.9 km</p>
+          </div>
+          <div class="bg-white p-4 rounded-lg shadow-md border-l-4 brand-border">
+            <h4 class="text-sm text-gray-500 uppercase">Etapa más corta</h4>
+            <p class="text-xl font-bold brand-text">17.5 km</p>
+            <p class="text-xs text-gray-500">Porto - Matosinhos</p>
+          </div>
+          <div class="bg-white p-4 rounded-lg shadow-md border-l-4 brand-border">
+            <h4 class="text-sm text-gray-500 uppercase">Etapa más larga</h4>
+            <p class="text-xl font-bold brand-text">26.8 km</p>
+            <p class="text-xs text-gray-500">Viana do Castelo - Caminha</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Versión móvil más compacta -->
+        <div class="journey-map-vertical mt-8">
+          <h3 class="text-xl font-bold mb-4 brand-text text-center">Resumen de Etapas</h3>
+          
+          <div class="space-y-3">
+            <!-- Etapa 1 -->
+            <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 brand-border">
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full brand-bg text-white text-sm font-bold mr-2">1</span>
+                  <span class="font-medium">Porto - Matosinhos</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-sm font-semibold">17.5 km</span>
+                </div>
+              </div>
+              <div class="mt-2 pl-8">
+                <span class="inline-block px-2 py-0.5 text-xs rounded-full bg-green-100 text-green-700 mb-1">Baja-Media</span>
+                <p class="text-xs text-gray-600">Salida urbana de Porto siguiendo el río Duero hasta el Atlántico.</p>
+              </div>
+            </div>
+            
+            <!-- Etapa 2 -->
+            <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 brand-border">
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full brand-bg text-white text-sm font-bold mr-2">2</span>
+                  <span class="font-medium">Matosinhos - Póvoa de Varzim</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-sm font-semibold">20.4 km</span>
+                </div>
+              </div>
+              <div class="mt-2 pl-8">
+                <span class="inline-block px-2 py-0.5 text-xs rounded-full bg-yellow-100 text-yellow-700 mb-1">Media</span>
+                <p class="text-xs text-gray-600">Etapa costera con pasarelas sobre dunas y pueblos pesqueros.</p>
+              </div>
+            </div>
+            
+            <!-- Etapa 3 -->
+            <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 brand-border">
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full brand-bg text-white text-sm font-bold mr-2">3</span>
+                  <span class="font-medium">Póvoa de Varzim - Esposende</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-sm font-semibold">21 km</span>
+                </div>
+              </div>
+              <div class="mt-2 pl-8">
+                <span class="inline-block px-2 py-0.5 text-xs rounded-full bg-yellow-100 text-yellow-700 mb-1">Media</span>
+                <p class="text-xs text-gray-600">Recorrido costero con bosques de pinos y molinos de viento.</p>
+              </div>
+            </div>
+            
+            <!-- Etapa 4 -->
+            <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 brand-border">
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full brand-bg text-white text-sm font-bold mr-2">4</span>
+                  <span class="font-medium">Esposende - Viana do Castelo</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-sm font-semibold">24 km</span>
+                </div>
+              </div>
+              <div class="mt-2 pl-8">
+                <span class="inline-block px-2 py-0.5 text-xs rounded-full bg-orange-100 text-orange-700 mb-1">Media-Alta</span>
+                <p class="text-xs text-gray-600">Senderos costeros y rurales con vistas al río Lima.</p>
+              </div>
+            </div>
+            
+            <!-- Etapa 5 -->
+            <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 brand-border">
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full brand-bg text-white text-sm font-bold mr-2">5</span>
+                  <span class="font-medium">Viana do Castelo - Caminha</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-sm font-semibold">26.8 km</span>
+                </div>
+              </div>
+              <div class="mt-2 pl-8">
+                <span class="inline-block px-2 py-0.5 text-xs rounded-full bg-red-100 text-red-700 mb-1">Alta</span>
+                <p class="text-xs text-gray-600">La etapa más larga, terreno ondulado con vistas al monte Santa Tecla.</p>
+              </div>
+            </div>
+            
+            <!-- Etapa 6 -->
+            <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 brand-border">
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full brand-bg text-white text-sm font-bold mr-2">6</span>
+                  <span class="font-medium">Caminha - Santiago</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-sm font-semibold">~130 km</span>
+                </div>
+              </div>
+              <div class="mt-2 pl-8">
+                <span class="inline-block px-2 py-0.5 text-xs rounded-full bg-blue-100 text-blue-700 mb-1">Traslado</span>
+                <p class="text-xs text-gray-600">Transporte organizado hasta Santiago de Compostela.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Resumen estadístico para móvil -->
+          <div class="mt-6 grid grid-cols-2 gap-3">
+            <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 brand-border">
+              <h4 class="text-xs text-gray-500 uppercase">Distancia total</h4>
+              <p class="text-lg font-bold brand-text">109.7 km</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 brand-border">
+              <h4 class="text-xs text-gray-500 uppercase">Promedio diario</h4>
+              <p class="text-lg font-bold brand-text">21.9 km</p>
+            </div>
+          </div>
+        </div>
+      
+      <!-- Distance Information (visible en ambas vistas) -->
         <h3 class="text-lg font-bold mb-3 brand-text">Resumen de distancias</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -2316,50 +2651,9 @@ body {
             <p><span class="font-medium">Etapa más larga:</span> 26.8 km (Viana do Castelo - Caminha)</p>
           </div>
         </div>
-      </div>
-    </div>
-    
-    <!-- Flags of the regions we'll visit -->
-    <div class="mt-8 bg-white rounded-lg shadow-md p-6">
-      <h3 class="text-xl font-bold mb-6 text-center brand-text">Regiones del Camino</h3>
-      
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div>
-          <div class="flag-container mb-2">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png" alt="Portugal">
-          </div>
-          <p class="font-medium">Portugal</p>
-          <p class="text-sm text-gray-600">5 días</p>
-        </div>
-        
-        <div>
-          <div class="flag-container mb-2">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Flag_of_Porto.svg/1200px-Flag_of_Porto.svg.png" alt="Porto">
-          </div>
-          <p class="font-medium">Porto</p>
-          <p class="text-sm text-gray-600">1 día</p>
-        </div>
-        
-        <div>
-          <div class="flag-container mb-2">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Flag_of_Galicia.svg/1200px-Flag_of_Galicia.svg.png" alt="Galicia">
-          </div>
-          <p class="font-medium">Galicia</p>
-          <p class="text-sm text-gray-600">2 días</p>
-        </div>
-        
-        <div>
-          <div class="flag-container mb-2">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Flag_of_Spain.svg/1200px-Flag_of_Spain.svg.png" alt="España">
-          </div>
-          <p class="font-medium">España</p>
-          <p class="text-sm text-gray-600">5 días</p>
-        </div>
-      </div>
-    </div>
+       </div>
   </div>
 </section>
-
 
 <footer class="brand-bg text-white py-8">
   <div class="max-w-6xl mx-auto px-4 text-center">
